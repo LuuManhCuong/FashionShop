@@ -1,0 +1,50 @@
+.slider-wrap {
+  width: 100vw;
+  height: 70vh;
+  position: relative;
+
+  .slider-img {
+    width: 100vw;
+    height: 70vh;
+    object-fit: cover;
+  }
+
+  .slider-context {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    width: 36%;
+
+    h2{
+        font-size: 6rem;
+        font-weight: 700;
+        color: var(--black-color);
+        text-transform: capitalize;
+        margin-bottom: 10px;
+    }
+
+    p{
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: var(--text-color);
+        margin: 10px 0;
+        line-height: 2rem;
+    }
+    
+    button{
+        width: 150px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        font-size: 1.8rem;
+        font-weight: 500;
+        text-transform: capitalize;
+        margin-top: 10px;
+    }
+  }
+}
+
+.swiper-button-prev {
+  color: var(--primary-color) !important;
+}

@@ -6,6 +6,9 @@ import {
   FacebookOutlined,
   YouTube,
   Twitter,
+  SearchOutlined,
+  FavoriteBorderOutlined,
+  ShoppingCartOutlined,
 } from "@mui/icons-material";
 const cx = classNames.bind(styles);
 
@@ -35,16 +38,41 @@ function Header() {
           </li>
         </ul>
       </div>
+
       <div className={cx("header-search")}>
         <div className={cx("logo")}>
           <h1>Fashion.</h1>
         </div>
         <div className={cx("search-wrap")}>
-          
+          <input className={cx("search-input")} type="text" placeholder="What do you need?" />
+          <button className={cx("search-btn")}>
+            <SearchOutlined style={{color: "white", width: "2rem", height: "2rem"}}></SearchOutlined>
+          </button>
         </div>
-        <div className={cx("action-btn")}></div>
+        <div className={cx("action-btn")}>
+          <ul>
+            <li>
+              <FavoriteBorderOutlined style={{width: "2rem", height: "2rem"}}></FavoriteBorderOutlined>
+              <span>10</span>
+            </li>
+            <li>
+              <ShoppingCartOutlined style={{width: "2rem", height: "2rem"}}></ShoppingCartOutlined>
+              <span>10</span>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div className={cx("header-nav")}></div>
+
+      <div className={cx("header-nav")}>
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/home">Shop</a></li>
+          <li><a href="/home">Collection</a></li>
+          <li><a href="/home">Blog</a></li>
+          <li><a href="/home">Contact</a></li>
+          <li><a href="/home">Page</a></li>
+        </ul>
+      </div>
     </div>
   );
 }
