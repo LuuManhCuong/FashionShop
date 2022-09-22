@@ -1,5 +1,5 @@
-import classNames from "classnames/bind";
-import styles from "./slider.module.scss";
+import { useEffect } from "react";
+import "./slider.css";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,8 +12,6 @@ import "swiper/css/navigation";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
 
-const cx = classNames.bind(styles);
-
 export default function App() {
   return (
     <>
@@ -22,7 +20,7 @@ export default function App() {
         centeredSlides={true}
         loop={true}
         autoplay={{
-          delay: 250000,
+          delay: 2500,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -32,13 +30,13 @@ export default function App() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide className={cx("slider-wrap")}>
+        <SwiperSlide className="slider-wrap">
           <img
-            className={cx("slider-img")}
+            className="slider-img"
             src="	https://preview.colorlib.com/theme/fashi/img/hero-1.jpg"
             alt="slider"
           />
-          <div className={cx("slider-context")}>
+          <div className="slider-context">
             <h2>Black friday</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -46,36 +44,56 @@ export default function App() {
             </p>
             <button>Shop now</button>
           </div>
-        </SwiperSlide>
-        <SwiperSlide className={cx("slider-wrap")}>
-          <img
-            className={cx("slider-img")}
-            src="	https://preview.colorlib.com/theme/fashi/img/hero-2.jpg"
-            alt="slider "
-          />
-          <div className={cx("slider-context")}>
-            <h2>Black friday</h2>
+
+          <div className="slider-sale">
+            <h2>Sale</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore
+              50%
             </p>
-            <button>Shop now</button>
           </div>
         </SwiperSlide>
 
-        <SwiperSlide className={cx("slider-wrap")}>
+        <SwiperSlide className="slider-wrap">
           <img
-            className={cx("slider-img")}
-            src="https://preview.colorlib.com/theme/fashi/img/time-bg.jpg"
-            alt="slider "
+            className="slider-img"
+            src="	https://preview.colorlib.com/theme/fashi/img/hero-2.jpg"
+            alt="slider"
           />
-          <div className={cx("slider-context")}>
-            <h2>Black friday</h2>
+          <div className="slider-context">
+            <h2>Autum Sale</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
               eiusmod tempor incididunt ut labore et dolore
             </p>
             <button>Shop now</button>
+          </div>
+          <div className="slider-sale">
+            <h2>Sale</h2>
+            <p>
+              50%
+            </p>
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide className="slider-wrap">
+          <img
+            className="slider-img"
+            src="	https://preview.colorlib.com/theme/fashi/img/time-bg.jpg"
+            alt="slider"
+          />
+          <div className="slider-context">
+            <h2>Winter Sale</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore
+            </p>
+            <button>Shop now</button>
+          </div>
+          <div className="slider-sale">
+            <h2>Sale</h2>
+            <p>
+              50%
+            </p>
           </div>
         </SwiperSlide>
       </Swiper>
