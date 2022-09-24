@@ -13,6 +13,11 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper";
 
 export default function App() {
+  useEffect(() => {
+    fetch("http://example.com/movies.json")
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }, []);
   return (
     <>
       <Swiper
@@ -47,9 +52,7 @@ export default function App() {
 
           <div className="slider-sale">
             <h2>Sale</h2>
-            <p>
-              50%
-            </p>
+            <p>50%</p>
           </div>
         </SwiperSlide>
 
@@ -60,7 +63,7 @@ export default function App() {
             alt="slider"
           />
           <div className="slider-context">
-            <h2>Autum Sale</h2>
+            <h2>Autumn Sale</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
               eiusmod tempor incididunt ut labore et dolore
@@ -69,9 +72,7 @@ export default function App() {
           </div>
           <div className="slider-sale">
             <h2>Sale</h2>
-            <p>
-              50%
-            </p>
+            <p>50%</p>
           </div>
         </SwiperSlide>
 
@@ -91,9 +92,7 @@ export default function App() {
           </div>
           <div className="slider-sale">
             <h2>Sale</h2>
-            <p>
-              50%
-            </p>
+            <p>50%</p>
           </div>
         </SwiperSlide>
       </Swiper>
