@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const connection = require("./config/database");
-const port = 3000;
+const port = 3001;
 
 app.get("/", (req, res) => {
   let sql = "SELECT * from slider";

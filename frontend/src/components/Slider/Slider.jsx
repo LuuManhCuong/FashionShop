@@ -1,6 +1,5 @@
-import { useEffect } from "react";
-import "./slider.css";
 
+import "./slider.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,11 +12,6 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper";
 
 export default function App() {
-  useEffect(() => {
-    fetch("http://example.com/movies.json")
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-  }, []);
   return (
     <>
       <Swiper
