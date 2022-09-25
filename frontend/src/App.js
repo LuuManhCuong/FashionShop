@@ -4,8 +4,8 @@ import Blog from "./pages/Blog";
 // chứa các trang
 function App() {
   return (
-    // <Home></Home>
-    <Blog></Blog>
+    <Home></Home>
+    // <Blog></Blog>
   );
 }
 
