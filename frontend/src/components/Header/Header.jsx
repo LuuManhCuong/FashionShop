@@ -34,7 +34,7 @@ function Header() {
           </li>
           <li>
             <LocalPhone style={{ marginRight: "4px" }}></LocalPhone>
-            +65 11.188.888
+            +0916074130
           </li>
         </ul>
         <ul className={cx("contact-list")}>
