@@ -1,3 +1,4 @@
+import Categories from "../components/Categories/Categories";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Slider from "../components/Slider/Slider";
@@ -8,6 +9,7 @@ function Home() {
     <>
       <Header></Header>
       <Slider></Slider>
+      <Categories></Categories>
       <Footer></Footer>
     </>
   );
