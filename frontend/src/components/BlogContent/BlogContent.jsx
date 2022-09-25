@@ -1,12 +1,9 @@
 import classNames from "classnames/bind";
-import styles from "./blog.module.scss";
+import styles from "./blogContent.module.scss";
 const cx = classNames.bind(styles);
-function Blog() {
+function BlogContent() {
     return (  
         <div className={cx('wrap')}>
-            <div className={cx('category')}>
-                category
-            </div>
             <div className={cx('product')}>
                 product
             </div>
@@ -14,4 +11,4 @@ function Blog() {
     );
 }
 
-export default Blog;
+export default BlogContent;
