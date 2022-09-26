@@ -1,4 +1,5 @@
 
+import BestSale from "../components/BestSale/BestSale";
 import Categories from "../components/Categories/Categories";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
@@ -11,6 +12,7 @@ function Home() {
       <Header></Header>
       <Slider></Slider>
       <Categories></Categories>
+      <BestSale></BestSale>
       <Footer></Footer>
     </>
   );
