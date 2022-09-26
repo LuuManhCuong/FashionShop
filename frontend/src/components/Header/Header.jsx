@@ -1,7 +1,8 @@
-import classNames from "classnames/bind";
-import styles from "./header.module.scss";
+import { useState } from "react";
+import { useEffect } from "react";
+import { NavLink, NavNavLink } from "react-router-dom";
+import "./header.scss";
 import Typewriter from "typewriter-effect";
-import "./header.css";
 import {
   Email,
   LocalPhone,
@@ -12,9 +13,6 @@ import {
   FavoriteBorderOutlined,
   ShoppingCartOutlined,
 } from "@mui/icons-material";
-import { useState } from "react";
-import { useEffect } from "react";
-const cx = classNames.bind(styles);
 
 function Header() {
   const [keyWord, setKeyWord] = useState("");
@@ -25,9 +23,9 @@ function Header() {
   }, [keyWord]);
 
   return (
-    <div className={cx("header")}>
-      <div className={cx("header-contact")}>
-        <ul className={cx("contact-list")}>
+    <div className={"header"}>
+      <div className={"header-contact"}>
+        <ul className={"contact-list"}>
           <li>
             <Email style={{ marginRight: "4px" }}></Email>
             hello.colorlib@gmail.com
@@ -37,7 +35,7 @@ function Header() {
             +0916074130
           </li>
         </ul>
-        <ul className={cx("contact-list")}>
+        <ul className={"contact-list"}>
           <li>
             <FacebookOutlined></FacebookOutlined>
           </li>
@@ -50,14 +48,14 @@ function Header() {
         </ul>
       </div>
 
-      <div className={cx("header-search")}>
-        <div className={cx("logo")}>
+      <div className={"header-search"}>
+        <div className={"logo"}>
           <h1>Fashion.</h1>
         </div>
-        <div className={cx("search-wrap")}>
+        <div className={"search-wrap"}>
           <input
             id="search-input"
-            className={cx("search-input")}
+            className={"search-input"}
             type="text"
             value={keyWord}
             onFocus={() => setShowWriter(false)}
@@ -81,13 +79,13 @@ function Header() {
               }}
             />
           )}
-          <button className={cx("search-btn")}>
+          <button className={"search-btn"}>
             <SearchOutlined
               style={{ color: "white", width: "2rem", height: "2rem" }}
             ></SearchOutlined>
           </button>
         </div>
-        <div className={cx("action-btn")}>
+        <div className={"action-btn"}>
           <ul>
             <li>
               <FavoriteBorderOutlined
@@ -105,25 +103,61 @@ function Header() {
         </div>
       </div>
 
-      <div className={cx("header-nav")}>
+      <div className={"header-nav"}>
         <ul>
           <li>
-            <a href="/home">Home</a>
+            <NavLink
+              end
+              className={(navData) => (navData.isActive ? "active-item" : " ")}
+              to="/"
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <a href="/home">Shop</a>
+            <NavLink
+              end
+              className={(navData) => (navData.isActive ? "active-item" : " ")}
+              to="/shop"
+            >
+              Shop
+            </NavLink>
           </li>
           <li>
-            <a href="/home">Collection</a>
+            <NavLink
+              end
+              className={(navData) => (navData.isActive ? "active-item" : " ")}
+              to="/collection"
+            >
+              Collection
+            </NavLink>
           </li>
           <li>
-            <a href="/home">Blog</a>
+            <NavLink
+              end
+              className={(navData) => (navData.isActive ? "active-item" : " ")}
+              to="/blog"
+            >
+              Blog
+            </NavLink>
           </li>
           <li>
-            <a href="/home">Contact</a>
+            <NavLink
+              end
+              className={(navData) => (navData.isActive ? "active-item" : " ")}
+              to="/contact"
+            >
+              Contact
+            </NavLink>
           </li>
           <li>
-            <a href="/home">Page</a>
+            <NavLink
+              end
+              className={(navData) => (navData.isActive ? "active-item" : " ")}
+              to="/Pages"
+            >
+              Pages
+            </NavLink>
           </li>
         </ul>
       </div>

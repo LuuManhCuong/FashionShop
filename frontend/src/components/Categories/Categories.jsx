@@ -9,7 +9,7 @@ function Categories() {
           src="https://preview.colorlib.com/theme/fashi/img/xbanner-1.jpg.pagespeed.ic.WtoTbL-e6z.webp"
           alt="banner"
         />
-        <h1>xin chào</h1>
+        
         <h3 className="banner-text">MEN'S</h3>
       </div>
       <div className="banner">

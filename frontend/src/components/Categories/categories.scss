@@ -1,32 +1,61 @@
-.containers{
-    margin: 60px 0;
-    width: 100%;
-    height: 300px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.containers {
+  margin: 60px 0;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
-    .banner{
-        width: calc(100%/3 - 30px);
-        height: 100%;
-        position: relative;
+  .banner {
+    width: calc(100% / 3 - 30px);
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+    filter: brightness(0.9);
 
-        .banner-img{
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .banner-text{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.6rem;
-            font-weight: 500;
-            color: var(--text-color);
-            padding: 10px 20px;
-            background-color: var(--white-color);
-        }
+    .banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
+
+    .banner-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--text-color);
+      padding: 10px 20px;
+      background-color: var(--white-color);
+    }
+
+    &::after {
+      content: "";
+      width: calc(100% - 60px);
+      height: calc(100% - 80px);
+      background-color: transparent;
+      border: 10px solid var(--primary-color);
+      opacity: 0.5;
+      position: absolute;
+      top: 40px;
+      left: 30px;
+      transition: all ease 0.3s;
+      transform: scale(0);
+    }
+
+    &:hover::after {
+      transform: scale(1);
+    }
+
+    &:hover {
+      filter: brightness(1);
+      color: var(--primary-color);
+    }
+
+    &:hover .banner-text {
+        color: var(--primary-color);
+      }
+  }
 }
