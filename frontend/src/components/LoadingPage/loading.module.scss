@@ -1,0 +1,31 @@
+.loading{
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+    
+    .icon{
+        font-size: 24px;
+        animation: turn 3s linear infinite;
+    }
+    @keyframes turn {
+        from{
+            transform: rotate(0);
+        }
+        to{
+            transform: rotate(360deg);
+        }
+    }
+    a{
+        cursor: pointer;
+        position: relative;
+        font-weight: 700px;
+    }
+    a::before{
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        height: 2px;
+        width: 100%;
+        background-color: #e7ab3c;
+    }
+}

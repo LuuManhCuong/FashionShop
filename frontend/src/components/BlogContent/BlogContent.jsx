@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import styles from "./blogContent.module.scss";
 import BlogItem from "../BlogItems/BlogItem";
 
-import RotateRightIcon from '@mui/icons-material/RotateRight';
+import LoadingPage from "../LoadingPage/LoadingPage";
 const cx = classNames.bind(styles);
 function BlogContent() {
     return (  
@@ -14,9 +14,7 @@ function BlogContent() {
                 <BlogItem/>
                 <BlogItem/>
             </div>
-            <div className={cx('loading')}>
-                 <i><RotateRightIcon className={cx('icon')} /></i>
-                  <a href="/"> loading more</a></div>
+        <LoadingPage/>
         </div>
     );
 }
