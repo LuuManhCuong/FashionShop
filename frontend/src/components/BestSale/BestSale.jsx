@@ -1,14 +1,13 @@
-
 import classNames from "classnames/bind";
 import SliderProduct from "../SliderProduct/SliderProduct";
 import styles from "./bestsale.module.scss";
 const cx = classNames.bind(styles);
 
-function BestSale() {
+function BestSale(props) {
   return (
     <div className={cx("container")}>
       {/* men: thêm class "men" vào */}
-      <div className={cx("banner", "")}>
+      <div className={cx(`banner`, props.classname)}>
         <img
           src="	https://preview.colorlib.com/theme/fashi/img/products/women-large.jpg"
           alt="banner"

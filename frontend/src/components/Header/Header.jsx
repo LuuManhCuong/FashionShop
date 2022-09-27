@@ -1,10 +1,5 @@
-import { useState } from "react";
-import { useEffect } from "react";
-<<<<<<< HEAD
-import { NavLink} from "react-router-dom";
-=======
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
->>>>>>> blogItem
 import "./header.scss";
 import Typewriter from "typewriter-effect";
 import {
@@ -64,7 +59,7 @@ function Header() {
             value={keyWord}
             onFocus={() => setShowWriter(false)}
             onBlur={(e) => {
-              var lengValue = e.currentTarget.value.length;
+              let lengValue = e.currentTarget.value.length;
               lengValue > 0 ? setShowWriter(false) : setShowWriter(true);
             }}
             onChange={(e) => setKeyWord(e.target.value)}

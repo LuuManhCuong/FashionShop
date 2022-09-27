@@ -1,0 +1,102 @@
+.countdown {
+  margin: 60px 80px;
+  height: 600px;
+  background-color: #f3f2ee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .product {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 400px;
+    }
+  }
+
+  .countdown-timer {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    .context {
+      width: 70%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .title {
+        padding: 10px 0;
+        font-size: 2.8rem;
+        font-weight: 600;
+        color: var(--text-color);
+        text-transform: capitalize;
+      }
+      .desc {
+        padding: 10px 0;
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: rgb(137, 137, 137);
+      }
+      .price {
+        padding: 10px 0;
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        text-transform: capitalize;
+        span {
+          margin-left: 4px;
+          font-size: 1.8rem;
+          font-weight: 600;
+          text-transform: capitalize;
+          color: rgb(144, 144, 144);
+          text-decoration: line-through;
+        }
+      }
+    }
+    .timer {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      h3 {
+        border-radius: 10px;
+        width: 100px;
+        padding: 10px;
+        text-align: center;
+        margin: 0 20px;
+        background-color: var(--white-color);
+        font-size: 4rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        text-transform: capitalize;
+        p {
+          text-align: center;
+          margin-top: 10px;
+          font-size: 1.6rem;
+          font-weight: 400;
+          text-transform: capitalize;
+          color: rgb(144, 144, 144);
+        }
+      }
+    }
+    .btn {
+      width: 150px;
+      height: 50px;
+      background-color: var(--primary-color);
+      color: var(--white-color);
+      font-size: 1.8rem;
+      font-weight: 500;
+      text-transform: capitalize;
+      margin-top: 40px;
+      &.timeout {
+        color: red;
+      }
+    }
+  }
+}
