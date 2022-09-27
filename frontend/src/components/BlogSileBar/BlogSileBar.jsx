@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./blogSileBar.module.scss";
+import Tag from "../Tags/Tag";
 const cx = classNames.bind(styles);
 
 function BlogSileBar() {
@@ -66,26 +67,7 @@ function BlogSileBar() {
           </div>
         </a>
       </div>
-      <div className={cx("product-tag")}>
-        <h4>product tags</h4>
-        <ul>
-          <li>
-            <a href="/">dress</a>
-          </li>
-          <li>
-            <a href="/">t-shish</a>
-          </li>
-          <li>
-            <a href="/">short</a>
-          </li>
-          <li>
-            <a href="/">shoes</a>
-          </li>
-          <li>
-            <a href="/">dress</a>
-          </li>
-        </ul>
-      </div>
+      <Tag/>
     </div>
   );
 }
