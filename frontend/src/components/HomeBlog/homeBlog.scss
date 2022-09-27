@@ -1,0 +1,21 @@
+.home-blog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 100px 80px 60px;
+
+    .title{
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        font-size: 4rem;
+        font-weight: 600;
+        color: var(--text-color);
+        border-bottom: 4px solid var(--primary-color);
+    }
+    .blog-list{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

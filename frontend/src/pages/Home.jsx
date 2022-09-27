@@ -5,6 +5,7 @@ import CountDown from "../components/CountDown/CountDown";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Slider from "../components/Slider/Slider";
+import HomeBlog from "../components/HomeBlog/HomeBlog";
 
 // chứa các component của home
 function Home() {
@@ -16,6 +17,7 @@ function Home() {
       <BestSale></BestSale>
       <CountDown></CountDown>
       <BestSale classname="men"></BestSale>
+      <HomeBlog></HomeBlog>
       <Footer></Footer>
     </>
   );

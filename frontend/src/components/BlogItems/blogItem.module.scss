@@ -1,31 +1,52 @@
 .container {
-    width: 412px;
-    padding: 8px 10px 0;
-    img {
-        width: 100%;
-        object-fit: cover;
-    }
-    a {
-        font-size: 24px;
-        font-weight: 700;
-        margin-top: 8px;
-    }
+  width: 412px;
+  padding: 8px 10px 0;
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+  a {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 8px;
+  }
+  p {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: rgb(137, 137, 137);
+    line-height: 2.6rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
 
-    .fashion {
-        font-size: 14px;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: #e7ab3c;
-        letter-spacing: 2px;
-        line-height: 20px;
-        margin-top: 8px;
+  .fashion {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #e7ab3c;
+    letter-spacing: 2px;
+    line-height: 20px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 
-        span {
-            color: #b2b2b2;
-            font-weight: 400;
-            text-transform: capitalize;
-            letter-spacing: 0;
-        }
+    span {
+      color: #b2b2b2;
+      font-weight: 400;
+      text-transform: capitalize;
+      letter-spacing: 0;
+      margin: 0 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .icon {
+        color: var(--primary-color);
+        margin: 0 3px;
+      }
     }
-
+  }
 }
