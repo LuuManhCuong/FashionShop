@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { NavLink, NavNavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./header.scss";
 import Typewriter from "typewriter-effect";
 import {
