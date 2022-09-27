@@ -21,11 +21,11 @@ function Tag() {
             <a href="/">shoes</a>
           </li>
           <li>
-            <a href="/">dress</a>
+            <a href="/">dress2</a>
           </li>
         </ul>
       </div>
   )
 }
 
-export default Tag
+export default Tag    
