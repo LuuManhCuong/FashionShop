@@ -1,7 +1,12 @@
 import classNames from "classnames/bind";
 import styles from "./blogSileBar.module.scss";
 import Tag from "../Tags/Tag";
+import SlideBarCategory from "../SlideBarCategory/SlideBarCategory";
 const cx = classNames.bind(styles);
+
+const categories =[
+  'Fashion','Travel','Picnic','Modle'
+]
 
 function BlogSileBar() {
   return (
@@ -11,23 +16,7 @@ function BlogSileBar() {
         <input type="text" placeholder="Search..." />
         <button className={cx("submit")}>tk</button>
       </form>
-      <div className={cx("category")}>
-        <h2>Categories</h2>
-        <ul>
-          <li>
-            <a href="/">Fashion</a>
-          </li>
-          <li>
-            <a href="/">Travel</a>
-          </li>
-          <li>
-            <a href="/">Picnic</a>
-          </li>
-          <li>
-            <a href="/">Modle</a>
-          </li>
-        </ul>
-      </div>
+     <SlideBarCategory categories={categories} />
       <div className={cx("recent-post")}>
         <h2>Recent Post</h2>
         <a href="/" className={cx("items")}>

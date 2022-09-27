@@ -1,0 +1,121 @@
+.container {}
+.brand{
+    h2{
+
+    }
+    ul{
+        margin-top: 14px;
+    }
+    li{
+        input{
+
+        }
+        span{
+            font-size: 16px;
+            padding-left: 20px;
+            margin-bottom: 6px;
+        }
+    }
+}
+.price{
+    margin-top: 41px;
+
+    .price-current{
+        position: relative;
+        span{
+            height: 2px;
+            width: 20px;
+            background-color: #ebebeb;
+            font-size: 50px;
+            position: absolute;
+            top: 50%;
+            left: 59px;
+            transform: translateY(-50%);
+        }
+        .price-current-input:nth-child(1){
+            user-select: none !important;
+        }
+        .price-current-input{
+            border: 1px solid black !important;
+            font-size: 16px;
+            width: 53px;
+        
+            &:nth-child(1){
+                user-select: none;
+            }
+            & + .price-current-input{
+                margin-left: 30px;
+            }
+            
+        }
+    }
+    .input-range{
+        margin-top: 18px;
+        width: 100%;
+    }
+}
+.container-color{
+    margin-top: 41px;
+    h2{
+        margin-bottom: 26px;
+    }
+    ul{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    li{
+        width: 50%;
+        display: flex;
+        align-items: center;
+        // border: 8px 0px !important ;
+        padding-top: 8px;
+
+       .color{
+        display: block;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+       } 
+
+       .color-name{
+        margin-left: 12px;
+        font-size: 16px;
+       }
+       .color-red{
+        background-color: red;
+       }
+       .color-purple{
+        background-color: purple;
+       }
+       .color-black{
+        background-color: black;
+       }
+       .color-violet{
+        background-color: violet;
+       }
+       .color-green{
+        background-color: green;
+       }
+       .color-yellow{
+        background-color: yellow;
+       }
+    }
+}
+.size{
+    margin-top: 41px;
+    margin-bottom: 41px;
+    ul{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        li{
+            font-weight: 700;
+            font-size: 16px;
+            text-align: center;
+            line-height: 42px;
+            border: 1px solid black;
+            width: 20%;
+            cursor: pointer;
+        }
+    }
+}
