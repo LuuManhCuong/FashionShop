@@ -1,0 +1,49 @@
+.cart-noti {
+  position: absolute;
+  top: 30px;
+  right: -20px;
+  min-width: 360px;
+  background-color: var(--white-color);
+  padding: 15px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all ease 0.3s;
+  border: 1px solid #ccc;
+  z-index: 3;
+  animation: noti ease 0.3s;
+
+  @keyframes noti {
+    0% {
+      top: 50px;
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      top: 30px;
+    }
+  }
+
+  .total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 20px 0;
+    width: 100%;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    border-top: 1px solid #ccc;
+  }
+  .view-cart-btn {
+    width: 100%;
+    height: 50px;
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+  }
+}

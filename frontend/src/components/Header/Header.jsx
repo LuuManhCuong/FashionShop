@@ -12,6 +12,7 @@ import {
   FavoriteBorderOutlined,
   ShoppingCartOutlined,
 } from "@mui/icons-material";
+import CartNoti from "../CartNoti/CartNoti";
 
 function Header() {
   const [keyWord, setKeyWord] = useState("");
@@ -92,11 +93,13 @@ function Header() {
               ></FavoriteBorderOutlined>
               <span>10</span>
             </li>
-            <li>
+            <li className="cart">
               <ShoppingCartOutlined
                 style={{ width: "2rem", height: "2rem" }}
               ></ShoppingCartOutlined>
               <span>10</span>
+
+              <CartNoti className="cart-noti"></CartNoti>
             </li>
           </ul>
         </div>

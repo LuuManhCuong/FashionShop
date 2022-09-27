@@ -25,10 +25,7 @@ function BlogItem() {
         </span>
       </p>
       <a href="/"> The Personality Trait That Makes People Happier</a>
-      <p>
-        Sed quia non numquam modi tempora indunt ut labore et dolore magnam
-        aliquam quaerat
-      </p>
+      <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam</p>
     </div>
   );
 }
