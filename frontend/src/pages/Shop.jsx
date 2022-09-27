@@ -40,7 +40,7 @@ function Shop() {
                     <LoadingPage />
                 </div>
             </div>
-            {/* <Footer/> */}
+            <Footer/>
         </>
     )
 }
