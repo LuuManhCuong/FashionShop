@@ -1,0 +1,42 @@
+.comment {
+  width: 100%;
+  min-width: 490px;
+  padding: 5px 20px;
+
+  .res-wrap {
+    display: flex;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #f3f2ee;
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      margin-right: 10px;
+      object-fit: contain;
+      border-radius: 1px solid #ccc;
+    }
+
+    .user-info {
+      .username {
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: var(--text-color);
+        text-transform: capitalize;
+
+        span {
+          font-size: 1.4rem;
+          font-weight: 400;
+          color: rgb(148, 147, 147);
+          text-transform: capitalize;
+          margin: 0 5px;
+        }
+      }
+      .text-comment {
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: var(--text-color);
+      }
+    }
+  }
+}

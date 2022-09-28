@@ -127,3 +127,23 @@ li {
     color: var(--primary-color) !important;
   }
 }
+
+.product-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .sw {
+    width: 32vw;
+    height: 100vh;
+    // background-color: pink;
+
+    .title {
+      padding: 10px;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      text-transform: capitalize;
+      text-align: center;
+    }
+  }
+}
