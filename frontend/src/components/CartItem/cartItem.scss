@@ -43,5 +43,9 @@
     height: 30px;
     color: var(--text-color);
     margin-left: 10px;
+
+    &:hover{
+      color: var(--primary-color);
+    }
   }
 }

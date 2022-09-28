@@ -48,14 +48,15 @@ li {
   margin: 0;
   padding: 0;
 }
-.shopProductWrap{
-display: flex;
-flex-wrap: wrap;
+.shopProductWrap {
+  display: flex;
+  flex-wrap: wrap;
 }
-.shopProduct{
+.shopProduct {
   width: 33%;
 }
-.blogContainer ,.shopContainer{
+.blogContainer,
+.shopContainer {
   display: flex;
   width: 1200px;
   margin-left: 50%;
@@ -71,7 +72,7 @@ flex-wrap: wrap;
     padding-left: 8px;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    // flex-direction: column;
   }
 }
 .Typewriter {
@@ -126,4 +127,3 @@ flex-wrap: wrap;
     color: var(--primary-color) !important;
   }
 }
-
