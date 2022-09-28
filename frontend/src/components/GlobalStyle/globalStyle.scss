@@ -14,6 +14,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  max-width: 100%;
 }
 
 html {
@@ -55,8 +56,15 @@ li {
 .shopProduct {
   width: 33%;
 }
+.detailBlogContainer{
+  display: flex;
+  width: 1200px;
+  max-width: 100%;
+  transform: translateX(-50%);
+  margin-left: 50%;
+
+}
 .blogContainer,
-.detailBlogContainer,
 .shopContainer {
   display: flex;
   width: 1200px;
