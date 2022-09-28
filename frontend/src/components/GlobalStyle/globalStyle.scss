@@ -14,9 +14,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  max-width: 100%;
 }
-
+.app{
+  max-width: 1200%;
+  width: 100%;
+  overflow: hidden;
+  // margin: 0 80px;
+  padding: 0 100px;
+}
 html {
   font-size: 62.5%;
   font-family: "Montserrat", sans-serif;
@@ -58,10 +63,10 @@ li {
 }
 .detailBlogContainer{
   display: flex;
-  width: 1200px;
-  max-width: 100%;
-  transform: translateX(-50%);
-  margin-left: 50%;
+  // width: 1200px;
+  // max-width: 100%;
+  // transform: translateX(-50%);
+  // margin-left: 50%;
 
 }
 .blogContainer,

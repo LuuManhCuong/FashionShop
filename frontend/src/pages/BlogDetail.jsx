@@ -7,7 +7,7 @@ import InputText from '../components/InputText/InputText'
 import Comment from '../components/Comment/Comment'
 function BlogDetail() {
   return (
-    <>
+    <div className='app'>
       <Header />
       <div className='detailBlogContainer'>
         <DetailBlogContent />
@@ -19,7 +19,7 @@ function BlogDetail() {
       </div>
         <Footer/>
 
-    </>
+    </div>
   )
 }
 
