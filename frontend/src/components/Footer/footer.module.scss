@@ -1,45 +1,136 @@
 
 
 .footer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 100px;
-    div{
-        width: calc(100vw/3);
+    .footer-benefit{
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        height: 80%;
-
-        h1{
-            font-size: 2.6rem;
-            font-weight: 700;
-            color: var(--text-color);
+        margin: 60px 150px ;
+        // li +li{
+        //     margin-left: 5px;
+        // }
+        li{
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 30px 60px;
+            width: 100%;
+            
+            img{
+                height: auto;
+                width: 50px;
+                object-fit: contain;
+                margin-right:20px;
+            }
+            h3{
+                font-size: 1.8rem;
+                font-weight: 500;
+                color: var(--text-color);
+                margin-bottom: 5px;
+            }
+            p{
+                font-size: 1.4rem;
+                font-weight: 500;
+                color: rgb(124, 123, 123);
+                margin: 0;
+            
+            }
         }
 
-        p{
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: var(--text-color);
-            margin: 10px 0;
-            line-height: 2rem;
-        }
-
-        button{
-            width: 150px;
-            height: 50px;
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            font-size: 1.8rem;
-            font-weight: 500;
-            text-transform: capitalize;
-            margin-top: 10px;
-        }
     }
+    .footer-content{
+        display: flex;
+        justify-content: space-between;
+        // align-items: center
+        min-height: 300px;
+        background-color: #303030;
+        width:100%;
+        padding: 20px 130px;
+        div{
+            width: calc(100%/4);
+            display: flex;
+            justify-content: center;
+            // align-items: center;
+            height: 80%;
+            flex-direction: column;
+            padding:  20px;
+           
+    
+            h1{
+                font-size: 2.6rem;
+                font-weight: 700;
+                color: white;
+            }
+            p{
+                font-size: 1.5rem;
+                font-weight: 500;
+                color: var(--text-color);
+                margin: 10px 0;
+                color: #ccc;
+                line-height: 2rem;
+                .icon{
+                color: var(--primary-color);
+                margin-right:10px ;
+                }
+            }
+            .social{
+                display: flex;
+                align-items: center;
+                li{
+                   .social-icon{
+                    color: #fff;
+                    font-size: 4rem;
+                    margin-right: 20px ;
+                    margin-top: 16px ;
+    
+                   } 
+                }
+            }
+            
+            h3{
+                color: #fff;
+                font-size: 2rem;
+                margin-bottom: 18px;
 
-    div+div{
-        border-left: 1px solid #ccc;
+            }
+            .info{
+                li{
+                    margin-bottom: 20px;
+                   
+                    a{
+                        font-size: 1.5rem;
+                       font-weight: 500;
+                       color: var(--text-color);
+                       margin: 10px 0;
+                       color: #ccc;
+                       line-height: 2rem;
+                       
+                       }
+                }
+            }
+            button{
+                width: 150px;
+                height: 50px;
+                background-color: var(--primary-color);
+                color: var(--white-color);
+                font-size: 1.8rem;
+                font-weight: 500;
+                text-transform: capitalize;
+                margin-top: 10px;
+            }
+            
+        }
+    
+        // div+div{
+        //     border-left: 1px solid #ccc;
+        // }
     }
+    .copyright{
+        text-align: center;
+        background-color: #303030;
+        color: #fff;
+        padding: 10px 0;
+        border-top: 1px solid #ccc;
+    }
+    
 }
