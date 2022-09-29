@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import Shop from "./pages/Shop";
 import Product from "./pages/Product";
+import Card from "./pages/Card";
 import BlogDetail from './pages/BlogDetail'
 import LoginPage from "./pages/LoginPage";
 import Register from "./components/AuththenComponent/Register";
@@ -17,6 +18,7 @@ function App() {
       <Route path="/shop" element={<Shop/>}></Route>
       <Route path="/login" element={<LoginPage/>}></Route>
       <Route path="/register" element={<Register/>}></Route>
+      <Route path="/card" element={<Card/>}></Route>
     </Routes>
   );
 }
