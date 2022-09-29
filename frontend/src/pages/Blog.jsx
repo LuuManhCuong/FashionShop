@@ -4,8 +4,6 @@ import BlogContent from '../components/BlogContent/BlogContent';
 import BlogSileBar from '../components/BlogSileBar/BlogSileBar'
 import Footer from '../components/Footer/Footer';
 
-
-
 function Blog() {
   return (
     <div>

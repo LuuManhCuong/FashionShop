@@ -150,3 +150,11 @@ li {
 .detailBlogContainer {
   margin: 20px 80px;
 }
+
+.slick-arrow.slick-prev{
+  transform: translate(110%, -50%);
+}
+
+.slick-arrow.slick-next{
+  transform: translate(-110%, -50%);
+}

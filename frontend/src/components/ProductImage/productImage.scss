@@ -1,0 +1,33 @@
+.product-image {
+  width: 100%;
+  // background-color: pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-transform: capitalize;
+    padding: 10px;
+    text-align: center;
+  }
+  .slick-slider {
+    width: 100%;
+    height: auto;
+    align-items: unset;
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      img {
+        width: 400px;
+        height: 230px;
+        object-fit: cover;
+        margin: 0;
+      }
+    }
+  }
+}

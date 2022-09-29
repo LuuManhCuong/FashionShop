@@ -12,7 +12,7 @@ function CommentItem() {
         />
         <div className="user-info">
           <h3 className="username">
-            Mạnh Cường
+            Mai Trinh
             <span> 01/10/2022</span>
           </h3>
           <p className="text-comment">
