@@ -1,0 +1,187 @@
+
+.Login{
+    width: 45%;
+    height: 680px;
+    margin-left: calc( (100% - 45%) / 2);
+    margin-top: 15px;
+    background: #fff;
+    opacity: 0.75;
+    border-radius: 3px;
+    font-family: "Jost",sans-serif;
+    box-shadow:
+                0 0 10px 4px #444342;
+                
+    .text1{
+        text-align: center;
+        padding-top: 70px;
+        .text-login{
+            font-size: 30px;
+            color: #140c40;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: block;
+            text-transform: capitalize;
+        }
+        .text-enter{
+            font-size: 16px;
+            color: #301a22;
+            margin-bottom: 15px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+    }
+    .input-box{
+        padding-top: 28px;
+        padding-bottom: 10px;
+        width: 90%;
+        padding-left: 5%;
+        
+        .single-input-fields{
+            display: block;
+            font-size: 17px;
+            margin-bottom: 26px;
+            color: #140c40;
+            text-transform: capitalize;
+            font-weight: 500;
+            text-align: left;
+            .check-box{
+                margin-right: 10px;
+            }
+           
+            .input{
+                width: 105.8%;
+                font-size: 14px;
+                padding-left: 15px;
+                margin-top: 13px;
+                height: 50px;
+                border: 1px solid  black;
+            }
+            .f-right{
+                font-size: 14px;
+                font-weight: 400;
+                float: right;
+                color: red;
+            }
+        }
+    }
+    .login-footer{
+        width: 90%;
+        margin-left: 5%;
+        padding-top: 40px;
+        .left{
+            float: left;
+            .sign-up{
+                font-size: 14px;
+                
+                .dont{
+                    padding-right: 10px;
+                }
+                .signup{
+                    padding-right: 5px;
+                    color: red;
+                }
+            }
+        }
+        .right{
+            float: right;
+            .submit-btn3{
+                width: 100px;
+                height: 60px;
+                background: red;
+                font-size: 17px;
+                color: white;
+            }
+        }
+        
+    }
+   
+}
+
+.register{
+    width: 45%;
+    height: 800px;
+    margin-left: calc( (100% - 45%) / 2);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background: #fff;
+    opacity: 0.75;
+    border-radius: 3px;
+    font-family: "Jost",sans-serif;
+    box-shadow:
+                0 0 10px 4px #444342;
+                
+    .text1{
+        text-align: center;
+        padding-top: 40px;
+        .text-login{
+            font-size: 30px;
+            color: #140c40;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: block;
+            text-transform: capitalize;
+        }
+        .text-enter{
+            font-size: 16px;
+            color: #301a22;
+            margin-bottom: 15px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+    }
+    .input-box{
+        padding-top: 28px;
+        padding-bottom: 10px;
+        width: 90%;
+        padding-left: 5%;
+        
+        .single-input-fields{
+            display: block;
+            font-size: 17px;
+            margin-bottom: 26px;
+            color: #140c40;
+            text-transform: capitalize;
+            font-weight: 500;
+            text-align: left;
+           
+            .input{
+                width: 105.8%;
+                font-size: 14px;
+                padding-left: 15px;
+                margin-top: 13px;
+                height: 50px;
+                border: 1px solid  black;
+            }
+        }
+    }
+    .login-footer{
+        width: 90%;
+        margin-left: 5%;
+        padding-top: 40px;
+        .left{
+            float: left;
+            .sign-up{
+                font-size: 14px;
+                
+                .dont{
+                    padding-right: 10px;
+                }
+                .signup{
+                    padding-right: 5px;
+                    color: red;
+                }
+            }
+        }
+        .right{
+            float: right;
+            .submit-btn3{
+                width: 100px;
+                height: 60px;
+                background: red;
+                font-size: 17px;
+                color: white;
+            }
+        }
+        
+    }
+}
