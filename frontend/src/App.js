@@ -6,6 +6,7 @@ import Product from "./pages/Product";
 import BlogDetail from './pages/BlogDetail'
 import LoginPage from "./pages/LoginPage";
 import Register from "./components/AuththenComponent/Register";
+import ContactPage from "./pages/ContactPage";
 // chứa các trang
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
       <Route path="/shop" element={<Shop/>}></Route>
       <Route path="/login" element={<LoginPage/>}></Route>
       <Route path="/register" element={<Register/>}></Route>
+      <Route path="/contact" element={<ContactPage/>}></Route>
+
     </Routes>
   );
 }

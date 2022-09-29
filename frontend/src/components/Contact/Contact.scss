@@ -1,0 +1,97 @@
+.container{
+    margin-top: 50px;
+    font-size: 17px;
+    width: 100%;
+    .row{
+        margin-left: 20px;
+    }
+    .row2{
+        margin-left: 70px;
+        border-radius: 5px;
+    
+    }
+}
+
+.card-1{
+    .card-body{
+        margin-bottom: 10px;
+        height: 80px;
+        border-radius: 5px;
+        box-shadow:
+                0 0 10px 4px #cbcbca;
+        .location-icon{
+            float: left;
+            margin-left: 20px;
+            margin-top: 23px;
+        }
+        .location-text{
+            text-align: left;
+            padding-left: 80px;
+            padding-top: 10px;
+        }
+    }
+}
+.input{
+    
+    .input-name{
+        .name{
+            border: 1px solid rgb(152, 149, 149);
+            border-radius: 5px;
+            height: 45px;
+            padding-left: 10px;
+            width: 280px;
+            margin-bottom: 30px;
+            float: left;
+        }
+    }
+    .input-email{
+        .email{
+            border: 1px solid rgb(152, 149, 149);
+            border-radius: 5px;
+            height: 45px;
+            padding-left: 10px;
+            margin-bottom: 40px;
+            width: 280px;
+            float: right;
+        }
+    }
+    .input-message{
+        .message{
+            border: 1px solid rgb(152, 149, 149);
+            border-radius: 5px;
+            height: 140px;
+            width: 590px;
+            padding-left: 10px;
+            margin-bottom: 50px;
+            
+        }
+    }
+
+}
+.h4-1{
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.p-h4-1{
+    text-align: left;
+    margin-bottom: 30px;
+}
+.h4-2{
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 20px;
+}
+.p-h4{
+    margin-bottom: 31px;
+    text-align: left;
+}
+
+.box-send{
+    width: 200px;
+    height: 50px;
+    background-color: #e7ab3c;
+    padding-top: 13px;
+    color: white;
+    font-weight: 600;
+}
