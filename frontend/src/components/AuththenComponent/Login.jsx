@@ -22,7 +22,7 @@ function Login() {
                 <label for="fruit1">
                     Keep me logged in
                 </label> 
-                <a href='#' className='f-right'>Forgot Password?</a>
+                <a href='/' className='f-right'>Forgot Password?</a>
             </div>
        </div>
        <div className='login-footer'>

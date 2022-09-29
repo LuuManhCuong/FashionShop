@@ -17,14 +17,23 @@
     width: 100%;
     height: auto;
     align-items: unset;
+    .slick-prev {
+      top: 50%;
+
+      left: 10px;
+    }
+    .slick-next {
+      top: 50%;
+      right: 10px;
+    }
 
     div {
       display: flex;
       justify-content: center;
       align-content: center;
       img {
-        width: 400px;
-        height: 230px;
+        width: 380px;
+        height: 210px;
         object-fit: cover;
         margin: 0;
       }

@@ -111,12 +111,11 @@ li {
   .slick-prev,
   .slick-next {
     position: absolute;
-    top: 50%;
+    top: 36%;
     display: block;
     width: 40px;
     height: 40px;
     padding: 0;
-    transform: translate(0, -50%);
     cursor: pointer;
     color: rgb(130, 130, 130);
     border: none;
@@ -127,6 +126,11 @@ li {
     transition: all ease 0.3s;
 
     &:hover {
+      color: var(--primary-color);
+    }
+    &::after,
+    &::before {
+      font-size: 3rem;
       color: var(--primary-color);
     }
   }
@@ -142,7 +146,7 @@ li {
   align-items: center;
   .sw {
     width: 32vw;
-    height: 100vh;
+    min-height: 80vh;
     // background-color: pink;
   }
 }
@@ -151,10 +155,6 @@ li {
   margin: 20px 80px;
 }
 
-.slick-arrow.slick-prev{
-  transform: translate(110%, -50%);
-}
-
-.slick-arrow.slick-next{
-  transform: translate(-110%, -50%);
+.product-container {
+  margin-top: 20px;
 }
