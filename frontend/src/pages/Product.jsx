@@ -1,9 +1,7 @@
 import React from "react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import Comment from "../components/Comment/Comment";
-import InputText from "../components/InputText/InputText";
-
+import CommentBlock from "../components/CommentBlock/CommentBlock";
 function Product() {
   return (
     <>
@@ -12,12 +10,7 @@ function Product() {
         <div className="sw product-img">viết lung tung</div>
         <div className="sw product-content">viết lung tung</div>
         <div className="sw product-comment">
-          <h3 className="title">Đánh giá sản phẩm</h3>
-          <InputText></InputText>
-          <Comment></Comment>
-          <Comment></Comment>
-          <Comment></Comment>
-          <Comment></Comment>
+          <CommentBlock></CommentBlock>
         </div>
       </div>
       <Footer></Footer>

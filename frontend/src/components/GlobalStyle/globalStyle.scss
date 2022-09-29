@@ -15,13 +15,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-.app{
-  max-width: 1200%;
-  width: 100%;
-  overflow: hidden;
-  // margin: 0 80px;
-  padding: 0 100px;
-}
+
 html {
   font-size: 62.5%;
   font-family: "Montserrat", sans-serif;
@@ -61,13 +55,12 @@ li {
 .shopProduct {
   width: 33%;
 }
-.detailBlogContainer{
+.detailBlogContainer {
   display: flex;
   // width: 1200px;
   // max-width: 100%;
   // transform: translateX(-50%);
   // margin-left: 50%;
-
 }
 .blogContainer,
 .shopContainer {
@@ -150,14 +143,9 @@ li {
     width: 32vw;
     height: 100vh;
     // background-color: pink;
-
-    .title {
-      padding: 10px;
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--primary-color);
-      text-transform: capitalize;
-      text-align: center;
-    }
   }
+}
+
+.detailBlogContainer {
+  margin: 20px 80px;
 }

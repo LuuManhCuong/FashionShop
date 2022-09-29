@@ -1,0 +1,32 @@
+.comment-block {
+  .title {
+    padding: 10px;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-transform: capitalize;
+    text-align: center;
+  }
+  .input-text {
+    padding: 10px 20px;
+    display: flex;
+    .input {
+      flex: 1;
+      padding: 5px 10px;
+      font-size: 1.4rem;
+      font-weight: 400;
+      outline: none;
+      min-height: 50px;
+    }
+
+    .submit-btn {
+      margin-left: 10px;
+      width: 60px;
+      height: 50px;
+      font-size: 1.6rem;
+      font-weight: 500;
+      background-color: var(--primary-color);
+      color: var(--white-color);
+    }
+  }
+}

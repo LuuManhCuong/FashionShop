@@ -1,26 +1,21 @@
-import React from 'react'
+import React from "react";
 
-import DetailBlogContent from '../components/DetailBlogContent/DetailBlogContent'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
-import InputText from '../components/InputText/InputText'
-import Comment from '../components/Comment/Comment'
+import DetailBlogContent from "../components/DetailBlogContent/DetailBlogContent";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import CommentBlock from "../components/CommentBlock/CommentBlock";
+
 function BlogDetail() {
   return (
-    <div className='app'>
+    <div>
       <Header />
-      <div className='detailBlogContainer'>
+      <div className="detailBlogContainer">
         <DetailBlogContent />
-        <div className='commentBlog'>
-            <InputText/>
-            <Comment/>
-            <Comment/>
-        </div>
+        <CommentBlock></CommentBlock>
       </div>
-        <Footer/>
-
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default BlogDetail
+export default BlogDetail;

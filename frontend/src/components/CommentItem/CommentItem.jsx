@@ -1,7 +1,7 @@
 import React from "react";
-import "./comment.scss";
+import "./commentItem.scss";
 
-function Comment() {
+function CommentItem() {
   return (
     <div className="comment">
       <div className="res-wrap">
@@ -25,4 +25,4 @@ function Comment() {
   );
 }
 
-export default Comment;
+export default CommentItem;
