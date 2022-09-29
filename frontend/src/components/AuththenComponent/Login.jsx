@@ -29,7 +29,7 @@ function Login() {
             <div className='left'>
                 <p className='sign-up'>
                     <span className='dont'>Don't have an account?</span>
-                    <a className='signup' href="register.html">Sign Up</a> 
+                    <a className='signup' href="/register">Sign Up</a> 
                     <span>here</span>
                 </p>
             </div>
