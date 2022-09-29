@@ -11,6 +11,7 @@ import {
   SearchOutlined,
   FavoriteBorderOutlined,
   ShoppingCartOutlined,
+  LoginOutlined,
 } from "@mui/icons-material";
 import CartNoti from "../CartNoti/CartNoti";
 
@@ -101,6 +102,16 @@ function Header() {
 
               <CartNoti className="cart-noti"></CartNoti>
             </li>
+            <li>
+            <NavLink
+              end
+              className={(navData) => (navData.isActive ? "active-item" : " ")}
+              to="/login"
+            >
+              <LoginOutlined style={{width: "2rem", height: "2rem"}} ></LoginOutlined>
+            </NavLink>
+              
+            </li>
           </ul>
         </div>
       </div>
@@ -129,9 +140,9 @@ function Header() {
             <NavLink
               end
               className={(navData) => (navData.isActive ? "active-item" : " ")}
-              to="/collection"
+              to="/colection"
             >
-              Collection
+              Colection
             </NavLink>
           </li>
           <li>
