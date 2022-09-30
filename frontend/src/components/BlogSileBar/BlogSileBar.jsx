@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import styles from "./blogSileBar.module.scss";
 import Tag from "../Tags/Tag";
 import SlideBarCategory from "../SlideBarCategory/SlideBarCategory";
+import {SearchOutlined} from "@mui/icons-material"
 const cx = classNames.bind(styles);
 
 const categories =[
@@ -14,7 +15,9 @@ function BlogSileBar() {
       <h1>Search</h1>
       <form className={cx("search")}>
         <input type="text" placeholder="Search..." />
-        <button className={cx("submit")}>tk</button>
+        <button className={cx("submit")}>
+          <SearchOutlined className={cx("submit-icon")}></SearchOutlined>
+        </button>
       </form>
      <SlideBarCategory categories={categories} />
       <div className={cx("recent-post")}>

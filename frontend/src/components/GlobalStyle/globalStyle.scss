@@ -65,10 +65,18 @@ li {
   // transform: translateX(-50%);
   // margin-left: 50%;
 }
+.card-shopping{
+  margin-top: 40px;
+  width: 1200px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  padding-bottom: 40px;
+}
+// .card-table,
 .blogContainer,
 .shopContainer {
-  display: flex;
   width: 1200px;
+  display: flex;
   margin-left: 50%;
   transform: translateX(-50%);
   margin-top: 10px;

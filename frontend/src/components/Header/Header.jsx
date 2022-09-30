@@ -137,13 +137,13 @@ function Header() {
             </NavLink>
           </li>
           <li>
-            <NavLink
+            {/* <NavLink
               end
               className={(navData) => (navData.isActive ? "active-item" : " ")}
               to="/register"
             >
               register
-            </NavLink>
+            </NavLink> */}
           </li>
           <li>
             <NavLink

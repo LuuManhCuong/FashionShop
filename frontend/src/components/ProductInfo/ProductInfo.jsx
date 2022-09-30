@@ -62,7 +62,6 @@ function ProductInfo() {
             <Add></Add>
           </button>
         </div>{" "}
-        ()
         <h4>2022 sản phẩm có sẵn</h4>
       </div>
 

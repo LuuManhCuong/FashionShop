@@ -19,6 +19,12 @@
         cursor: pointer;
         color: #ececec;
         font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .submit-icon{
+            font-size: 2rem;
+        }
     }
 }
 
@@ -32,8 +38,6 @@
         position: relative;
         margin-left: 8px;
         flex: 1;
-        .name{
-        }
         .fashion{
         position: absolute;
         bottom: 0;
