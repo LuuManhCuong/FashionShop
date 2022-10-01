@@ -167,6 +167,15 @@ function Header() {
             <NavLink
               end
               className={(navData) => (navData.isActive ? "active-item" : " ")}
+              to="/admin"
+            >
+              Admin
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              end
+              className={(navData) => (navData.isActive ? "active-item" : " ")}
               to="/Pages"
             >
               Pages

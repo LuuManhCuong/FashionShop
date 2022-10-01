@@ -168,3 +168,12 @@ li {
 .product-container {
   margin-top: 20px;
 }
+.admin-container{
+  display: flex;
+  justify-content: space-between;
+  // align-items: center;
+  .admin-content{
+    margin-top: 60px;
+    flex: 1;
+  }
+}
