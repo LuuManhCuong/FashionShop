@@ -6,11 +6,11 @@ import {
   ArrowForwardIosOutlined,
 } from "@mui/icons-material";
 function ProductImage() {
-  var slickCurrent;
+  let slickCurrent;
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     slickCurrent = document.querySelector(".slick-current div div img").src;
   }, []);
-  console.log(slickCurrent);
   const settings = {
     customPaging: function (i) {
       return (

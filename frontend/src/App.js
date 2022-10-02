@@ -6,6 +6,7 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import BlogDetail from './pages/BlogDetail'
 import LoginPage from "./pages/LoginPage";
+import Admin from "./pages/Admin"
 // import Register from "./components/AuththenComponent/Register";
 import ContactPage from "./pages/ContactPage";
 import AdimOverView from "./pages/AdimOverView";
@@ -22,6 +23,8 @@ function App() {
       <Route path="/contact" element={<ContactPage/>}></Route>
       <Route path="/cart" element={<Cart/>}></Route>
       <Route path="/adimOverView" element={<AdimOverView/>}></Route>
+      <Route path="/admin" element={<Admin/>}></Route>
+
     </Routes>
   );
 }
