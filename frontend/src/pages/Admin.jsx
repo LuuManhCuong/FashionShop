@@ -1,11 +1,11 @@
 import React from "react";
 import SideBar from "../components/SideBar/SideBar";
 import DataCustomer from "../components/DataCustomer/DataCustomer";
-import OverViewConTent from "../components/OverviewContent/OverViewContent";
+import WareHouse from "../components/WareHouse/WareHouse";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 function Admin() {
-  const categories = ["Overview", "data customer", "warehouse", "something"];
+  const categories = ["Revenue", "data customer", "warehouse", "something"];
 
   return (
     <>
@@ -17,8 +17,8 @@ function Admin() {
           showFilter={false}
           categories={categories}
         />
-        {/* <DataCustomer /> */}
-        <OverViewConTent></OverViewConTent>
+        <DataCustomer />
+        {/* <WareHouse></WareHouse> */}
       </div>
       <Footer />
     </>

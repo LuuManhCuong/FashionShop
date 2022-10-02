@@ -1,56 +1,15 @@
-import React from "react";
-
 import classNames from "classnames/bind";
-import styles from "./overViewContent.module.scss";
+import styles from "./wareHouse.module.scss";
 
 import TableBodyOverview from "../TableBodyOverView/TableBodyOverview";
+import AdminHeader from "../AdminHeader/AdminHeader";
 const cx = classNames.bind(styles);
 
-function OverViewContent() {
+function WareHouse() {
   return (
     <div className={cx("wrap")}>
-      <div className={cx("header")}>
-        <div className={cx("header-between")}>
-          <h5>Overview</h5>
-          <a href="/">Thêm Sản Phẩm Mới</a>
-        </div>
-        <ul>
-          
-          <li>
-            <div className={cx("header-items")}>
-              <h4>Số lượng</h4>
-              <p>icon</p>
-            </div>
-            <h1>18</h1>
-            <p className={cx("content-items")}>
-              <span>2</span>
-              completed
-            </p>
-          </li>
-          <li>
-            <div className={cx("header-items")}>
-              <h4>Số lượng</h4>
-              <p>icon</p>
-            </div>
-            <h1>18</h1>
-            <p className={cx("content-items")}>
-              <span>2</span>
-              completed
-            </p>
-          </li>
-          <li>
-            <div className={cx("header-items")}>
-              <h4>Số lượng</h4>
-              <p>icon</p>
-            </div>
-            <h1>18</h1>
-            <p className={cx("content-items")}>
-              <span>2</span>
-              completed
-            </p>
-          </li>
-        </ul>
-      </div>
+      <AdminHeader></AdminHeader>
+
       <div className={cx("body")}>
         <h5 className={cx("body-header")}>Sản Phẩm Trong Cửa Hàng</h5>
         <table>
@@ -93,4 +52,4 @@ function OverViewContent() {
   );
 }
 
-export default OverViewContent;
+export default WareHouse;
