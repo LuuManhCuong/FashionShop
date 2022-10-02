@@ -1,0 +1,22 @@
+.wrap{
+    max-width: 100%;
+
+    td{
+        
+        text-align: start;
+        padding:20px 20px 0;
+    }
+   
+}
+.info{
+    display: flex;
+    align-items: center;
+    img{
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+    }
+    h4{
+        font-size: 16px;
+    }
+}

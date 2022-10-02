@@ -72,6 +72,10 @@ li {
   transform: translateX(-50%);
   padding-bottom: 40px;
 }
+.adimOverviewContainer{
+  padding: 0 0px 0 10px ;
+  display: flex;
+}
 // .card-table,
 .blogContainer,
 .shopContainer {
@@ -84,6 +88,7 @@ li {
     width: 20vw;
     height: 100%;
   }
+
   .product {
     flex: 1;
     height: 100%;
@@ -171,5 +176,5 @@ li {
 .admin-container{
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin: 20px;
 }
