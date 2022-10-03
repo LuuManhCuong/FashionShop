@@ -1,0 +1,65 @@
+.wrap{
+    flex: 1;
+}
+.name{
+    padding: 20px 0;
+    border-bottom:4px solid #fdf8db ;
+}
+.add-button{
+    display: flex;
+    margin-top: 20px;
+    li{
+        cursor: pointer;
+        display: flex;
+        background-color: #abf1ad;
+        padding: 6px 10px;
+        border-radius:5px ;
+        align-items: center;
+        h2{
+            margin-left: 8px;
+            margin-bottom: 0;
+            font-size: 12px;
+        }
+
+    }
+    li+li{
+        margin-left: 10px;
+    }
+}
+.input-container{
+    margin-top: 10px !important;
+    display: flex;
+    margin: 0 -8px;
+    flex-wrap: wrap;
+
+    .input-info-product{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        width: 25%;
+        padding: 0 8px ;
+        option{
+            text-transform: capitalize;
+
+        }
+        label{
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+        input,option,select{
+            outline: none   ;
+            font-size: 14px;
+            padding: 4px 8px;
+            background-color: #f1f1f1;
+            border: 1px solid rgb(164, 157, 157);
+        }
+    }
+    
+}
+.description-name{
+    margin-top: 20px;
+}
+.description{
+    width: 100%;
+}
