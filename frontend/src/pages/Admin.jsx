@@ -5,6 +5,7 @@ import WareHouse from "../components/WareHouse/WareHouse";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import AddProductContent from "../components/AddProductContent/AddProductContent";
+import Action from "../components/Action/Action";
 function Admin() {
   const categories = ["Revenue", "data customer", "warehouse", "something"];
 
@@ -20,8 +21,10 @@ function Admin() {
         />
         {/* component admin */}
         {/* <DataCustomer /> */}
-        {/* <WareHouse></WareHouse> */}
-        <AddProductContent/>
+        <WareHouse>
+          
+        </WareHouse>
+        {/* <AddProductContent/> */}
       </div>
       <Footer />
     </>

@@ -1,5 +1,6 @@
 import React from 'react'
 import './dataCustomerItem.scss'
+import Action from '../Action/Action'
 
 function DataCustomerItem() {
   return (
@@ -8,19 +9,25 @@ function DataCustomerItem() {
       1
     </th>
     <td>
-      Mark
+      110
     </td>
     <td>
-      Otto
+      Mạnh Cường
     </td>
     <td>
-      @mdo
+      Cuong@gmail.com
     </td>
     <td>
-      Otto
+      0961952343
     </td>
     <td>
-      @mdo
+      Đà Nẵng
+    </td>
+    <td>
+      03/10/2022
+    </td>
+    <td>
+      <Action/>
     </td>
   </tr>
   )
