@@ -17,8 +17,10 @@ function DataCustomer() {
             <th>ID</th>
             <th>Username</th>
             <th>Email</th>
+            <th>Phone</th>
             <th>Address</th>
             <th>CreatAt</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>

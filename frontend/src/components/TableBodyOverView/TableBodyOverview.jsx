@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames/bind";
-
+import Action from "../Action/Action";
 import styles from "./tableBodyOverView.module.scss";
 const cx = classNames.bind(styles);
 
@@ -20,6 +20,7 @@ function TableBodyOverview() {
       <td>100</td>
       <td>50</td>
       <td>60%</td>
+      <td><Action/></td>
     </tr>
   );
 }

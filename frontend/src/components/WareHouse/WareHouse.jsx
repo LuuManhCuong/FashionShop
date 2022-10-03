@@ -3,6 +3,7 @@ import styles from "./wareHouse.module.scss";
 
 import TableBodyOverview from "../TableBodyOverView/TableBodyOverview";
 import AdminHeader from "../AdminHeader/AdminHeader";
+import Action from "../Action/Action";
 const cx = classNames.bind(styles);
 
 function WareHouse() {
@@ -31,6 +32,7 @@ function WareHouse() {
             <th>Số Lượng</th>
             <th>Số lượng bán</th>
             <th>tỉ lệ</th>
+            <th>Action</th>
           </thead>
           <tbody className={cx("table-body")}>
             <TableBodyOverview />

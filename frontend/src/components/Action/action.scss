@@ -1,0 +1,19 @@
+.action-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button{
+        min-width: 40%;
+        height: 50px;
+        margin:0 10px ;
+        .delete-btn{
+            font-size: 2rem;
+            color: red;
+
+        }
+        .edit-btn{
+            font-size: 2rem;
+            color:var(--primary-color);
+        }
+    }
+}
