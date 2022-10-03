@@ -3,7 +3,7 @@ import styles from "./adminHeader.module.scss";
 
 const cx = classNames.bind(styles);
 
-function AdminHeader() {
+function AdminHeader({fields}) {
   return (
     <div className={cx("header")}>
       <div className={cx("header-between")}>

@@ -6,9 +6,21 @@ import AdminHeader from "../AdminHeader/AdminHeader";
 const cx = classNames.bind(styles);
 
 function WareHouse() {
+  const fields = ["all products", "Sold", "something"];
+  const arr = [
+    {
+      title: "all products",
+      number: "1323",
+    },
+    {
+      title: "all products",
+      number: "1323",
+    },
+
+  ];
   return (
     <div className={cx("wrap")}>
-      <AdminHeader></AdminHeader>
+      <AdminHeader fields={fields}></AdminHeader>
 
       <div className={cx("body")}>
         <h5 className={cx("body-header")}>Sản Phẩm Trong Cửa Hàng</h5>
