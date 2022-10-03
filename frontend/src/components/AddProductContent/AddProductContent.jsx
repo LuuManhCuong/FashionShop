@@ -78,6 +78,7 @@ function AddProductContent() {
                 </div>
                 <h5 className={cx('description-name')}>Mô Tả Sản Phẩm</h5>
                 <textarea className={cx('description')} name="" id="" cols="30" rows="10"></textarea>
+                <input type="submit" className={cx('submit')} />
             </form>
         </div>
     )
