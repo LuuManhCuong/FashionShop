@@ -159,47 +159,61 @@
                 }
                 .form-day{
                     margin-top: 110px;
-                    .lable-day{
+                    .label-day{
                         float: left;
                         padding-left: 60px;
                     }
-                    .day-style{
-                        float: right;
-                        margin-right: 15px;
-                        .select{
-                            width: 100px;
-                            margin-inline-start: 15px;
-                            text-align: center;
-                        }
-                        
+                    .style-date{
+                        padding-left: 60px;
                     }
+                    
                 }
                 .form-sex{
-                    margin-top: 180px;
-                    .lable-sex{
+                    margin-top: 30px;
+                    .label-sex{
                         float: left;
                         padding-left: 60px;
                        
                     }
-                    .lable-radio{
+                    .label-radio{
                         float: right;
                         margin-right: 85px;
                         .Radio{                          
                             margin-inline-start: 20px;
-                            .lable{
+                            .label{
                                 padding-left: 15px;
                             }
                         }
                     }
                 }
                 .form-nation{
+                    margin-top: 80px;
+                    margin-bottom: 30px;
                     .nation-name{
                         float: left;
+                        padding-left: 60px;
                     }
-                    .input-nation{
-                        .nation{
-                            float: right;
-                        }
+                    .select-nation{
+                        margin-left: 80px;
+                        width: 150px;
+                        text-align: center;
+                        border-radius: 3px;
+                    }
+                    
+                }
+                .form-button{
+                    // margin-top: 440x;
+                    .button-apply{
+                        background: rgb(11, 116, 229);
+                        color: white;
+                        width: 150px;
+                        height: 40px;
+                        border-radius: 5px;
+                        margin-left: calc((100% - 135px)/2);
+                        opacity: 0.75;
+                    }
+                    .button-apply:hover{
+                        opacity: 1;
                     }
                 }
             }
@@ -218,5 +232,32 @@
         margin-top: 10px;
     }
 
+    .save-detail{
+        // float: left;
+        .duy{
+            
+            // display: flex;
+            justify-content: space-between;
+        }
+        .container-save-detail{
+            // display: flex;
+            .phone{
+                .phone-icon{
+                    // float: left;
+                }
+                .phone-detail{
+                    // float: right;
+                }
+            }
+        }
+        .btm-phone{
+            // float: right;
 
+            .button-phone{
+                background: blue;
+            }
+
+        }
+    }
+    
 }
