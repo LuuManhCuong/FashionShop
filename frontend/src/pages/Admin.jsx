@@ -17,6 +17,7 @@ function Admin() {
           showFilter={false}
           categories={categories}
         />
+        {/* component admin */}
         <DataCustomer />
         {/* <WareHouse></WareHouse> */}
       </div>
