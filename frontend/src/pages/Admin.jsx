@@ -1,15 +1,11 @@
 import React from "react";
 import SideBar from "../components/SideBar/SideBar";
 import DataCustomer from "../components/DataCustomer/DataCustomer";
+import WareHouse from "../components/WareHouse/WareHouse";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 function Admin() {
-  const categories = [
-    "Overview",
-    "data customer",
-    "something",
-    "something",
-  ];
+  const categories = ["Revenue", "data customer", "warehouse", "something"];
 
   return (
     <>
@@ -22,6 +18,7 @@ function Admin() {
           categories={categories}
         />
         <DataCustomer />
+        {/* <WareHouse></WareHouse> */}
       </div>
       <Footer />
     </>
