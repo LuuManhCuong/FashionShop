@@ -94,6 +94,10 @@
               display: flex;
               top: 40px;
             }
+            &:hover .noti-container-wrap {
+              display: flex;
+              top: 40px;
+            }
           }
           &::before {
             content: "";

@@ -14,6 +14,7 @@ import {
   LoginOutlined,
 } from "@mui/icons-material";
 import CartNoti from "../CartNoti/CartNoti";
+import Noti from "../Noti/Noti";
 
 function Header() {
   const [keyWord, setKeyWord] = useState("");
@@ -88,12 +89,14 @@ function Header() {
         </div>
         <div className={"action-btn"}>
           <ul>
-            <li>
+            <li className="cart">
               <FavoriteBorderOutlined
                 style={{ width: "2rem", height: "2rem" }}
               ></FavoriteBorderOutlined>
               <span>10</span>
-            </li>
+              <Noti/>
+              {/* <CartNoti className="cart-noti"></CartNoti> */}
+            </li >
             <li className="cart">
               <ShoppingCartOutlined
                 style={{ width: "2rem", height: "2rem" }}
