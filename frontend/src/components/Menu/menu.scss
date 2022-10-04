@@ -1,0 +1,50 @@
+.login-btn{
+            color: var(--primary-color);
+            background-color: transparent;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size:1.6rem ;
+            padding: 5px 15px;
+            border-radius: 5px;
+            color: #fff !important;
+            background-color: var(--primary-color);
+        }
+
+    
+
+.d-flex.p-5{
+    padding: unset !important;
+    .dropdown-item{
+        a{
+            color: var(--text-color);
+        }
+    }
+    .dropdown{
+        .avatar{
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            margin-right:10px ;
+            border: 1px solid #ccc;
+        }
+        button{
+            color: var(--text-color);
+            background-color: transparent;
+            border: 1px solid #ccc;
+            outline: none;
+
+        }
+    }
+    .show>.btn-secondary.dropdown-toggle{
+        color: var(--text-color);
+            background-color: transparent;
+            border: 1px solid #ccc;
+            outline: none;
+    }
+    .btn:first-child:hover, :not(.btn-check)+.btn:hover {
+        color: var(--text-color);
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
+}

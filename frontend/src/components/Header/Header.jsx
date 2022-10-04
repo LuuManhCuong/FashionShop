@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./header.scss";
 import Typewriter from "typewriter-effect";
+import Menu from "../Menu/Menu";
 import {
   Email,
   LocalPhone,
@@ -106,13 +107,16 @@ function Header() {
               <CartNoti className="cart-noti"></CartNoti>
             </li>
             <li>
-            <NavLink
+            {/* <NavLink
               end
               className={(navData) => (navData.isActive ? "active-item" : " ")}
               to="/login"
             >
               <LoginOutlined style={{width: "2rem", height: "2rem"}} ></LoginOutlined>
-            </NavLink>
+              
+            </NavLink> */}
+            <Menu/>
+              
               
             </li>
           </ul>
