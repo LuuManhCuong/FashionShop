@@ -4,7 +4,11 @@ import {
     ManageAccounts,
     AddShoppingCart,
     CreateSharp,
-    ContactPhone
+    ContactPhone,
+    PhoneAndroidSharp,
+    PhoneCallback,
+    Email,
+    Password
 } from '@mui/icons-material';
 function Profile() {
     return (
@@ -21,19 +25,19 @@ function Profile() {
                         <li className='li-is-active'>
                             <a className='is-active' href="/profile">
                                 <ManageAccounts style={{ width: "3rem", height: "3rem", float: "left", marginLeft: "40px", color: "#3399FF" }}></ManageAccounts>
-                                <span>Account infomation</span>
+                                <span className='text-li'>Account infomation</span>
                             </a>
                         </li><br />
                         <li className='li-order'>
                             <a className='order' href="/profile">
                                 <AddShoppingCart style={{ width: "3rem", height: "3rem", float: "left", marginLeft: "40px", color: "	#009966" }}></AddShoppingCart>
-                                <span>Order management</span>
+                                <span className='text-li'>Order management</span>
                             </a>
                         </li> <br />
                         <li className='li-favorite'>
                             <a className='favotite' href="/profile">
                                 <FavoriteBorder style={{ width: "3rem", height: "3rem", float: "left", marginLeft: "40px", color: "red" }}></FavoriteBorder>
-                                <span>Favorite product</span>
+                                <span className='text-li'>Favorite product</span>
                             </a>
                         </li>
                     </ul>
@@ -54,10 +58,11 @@ function Profile() {
                                         <div className='form-avatar'>
                                             <div className='avatar-style'>
                                                 <div className='avatar-view'>
-                                                    <img className='avatar-info' src='../avatar' alt='avatar'></img>
-                                                    <div className='avatar-update'>
-                                                        <CreateSharp style={{ width: "2rem", height: "2rem", color: "white" }}></CreateSharp>
-                                                    </div>
+                                                    <label class="btnChangeAvt1" for="ChangeAvatar">
+                                                        <img className='avatar-info' src="avatar" class="avatar img-circle img-thumbnail" alt="avatar"></img>
+                                                    </label>
+                                                    <label class="btnChangeAvt" for="changeAvatar" ><CreateSharp /></label>
+                                                    <input required="" id="changeAvatar" hidden="" type="file" name="avatar" class="text-center center-block file-upload"></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,24 +131,43 @@ function Profile() {
                         <div className='line'></div>
 
                         <div className='save-detail'>
-                            <span>Số điện thoại và Email</span><br />
-                            <div>
-                                <div className='duy'>
-                                    <div className='container-save-detail'>
-                                        <div className='phone'>
-                                            <div className='phone-icon'><ContactPhone /></div>
-
-                                            <div className='phone-detail'>
-                                                <span>Phone number</span> <br />
-                                                <span>0329161255</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='btm-phone'>
-                                        <button className='button-phone' type='submit'>Update</button>
-                                    </div>
+                            <span className='update-detail'>Update</span>
+                            <div className='container-phone'>
+                                <label className='number-phone' for="number-phone">
+                                    <div className='icon-phone'><PhoneCallback style={{ width: "2rem", height: "2rem" }} > </PhoneCallback></div>
+                                </label>
+                                <div className='detail-phone'>
+                                    <span className='title-phone'>Phone number</span>
+                                    <br></br>
+                                    <input required type="text" class="form-number" name="numberPhone" id="number-phone"
+                                        value="0329161255"></input>
                                 </div>
+                            </div>
+                            <div className='container-phone'>
+                                <label className='number-phone' for="number-phone">
+                                    <div className='icon-phone'><Email style={{ width: "2rem", height: "2rem" }} > </Email></div>
+                                </label>
+                                <div className='detail-phone'>
+                                    <span className='title-phone'>Email</span>
+                                    <br></br>
+                                    <input required type="text" class="form-number" name="numberPhone" id="number-phone"
+                                        placeholder='Email'></input>
+                                </div>
+                            </div>
+                            <div className='container-phone'>
+                                <label className='number-phone' for="number-phone">
+                                    <div className='icon-phone'><Password style={{ width: "2rem", height: "2rem" }} > </Password></div>
+                                </label>
+                                <div className='detail-phone'>
+                                    <span className='title-phone'>Password</span>
+                                    <br></br>
+                                    <input required type="text" class="form-number" name="numberPhone" id="number-phone"
+                                        placeholder='Password'></input>
+                                </div>
+                            </div>
 
+                            <div className='button-update'>
+                                <button className='update1' type='submit'>Update</button>
                             </div>
 
                         </div>

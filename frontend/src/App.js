@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage";
 import Register from "./components/AuththenComponent/Register";
 import ContactPage from "./pages/ContactPage";
 import ProfilePage from "./pages/ProfilePage";
+import OrderManagementPage from "./pages/OrderManagementPage";
 // chứa các trang
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path="/contact" element={<ContactPage/>}></Route>
       <Route path="/cart" element={<Cart/>}></Route>
       <Route path="/profile" element={<ProfilePage/>}></Route>
+      <Route path="/profile/ordermanagement" element={<OrderManagementPage/>}></Route>
 
     </Routes>
   );
