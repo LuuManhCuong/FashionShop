@@ -1,0 +1,324 @@
+.container {
+    width: max-content;
+
+    .title {
+        width: 100%;
+        height: 40px;
+        border: 1px solid black;
+    }
+
+    .info {
+
+        width: 60%;
+        height: 200px;
+        float: left;
+
+    }
+
+    .account-avatar {
+        margin-bottom: 65px;
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            float: left;
+            margin-left: 0px;
+
+        }
+
+        .account {
+            float: left;
+            padding-left: 20px;
+        }
+    }
+
+    .list-name {
+        clear: both;
+        text-align: left;
+        padding-left: 25px;
+
+        .li-is-active {
+            display: block;
+            height: 35px;
+            padding-top: 3px;
+            margin-bottom: -15px;
+        }
+
+        .li-is-active:hover {
+            background: #EEEEEE;
+        }
+
+        .li-order {
+            display: block;
+            height: 35px;
+            padding-top: 3px;
+            margin-bottom: -15px;
+        }
+
+        .li-order:hover {
+            background: #EEEEEE;
+        }
+
+        .li-favorite {
+            display: block;
+            height: 35px;
+            padding-top: 3px;
+            margin-bottom: -15px;
+            
+        }
+        .text-li{
+            padding-left: 20px;
+        }
+
+        .li-favorite:hover {
+            background: #EEEEEE;
+        }
+    }
+
+    .detail {
+        
+        .detail-name {
+            float: left;
+            margin-bottom: 20px;
+            padding-top: 20px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .detail-container {
+            clear: both;
+            width: 100%;
+            height: 440px;
+            box-shadow:
+                0 0 10px 4px #cbcbca;
+
+            .info {
+                text-align: left;
+                padding-left: 20px;
+                padding-top: 15px;
+
+                .form-info {
+                    .form-avatar {
+                        float: left;
+
+                        .avatar-style {
+                            width: 100px;
+                            height: 100px;
+                            border-radius: 100%;
+                            border: 2px solid #66FFFF;
+                            background: #CCFFFF;
+                            position: relative;
+
+                            .avatar-view {
+                                position: relative;
+
+                                .btnChangeAvt1 {
+                                    position: absolute;
+                                    margin-top: 30px;
+                                    margin-left: 12px;
+                                }
+
+                                .btnChangeAvt {
+                                    width: 25px;
+                                    height: 25px;
+                                    border-radius: 100%;
+                                    background: gray;
+                                    text-align: center;
+                                    float: right;
+                                    margin-top: 70px;
+                                    margin-bottom: 20px;
+                                }
+                                .text-center{
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .form-name {
+                    margin-top: 30px;
+
+                    .title-name {
+                        .lable-name {
+                            padding-left: 25px;
+                        }
+
+                        .full-name {
+                            float: right;
+
+                            .input-fullname {
+                                border: 1px solid gray;
+                                width: 300px;
+                                border-radius: 3px;
+                                margin-right: 15px;
+                                padding-left: 15px;
+                            }
+                        }
+
+                    }
+
+                    .title-nickname {
+                        margin-top: 40px;
+
+                        .lable-nickname {
+                            padding-left: 25px;
+                            float: left;
+                        }
+
+                        .nick-name {
+                            float: right;
+
+                            .input-nickname {
+                                border: 1px solid gray;
+                                width: 300px;
+                                border-radius: 3px;
+                                margin-right: 15px;
+                                padding-left: 15px;
+                            }
+                        }
+                    }
+                }
+
+                .form-day {
+                    margin-top: 110px;
+
+                    .label-day {
+                        float: left;
+                        padding-left: 60px;
+                    }
+
+                    .style-date {
+                        padding-left: 60px;
+                    }
+
+                }
+
+                .form-sex {
+                    margin-top: 30px;
+
+                    .label-sex {
+                        float: left;
+                        padding-left: 60px;
+
+                    }
+
+                    .label-radio {
+                        float: right;
+                        margin-right: 85px;
+
+                        .Radio {
+                            margin-inline-start: 20px;
+
+                            .label {
+                                padding-left: 15px;
+                            }
+                        }
+                    }
+                }
+
+                .form-nation {
+                    margin-top: 80px;
+                    margin-bottom: 40px;
+
+                    .nation-name {
+                        float: left;
+                        padding-left: 60px;
+                    }
+
+                    .select-nation {
+                        margin-left: 80px;
+                        width: 150px;
+                        text-align: center;
+                        border-radius: 3px;
+                    }
+
+                }
+
+                .form-button {
+
+                    
+                    .button-apply {
+                        background: rgb(11, 116, 229);
+                        color: white;
+                        width: 150px;
+                        height: 35px;
+                        border-radius: 5px;
+                        float: right;
+                        margin-right: 20px;
+                        opacity: 0.75;
+                    }
+
+                    .button-apply:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+
+
+        }
+
+
+    }
+
+    .line {
+        width: 1px;
+        height: 420px;
+        border-left: 1px solid #DDDDDD;
+        float: left;
+        margin-top: 10px;
+    }
+
+    .save-detail {
+
+       
+        .update-detail{
+            display: flex;
+            padding-top: 15px;
+            padding-left: 20px;
+            
+        }
+        .container-phone{
+            display: flex;
+            padding-top: 30px;
+            padding-left: 20px;
+            .number-phone{
+                display: flex;
+            }
+            .detail-phone{
+                padding-left: 15px;
+                .title-phone{
+                    float: left;
+                    margin-bottom: 10px;
+                    font-weight: 500;
+                }
+                .form-number{
+                    border: 1px solid gray;
+                    border-radius: 3px;
+                    padding-left: 15px;
+                    width: 300px;
+                }
+            }
+        }
+       
+        
+    }
+    .button-update{
+        float: right;
+        margin-top: 60px;
+        margin-right: 30px;
+        .update1{
+            border: 1px solid rgb(11, 116, 229);
+            color: rgb(11, 116, 229);
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+            
+        }
+        .update1:hover{
+            border: 1.5px solid blue;
+            color: blue;
+        }
+    }
+
+}
