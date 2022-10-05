@@ -13,9 +13,9 @@ function Home() {
       <Header></Header>
       <Slider></Slider>
       <Categories></Categories>
-      <BestSale></BestSale>
+      <BestSale gender={"women"}></BestSale>
       <CountDown></CountDown>
-      <BestSale classname="men"></BestSale>
+      <BestSale gender={"men"}></BestSale>
       <HomeBlog></HomeBlog>
       <Footer></Footer>
     </>
