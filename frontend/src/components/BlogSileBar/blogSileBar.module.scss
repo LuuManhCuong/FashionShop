@@ -1,0 +1,74 @@
+.container{
+    width: 260px;
+}
+.search {
+    display: flex;
+    width: 100%;
+
+    input {
+        flex: 1;
+        border: 2px solid #ececec;
+        height: 46px;
+        padding: 0 8px;
+        font-size: 16px;
+        margin-bottom: 55px;
+    }
+
+    .submit {
+        background: #252525;
+        border: 1px solid #252525;
+        height: 46px;
+        padding: 0 15px;
+        cursor: pointer;
+        color: #ececec;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .submit-icon{
+            font-size: 2rem;
+        }
+    }
+}
+
+.recent-post{
+    margin-bottom: 40px;
+    h2{
+        margin-bottom: 12px;
+        font-weight: 700px;
+    }
+    .infos{
+        position: relative;
+        margin-left: 8px;
+        flex: 1;
+        .fashion{
+        position: absolute;
+        bottom: 0;
+        font-size: 16px;
+        margin: 0;
+        font-weight: 700;
+        color: #e8b062;
+        }
+        .day{
+           color: #6d6666 !important;
+           font-size: 12px;
+        }
+    }
+    .items{
+        display: flex;
+        img{
+            width: 80px;
+            height: 80px;
+        }
+
+    }
+     .items + .items{
+        margin-top: 12px;
+    }
+
+}
+
+
+
+
+
