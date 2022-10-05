@@ -7,7 +7,7 @@ import {
 } from "@mui/icons-material";
 import ProductItem from "../ProductItem/ProductItem";
 function SliderProduct({ slug }) {
-  // console.log(slug)
+  console.log(slug);
   const settings = {
     dots: true,
     focusOnSelect: true,

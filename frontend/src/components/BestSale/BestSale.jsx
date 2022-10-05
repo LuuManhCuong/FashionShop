@@ -11,14 +11,14 @@ function BestSale(props) {
   return (
     <div className={cx("container")}>
       {/* men: thêm class "men" vào */}
-      <div className={cx(`banner`, props.classname)}>
+      <div className={cx(`banner`, props.gender)}>
         <img
           src="	https://preview.colorlib.com/theme/fashi/img/products/women-large.jpg"
           alt="banner"
           className={cx("banner-img")}
         />
         <div className={cx("banner-text")}>
-          <h4>Women's</h4>
+          <h4>{props.gender}</h4>
           <Link to="/shop">Discover More</Link>
         </div>
       </div>

@@ -4,7 +4,7 @@ import styles from "./adminHeader.module.scss";
 const cx = classNames.bind(styles);
 
 function AdminHeader({ showAddBtn, overview }) {
-  console.log(overview);
+  // console.log(overview);
   return (
     <div className={cx("header")}>
       <div className={cx("header-between")}>

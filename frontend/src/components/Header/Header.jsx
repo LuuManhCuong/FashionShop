@@ -12,7 +12,6 @@ import {
   SearchOutlined,
   FavoriteBorderOutlined,
   ShoppingCartOutlined,
-  LoginOutlined,
 } from "@mui/icons-material";
 import CartNoti from "../CartNoti/CartNoti";
 import Noti from "../Noti/Noti";
@@ -169,7 +168,7 @@ function Header() {
               Admin
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink
               end
               className={(navData) => (navData.isActive ? "active-item" : " ")}
@@ -177,7 +176,7 @@ function Header() {
             >
               Pages
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>
