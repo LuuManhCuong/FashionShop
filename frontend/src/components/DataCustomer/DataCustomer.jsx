@@ -16,7 +16,7 @@ const overview = [
     title: "Số lượt truy cập",
     statistical: 4633,
     subNum: 424,
-    isIncrease: true,
+    isIncrease: false,
     subTitle: "So với tháng trước",
   },
   {
