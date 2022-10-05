@@ -1,4 +1,5 @@
 import classNames from "classnames/bind";
+import { Link } from "react-router-dom";
 import SliderProduct from "../SliderProduct/SliderProduct";
 import styles from "./bestsale.module.scss";
 const cx = classNames.bind(styles);
@@ -15,7 +16,7 @@ function BestSale(props) {
         />
         <div className={cx("banner-text")}>
           <h4>Women's</h4>
-          <a href="/">Discover More</a>
+          <Link to="/shop">Discover More</Link>
         </div>
       </div>
       <div className={cx("best-sale-wrap")}>

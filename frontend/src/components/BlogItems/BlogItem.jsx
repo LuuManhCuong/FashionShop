@@ -1,6 +1,8 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./blogItem.module.scss";
+import { Link } from "react-router-dom";
+
 import {
   CalendarTodayOutlined,
   ModeCommentOutlined,
@@ -24,7 +26,12 @@ function BlogItem() {
           <ModeCommentOutlined className={cx("icon")}></ModeCommentOutlined>7
         </span>
       </p>
-      <a href="/"> The Personality Trait That Makes People Happier</a>
+      <Link to="/blog/detail/3">
+        The Personality Trait That Makes People Happier
+      </Link>
+      {/* <a href="/blog/detail/3">
+        The Personality Trait That Makes People Happier
+      </a> */}
       <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam</p>
     </div>
   );

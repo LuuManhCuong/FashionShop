@@ -1,14 +1,28 @@
 import React from "react";
 import SideBar from "../components/SideBar/SideBar";
 import DataCustomer from "../components/DataCustomer/DataCustomer";
-import WareHouse from "../components/WareHouse/WareHouse";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import AddProductContent from "../components/AddProductContent/AddProductContent";
-import Action from "../components/Action/Action";
-function Admin() {
-  const categories = ["Revenue", "data customer", "warehouse", "something"];
+import WareHouse from "../components/WareHouse/WareHouse";
+import Revenue from "../components/Revenue/Revenue";
 
+const data = [
+  {
+    category: "Revenue",
+    component: <Revenue></Revenue>,
+  },
+
+  {
+    category: "data customer",
+    component: <DataCustomer></DataCustomer>,
+  },
+
+  {
+    category: "warehouse",
+    component: <WareHouse></WareHouse>,
+  },
+];
+function Admin() {
   return (
     <>
       <Header />
@@ -17,11 +31,8 @@ function Admin() {
           showPost={false}
           showSearch={true}
           showFilter={false}
-          categories={categories}
+          data={data}
         />
-        {/* <DataCustomer /> */}
-        <WareHouse></WareHouse>
-        {/* <AddProductContent/> */}
       </div>
       <Footer />
     </>

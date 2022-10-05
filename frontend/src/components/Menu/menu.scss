@@ -1,50 +1,74 @@
-.login-btn{
-            color: var(--primary-color);
-            background-color: transparent;
-            border: 1px solid #ccc;
-            outline: none;
-            font-size:1.6rem ;
-            padding: 5px 15px;
-            border-radius: 5px;
-            color: #fff !important;
-            background-color: var(--primary-color);
-        }
+.login-btn {
+  color: var(--primary-color);
+  background-color: transparent;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 1.6rem;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: #fff !important;
+  background-color: var(--primary-color);
+}
 
-    
+.d-flex.p-5 {
+  padding: unset !important;
+  .dropdown-item {
+    padding: unset;
+    a {
+      color: var(--text-color);
+      font-size: 1.4rem;
+      font-weight: 400;
+      padding: 5px 10px;
+      text-transform: capitalize;
+      display: block;
+      &:hover {
+        color: var(--white-color);
+        background-color: var(--primary-color);
+      }
+    }
+  }
+  .dropdown {
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+    }
+    button {
+      color: var(--text-color);
+      background-color: transparent;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+  }
+  .show > .btn-secondary.dropdown-toggle {
+    color: var(--text-color);
+    background-color: transparent;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+  .btn:first-child:hover,
+  :not(.btn-check) + .btn:hover {
+    color: var(--text-color);
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    outline: none;
+  }
+  .btn-check:focus + .btn-secondary,
+  .btn-secondary:focus {
+    color: var(--text-color);
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    box-shadow: none;
+  }
 
-.d-flex.p-5{
-    padding: unset !important;
-    .dropdown-item{
-        a{
-            color: var(--text-color);
-        }
-    }
-    .dropdown{
-        .avatar{
-            width: 30px;
-            height: 30px;
-            border-radius: 100%;
-            margin-right:10px ;
-            border: 1px solid #ccc;
-        }
-        button{
-            color: var(--text-color);
-            background-color: transparent;
-            border: 1px solid #ccc;
-            outline: none;
-
-        }
-    }
-    .show>.btn-secondary.dropdown-toggle{
-        color: var(--text-color);
-            background-color: transparent;
-            border: 1px solid #ccc;
-            outline: none;
-    }
-    .btn:first-child:hover, :not(.btn-check)+.btn:hover {
-        color: var(--text-color);
-        background-color: transparent;
-        border: none;
-        outline: none;
-    }
+  .dropdown-menu.show {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 100%;
+    inset: unset;
+    transform: unset;
+  }
 }

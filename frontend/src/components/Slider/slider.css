@@ -86,7 +86,7 @@
   text-transform: capitalize;
 }
 .swiper-slide-active .slider-context button {
-  animation: button-move ease-in 1s;
+  animation: button-move ease 1s;
 }
 
 @keyframes button-move {

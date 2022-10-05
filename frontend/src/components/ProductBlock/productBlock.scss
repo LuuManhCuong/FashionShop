@@ -1,0 +1,16 @@
+.product-block-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  h1 {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+.product-block {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}

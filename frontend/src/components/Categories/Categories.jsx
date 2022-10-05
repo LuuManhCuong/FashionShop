@@ -1,15 +1,15 @@
 import "./categories.scss";
-
+import { Link } from "react-router-dom";
 function Categories() {
   return (
-    <div className="containers">
+    <Link to="/shop" className="containers">
       <div className="banner">
         <img
           className="banner-img"
           src="https://preview.colorlib.com/theme/fashi/img/xbanner-1.jpg.pagespeed.ic.WtoTbL-e6z.webp"
           alt="banner"
         />
-        
+
         <h3 className="banner-text">MEN'S</h3>
       </div>
       <div className="banner">
@@ -28,7 +28,7 @@ function Categories() {
         />
         <h3 className="banner-text">KID'S</h3>
       </div>
-    </div>
+    </Link>
   );
 }
 

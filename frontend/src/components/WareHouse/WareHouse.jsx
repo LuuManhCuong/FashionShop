@@ -1,27 +1,47 @@
 import classNames from "classnames/bind";
 import styles from "./wareHouse.module.scss";
-
 import TableBodyOverview from "../TableBodyOverView/TableBodyOverview";
 import AdminHeader from "../AdminHeader/AdminHeader";
-import Action from "../Action/Action";
+import AddProductContent from "../AddProductContent/AddProductContent";
 const cx = classNames.bind(styles);
 
-function WareHouse() {
-  const fields = ["all products", "Sold", "something"];
-  const arr = [
-    {
-      title: "all products",
-      number: "1323",
-    },
-    {
-      title: "all products",
-      number: "1323",
-    },
+const overview = [
+  {
+    title: "tất cả sản phẩm",
+    statistical: 50,
+    subNum: 15,
+    isIncrease: true,
+    subTitle: "So với tháng trước",
+  },
+  {
+    title: "số lượng sản phẩm",
+    statistical: 1356,
+    subNum: 89,
+    isIncrease: false,
+    subTitle: "So với tháng trước",
+  },
+  {
+    title: "Đơn hàng đã bán",
+    statistical: 356,
+    subNum: 24,
+    isIncrease: false,
+    subTitle: "So với tháng trước",
+  },
+  {
+    title: "Tỉ lệ xuất đơn",
+    statistical: `${30}%`,
+    subNum: `${14}%`,
+    isIncrease: false,
+    subTitle: "So với tháng trước",
+  },
+];
 
-  ];
+function WareHouse() {
   return (
     <div className={cx("wrap")}>
-      <AdminHeader fields={fields}></AdminHeader>
+      <AdminHeader showAddBtn={true} overview={overview}></AdminHeader>
+
+      <AddProductContent></AddProductContent>
 
       <div className={cx("body")}>
         <h5 className={cx("body-header")}>Sản Phẩm Trong Cửa Hàng</h5>
@@ -62,6 +82,7 @@ function WareHouse() {
           </tfoot>
         </table>
       </div>
+
     </div>
   );
 }

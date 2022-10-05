@@ -4,9 +4,10 @@ import BlogItem from "../BlogItems/BlogItem";
 
 import LoadingPage from "../LoadingPage/LoadingPage";
 const cx = classNames.bind(styles);
-function BlogContent() {
+function BlogContent({slug}) {
   return (
     <div className={cx("wrap")}>
+      <h1>{slug}</h1>
       <div className={cx("product")}>
         <BlogItem />
         <BlogItem />

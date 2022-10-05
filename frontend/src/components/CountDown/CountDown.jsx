@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./countdown.scss";
 
 function CountDown() {
@@ -10,7 +10,7 @@ function CountDown() {
   const [event, setEvent] = useState(true);
 
   useEffect(() => {
-    let timeCount = "october 1 2022";
+    let timeCount = "october 10 2022";
 
     setInterval(() => {
       let futureDay = new Date(`${timeCount} 00:00:00`).getTime();
@@ -76,9 +76,15 @@ function CountDown() {
           </h3>
         </div>
         {event ? (
-          <button className="btn">Shop Now</button>
+          <Link to="/shop/detail/42">
+            <button className="btn-event">Buy Now</button>
+          </Link>
         ) : (
-          <button disabled className="btn timeout">Time Out</button>
+          <Link to="/shop">
+            <button disabled className="btn-event timeout">
+              Time Out
+            </button>
+          </Link>
         )}
       </div>
     </div>
