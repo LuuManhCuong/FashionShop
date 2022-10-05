@@ -19,11 +19,8 @@ function Admin() {
           showFilter={false}
           categories={categories}
         />
-        {/* component admin */}
         {/* <DataCustomer /> */}
-        <WareHouse>
-          
-        </WareHouse>
+        <WareHouse></WareHouse>
         {/* <AddProductContent/> */}
       </div>
       <Footer />
