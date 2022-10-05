@@ -38,6 +38,10 @@
     padding: 10px 80px;
     border-bottom: 1px solid #ccc;
 
+    .div{
+      min-width: 30%;
+    }
+
     .logo {
       h1 {
         font-size: 2.6rem;
@@ -78,13 +82,12 @@
     .action-btn {
       ul {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
 
         li {
           padding: 10px;
           position: relative;
-          margin: 0 10px;
           cursor: pointer;
 
           &.cart {

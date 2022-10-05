@@ -52,10 +52,10 @@ function Header() {
       </div>
 
       <div className={"header-search"}>
-        <div className={"logo"}>
+        <div className={"div logo"}>
           <h1>Fashion.</h1>
         </div>
-        <div className={"search-wrap"}>
+        <div className={"div search-wrap"}>
           <input
             id="search-input"
             className={"search-input"}
@@ -88,16 +88,16 @@ function Header() {
             ></SearchOutlined>
           </button>
         </div>
-        <div className={"action-btn"}>
+        <div className={"div action-btn"}>
           <ul>
             <li className="cart">
               <FavoriteBorderOutlined
                 style={{ width: "2rem", height: "2rem" }}
               ></FavoriteBorderOutlined>
               <span>10</span>
-              <Noti/>
+              <Noti />
               {/* <CartNoti className="cart-noti"></CartNoti> */}
-            </li >
+            </li>
             <li className="cart">
               <ShoppingCartOutlined
                 style={{ width: "2rem", height: "2rem" }}
@@ -107,17 +107,7 @@ function Header() {
               <CartNoti className="cart-noti"></CartNoti>
             </li>
             <li>
-            {/* <NavLink
-              end
-              className={(navData) => (navData.isActive ? "active-item" : " ")}
-              to="/login"
-            >
-              <LoginOutlined style={{width: "2rem", height: "2rem"}} ></LoginOutlined>
-              
-            </NavLink> */}
-            <Menu/>
-              
-              
+              <Menu />
             </li>
           </ul>
         </div>

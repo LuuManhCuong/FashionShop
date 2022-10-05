@@ -15,15 +15,15 @@ function register() {
             </div>
             <div className='single-input-fields'>
                 <label>Email Address</label> <br />
-                <input className='input' type="password" placeholder="Enter email address"></input>
+                <input className='input' type="text" placeholder="Enter email address"></input>
             </div>
             <div className='single-input-fields'>
                 <label>Password</label> <br />
-                <input className='input' type="text" placeholder="Enter password"></input>
+                <input className='input' type="password" placeholder="Enter password"></input>
             </div>
             <div className='single-input-fields'>
                 <label>Confirm Password</label> <br />
-                <input className='input' type="text" placeholder="Confirm Password"></input>
+                <input className='input' type="password" placeholder="Confirm Password"></input>
             </div>
             
        </div>

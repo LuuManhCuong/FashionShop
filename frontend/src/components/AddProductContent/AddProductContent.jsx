@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./addProductContent.module.scss";
-import AdminHeader from "../AdminHeader/AdminHeader";
 import { BusinessCenter } from "@mui/icons-material";
 
 const cx = classNames.bind(styles);
@@ -9,7 +8,6 @@ const cx = classNames.bind(styles);
 function AddProductContent() {
   return (
     <div className={cx("add-product-container")}>
-      <AdminHeader></AdminHeader>
       <div className={cx("wrap")}>
         <h2 className={cx("name")}>Tạo Sản Phẩm Mới</h2>
         <ul className={cx("add-button")}>

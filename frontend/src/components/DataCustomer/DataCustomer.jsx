@@ -4,11 +4,33 @@ import "./dataCustomer.scss";
 import DataCustomerItem from "../DataCustomerItem/DataCustomerItem";
 import AdminHeader from "../AdminHeader/AdminHeader";
 
+const overview = [
+  {
+    title: "Tất cả khách hàng",
+    statistical: 3782,
+    subNum: 232,
+    isIncrease: true,
+    subTitle: "So với tháng trước",
+  },
+  {
+    title: "Số lượt truy cập",
+    statistical: 4633,
+    subNum: 424,
+    isIncrease: true,
+    subTitle: "So với tháng trước",
+  },
+  {
+    title: "Tỉ lệ mua hàng",
+    statistical: `${50}%`,
+    subNum: `${3}%`,
+    isIncrease: false,
+    subTitle: "So với tháng trước",
+  },
+];
 function DataCustomer() {
-  const categories = ["all customer", "total visits"];
   return (
     <div className="data-customer">
-      <AdminHeader></AdminHeader>
+      <AdminHeader overview={overview}></AdminHeader>
       <h3>Dữ liệu khách hàng</h3>
       <Table bordered>
         <thead>

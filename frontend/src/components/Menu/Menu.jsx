@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import './menu.scss'
+import React, { useState } from "react";
+import "./menu.scss";
 import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from 'reactstrap';
-import PropTypes from 'prop-types';
+} from "reactstrap";
+import PropTypes from "prop-types";
 
 function Menu({ direction, ...args }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -16,29 +16,40 @@ function Menu({ direction, ...args }) {
   const [isLogin, setIsLogin] = useState(true);
   return (
     <>
-        {!isLogin && 
-            <a href="/login" className='login-btn'>Login</a>
-       }
-        {isLogin && <div className="d-flex p-5">
-        <Dropdown isOpen={dropdownOpen} toggle={toggle} direction={direction}>
+      {!isLogin && (
+        <a href="/login" className="login-btn">
+          Login
+        </a>
+      )}
+      {isLogin && (
+        <div className="d-flex p-5">
+          <Dropdown isOpen={dropdownOpen} toggle={toggle} direction={direction}>
             <DropdownToggle caret>
-                <img className='avatar' src="https://scontent.xx.fbcdn.net/v/t1.15752-9/246777313_646898092967006_5392741154271700519_n.jpg?stp=dst-jpg_s100x100&_nc_cat=104&ccb=1-7&_nc_sid=4de414&_nc_ohc=Eco12mm4IO4AX-Cw1IP&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVLb-_U3JJK-fOe2gNkPYINmj_BxW_HowkNa5JzTpzJfiQ&oe=63584139"  alt="avata" />
-                Mạnh Cường
+              <img
+                className="avatar"
+                src="https://scontent.xx.fbcdn.net/v/t1.15752-9/246777313_646898092967006_5392741154271700519_n.jpg?stp=dst-jpg_s100x100&_nc_cat=104&ccb=1-7&_nc_sid=4de414&_nc_ohc=Eco12mm4IO4AX-Cw1IP&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVLb-_U3JJK-fOe2gNkPYINmj_BxW_HowkNa5JzTpzJfiQ&oe=63584139"
+                alt="avata"
+              />
+              Mạnh Cường
             </DropdownToggle>
             <DropdownMenu {...args}>
-            <DropdownItem><a href='/'>Profile</a></DropdownItem>
-            <DropdownItem><a href='/'>My post</a></DropdownItem>
-            <DropdownItem><a href='/'>Purchase history</a></DropdownItem>
-            <DropdownItem><a href='/login'>Logout</a> </DropdownItem>
+              <DropdownItem>
+                <a href="/profile">Profile</a>
+              </DropdownItem>
+              <DropdownItem>
+                <a href="/">My post</a>
+              </DropdownItem>
+              <DropdownItem>
+                <a href="/">Purchase history</a>
+              </DropdownItem>
+              <DropdownItem>
+                <a href="/login">Logout</a>{" "}
+              </DropdownItem>
             </DropdownMenu>
-        </Dropdown>
-            
+          </Dropdown>
         </div>
-        }
+      )}
     </>
-   
-
-    
   );
 }
 

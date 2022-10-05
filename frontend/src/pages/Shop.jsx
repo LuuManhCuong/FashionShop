@@ -3,11 +3,26 @@ import React from "react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import SideBar from "../components/SideBar/SideBar";
-import ProductItem from "../components/ProductItem/ProductItem";
-import LoadingPage from "../components/LoadingPage/LoadingPage";
-function Shop() {
-  const categories = ["men", "women", "kids"];
+import ProductBlock from "../components/ProductBlock/ProductBlock";
 
+const data = [
+  {
+    category: "men",
+    component: <ProductBlock slug={"men"}></ProductBlock>,
+  },
+
+  {
+    category: "women",
+    component: <ProductBlock slug={"women"}></ProductBlock>,
+  },
+
+  {
+    category: "kids",
+    component: <ProductBlock slug={"kids"}></ProductBlock>,
+  },
+];
+
+function Shop() {
   return (
     <>
       <Header />
@@ -16,34 +31,8 @@ function Shop() {
           showPost={false}
           showSearch={false}
           showFilter={true}
-          categories={categories}
+          data={data}
         ></SideBar>
-        <div className="product">
-          {/* cân css */}
-          <div className="shopProductWrap">
-            {/* cân 33% */}
-            <div className="shopProduct">
-              <ProductItem />
-            </div>
-            <div className="shopProduct">
-              <ProductItem />
-            </div>
-            <div className="shopProduct">
-              <ProductItem />
-            </div>
-            <div className="shopProduct">
-              <ProductItem />
-            </div>
-            <div className="shopProduct">
-              <ProductItem />
-            </div>
-            <div className="shopProduct">
-              <ProductItem />
-            </div>
-          </div>
-
-          <LoadingPage />
-        </div>
       </div>
       <Footer />
     </>

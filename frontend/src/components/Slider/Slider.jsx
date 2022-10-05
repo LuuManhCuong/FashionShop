@@ -1,5 +1,5 @@
-
 import "./slider.css";
+import { NavLink } from "react-router-dom";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -41,7 +41,9 @@ export default function App() {
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
               eiusmod tempor incididunt ut labore et dolore
             </p>
-            <button>Shop now</button>
+            <NavLink to={"/shop"}>
+              <button>Shop now</button>
+            </NavLink>
           </div>
 
           <div className="slider-sale">
@@ -62,7 +64,9 @@ export default function App() {
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
               eiusmod tempor incididunt ut labore et dolore
             </p>
-            <button>Shop now</button>
+            <NavLink to={"/shop"}>
+              <button>Shop now</button>
+            </NavLink>
           </div>
           <div className="slider-sale">
             <h2>Sale</h2>
@@ -82,7 +86,9 @@ export default function App() {
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
               eiusmod tempor incididunt ut labore et dolore
             </p>
-            <button>Shop now</button>
+            <NavLink to={"/shop"}>
+              <button>Shop now</button>
+            </NavLink>
           </div>
           <div className="slider-sale">
             <h2>Sale</h2>

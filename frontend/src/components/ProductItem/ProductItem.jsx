@@ -1,5 +1,6 @@
 import React from "react";
 import "./productItem.scss";
+import {Link} from "react-router-dom"
 import {
   FavoriteBorder,
   ShoppingCartOutlined,
@@ -8,7 +9,7 @@ import {
 
 function ProductItem() {
   return (
-    <div className="product-item">
+    <Link to="/shop/detail/1" className="product-item">
       <div className="product-content">
         <img
           src="https://preview.colorlib.com/theme/fashi/img/products/xwomen-2.jpg.pagespeed.ic.9lv2o7iXWr.webp"
@@ -38,7 +39,7 @@ function ProductItem() {
           <span>$35.00</span>
         </h3>
       </div>
-    </div>
+    </Link>
     
   );
 }

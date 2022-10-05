@@ -5,8 +5,22 @@ import SideBar from "../components/SideBar/SideBar";
 import Footer from "../components/Footer/Footer";
 
 function Blog() {
-  const categories = ["Fashion", "Travel", "Picnic", "Modle"];
+  const data = [
+    {
+      category: "Fashion",
+      component: <BlogContent slug="fashion" />,
+    },
 
+    {
+      category: "Travel",
+      component: <BlogContent slug="travel" />,
+    },
+
+    {
+      category: "Modle",
+      component: <BlogContent slug="modle" />,
+    },
+  ];
   return (
     <div>
       <Header />
@@ -15,9 +29,8 @@ function Blog() {
           showPost={true}
           showSearch={true}
           showFilter={false}
-          categories={categories}
+          data={data}
         ></SideBar>
-        <BlogContent />
       </div>
       <Footer />
     </div>
