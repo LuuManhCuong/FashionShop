@@ -25,8 +25,11 @@ function App() {
       <Route path="/contact" element={<ContactPage />}></Route>
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/admin" element={<Admin />}></Route>
-      <Route path="/profile" element={<ProfilePage/>}></Route>
-      <Route path="/profile/ordermanagement" element={<OrderManagementPage/>}></Route>
+      <Route path="/profile" element={<ProfilePage />}></Route>
+      <Route
+        path="/profile/ordermanagement"
+        element={<OrderManagementPage />}
+      ></Route>
     </Routes>
   );
 }

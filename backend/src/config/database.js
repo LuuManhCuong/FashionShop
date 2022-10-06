@@ -10,6 +10,7 @@ const connection = mysql.createConnection({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
+  multipleStatements: true
 });
 
 module.exports = connection;
