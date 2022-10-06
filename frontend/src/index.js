@@ -21,7 +21,7 @@ root.render(
       <BrowserRouter>
         <Wrapper>
           <App />
-          <ScrollToTop></ScrollToTop>
+          <ScrollToTop />
         </Wrapper>
       </BrowserRouter>
     </GlobalStyle>

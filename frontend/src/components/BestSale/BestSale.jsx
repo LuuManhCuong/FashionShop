@@ -7,16 +7,25 @@ const cx = classNames.bind(styles);
 const categories = ["Clothings", "HandBag", "Shoes", "Accessories"];
 
 function BestSale(props) {
+  // console.log(props.gender);
   const [active, setActive] = useState(categories[0]);
   return (
     <div className={cx("container")}>
       {/* men: thêm class "men" vào */}
       <div className={cx(`banner`, props.gender)}>
-        <img
-          src="	https://preview.colorlib.com/theme/fashi/img/products/women-large.jpg"
-          alt="banner"
-          className={cx("banner-img")}
-        />
+        {
+          props.gender === "women" ? 
+          <img
+            src="	https://preview.colorlib.com/theme/fashi/img/products/women-large.jpg"
+            alt="banner"
+            className={cx("banner-img")}
+          /> : 
+          <img
+            src="	https://preview.colorlib.com/theme/fashi/img/products/man-large.jpg.webp"
+            alt="banner"
+            className={cx("banner-img")}
+          /> 
+        }
         <div className={cx("banner-text")}>
           <h4>{props.gender}</h4>
           <Link to="/shop">Discover More</Link>

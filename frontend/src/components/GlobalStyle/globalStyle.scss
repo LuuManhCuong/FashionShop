@@ -179,25 +179,17 @@ li {
   margin: 20px;
 }
 
-.sroll-to-top {
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
-  background-color: var(--white-color);
-  box-shadow: 0 0 10px 4px #cbcbca;
-  color: var(--primary-color);
+.scroll-to-top {
   position: fixed;
   bottom: 100px;
   right: 50px;
+  background-color: var(--white-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
   z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  box-shadow: 0 0 5px 4px #cbcbca;
   animation: dance ease 0.3s infinite;
-  .icon {
-    font-size: 2rem;
-  }
-
   @keyframes dance {
     0% {
       bottom: 100px;
@@ -205,5 +197,10 @@ li {
     50% {
       bottom: 103px;
     }
+  }
+
+  .icons {
+    font-size: 3rem;
+    color: var(--primary-color);
   }
 }
