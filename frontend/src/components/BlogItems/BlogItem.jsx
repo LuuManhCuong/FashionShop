@@ -10,7 +10,8 @@ import {
 const cx = classNames.bind(styles);
 function BlogItem() {
   return (
-    <div className={cx("container")}>
+    <Link to='/blog/detail/3' className={cx("container")}>
+      
       <img
         className=""
         src="https://preview.colorlib.com/theme/fashi/img/blog/xblog-detail.jpg.pagespeed.ic.yMe25f0qz_.webp"
@@ -26,14 +27,14 @@ function BlogItem() {
           <ModeCommentOutlined className={cx("icon")}></ModeCommentOutlined>7
         </span>
       </p>
-      <Link to="/blog/detail/3">
-        The Personality Trait That Makes People Happier
-      </Link>
+      
+        <h3>The Personality Trait That Makes People Happier</h3>
+      
       {/* <a href="/blog/detail/3">
         The Personality Trait That Makes People Happier
       </a> */}
       <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam</p>
-    </div>
+      </Link>
   );
 }
 

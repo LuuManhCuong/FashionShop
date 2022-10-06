@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "./header.scss";
 import Typewriter from "typewriter-effect";
 import Menu from "../Menu/Menu";
+
 import {
   Email,
   LocalPhone,
@@ -52,7 +53,7 @@ function Header() {
 
       <div className={"header-search"}>
         <div className={"div logo"}>
-          <h1>Fashion.</h1>
+          <Link to = '/'><h1>Fashion.</h1></Link>
         </div>
         <div className={"div search-wrap"}>
           <input

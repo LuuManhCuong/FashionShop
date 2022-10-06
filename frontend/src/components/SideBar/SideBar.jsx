@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import styles from "./sideBar.module.scss";
 import Tag from "../Tags/Tag";
 import { SearchOutlined } from "@mui/icons-material";
+import {Link} from "react-router-dom"
 const cx = classNames.bind(styles);
 
 function SideBar(props) {
@@ -46,7 +47,7 @@ function SideBar(props) {
         {props.showPost && (
           <div className={cx("recent-post")}>
             <h2>Recent Post</h2>
-            <a href="/" className={cx("items")}>
+            <Link to="/blog/detail/1" className={cx("items")}>
               <img
                 src="https://didongviet.vn/dchannel/wp-content/uploads/2022/01/duong-cong-didongviet.jpg"
                 alt=""
@@ -59,8 +60,8 @@ function SideBar(props) {
                   Fashion <span className={cx("day")}>mon 19/12/2022</span>
                 </p>
               </div>
-            </a>
-            <a href="/" className={cx("items")}>
+            </Link>
+            <Link to="/blog/detail/1" className={cx("items")}>
               <img
                 src="https://didongviet.vn/dchannel/wp-content/uploads/2022/01/duong-cong-didongviet.jpg"
                 alt=""
@@ -73,8 +74,8 @@ function SideBar(props) {
                   Fashion <span className={cx("day")}>mon 19/12/2022</span>
                 </p>
               </div>
-            </a>
-            <a href="/" className={cx("items")}>
+            </Link>
+            <Link to="/blog/detail/1" className={cx("items")}>
               <img
                 src="https://didongviet.vn/dchannel/wp-content/uploads/2022/01/duong-cong-didongviet.jpg"
                 alt=""
@@ -87,30 +88,30 @@ function SideBar(props) {
                   Fashion <span className={cx("day")}>mon 19/12/2022</span>
                 </p>
               </div>
-            </a>
+            </Link>
           </div>
         )}
 
         {props.showFilter && (
           <div className="shop-filter">
             <div className={cx("brand")}>
-              <h2>brand</h2>
+              <h2>Fillter</h2>
               <ul>
                 <li>
-                  <input type="checkbox" />
-                  <span>Calvin Klein</span>
+                  <input id="clothings"  type="checkbox" />
+                  <label htmlFor="clothings" >Clothings</label >
                 </li>
                 <li>
-                  <input type="checkbox" />
-                  <span>Diesel</span>
+                  <input id="handbag" type="checkbox" />
+                  <label htmlFor="handbag" >HandBag</label >
                 </li>
                 <li>
-                  <input type="checkbox" />
-                  <span>Polo </span>
+                  <input id="shoes" type="checkbox" />
+                  <label htmlFor="shoes" >Shoes</label >
                 </li>
                 <li>
-                  <input type="checkbox" />
-                  <span>Tommy Hilfiger</span>
+                  <input id="accessories" type="checkbox" />
+                  <label htmlFor="accessories" >Accessories</label >
                 </li>
               </ul>
             </div>

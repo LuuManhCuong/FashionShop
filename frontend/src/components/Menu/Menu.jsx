@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./menu.scss";
+import {Link} from 'react-router-dom'
 import {
   Dropdown,
   DropdownToggle,
@@ -34,16 +35,16 @@ function Menu({ direction, ...args }) {
             </DropdownToggle>
             <DropdownMenu {...args}>
               <DropdownItem>
-                <a href="/profile">Profile</a>
+                <Link to="/profile">Profile</Link>
               </DropdownItem>
               <DropdownItem>
-                <a href="/">My post</a>
+                <Link to="/">My post</Link>
               </DropdownItem>
               <DropdownItem>
-                <a href="/">Purchase history</a>
+                <Link to="/">Purchase history</Link>
               </DropdownItem>
               <DropdownItem>
-                <a href="/login">Logout</a>{" "}
+                <Link to="/login">Logout</Link>{" "}
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>

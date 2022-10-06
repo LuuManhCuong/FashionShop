@@ -85,10 +85,11 @@
     margin-top: 14px;
   }
   li {
-    span {
+    label {
       font-size: 16px;
       padding-left: 20px;
       margin-bottom: 6px;
+      cursor: pointer;
     }
   }
 }
