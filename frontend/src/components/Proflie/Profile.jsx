@@ -166,10 +166,6 @@ function Profile() {
                                 </div>
                             </div>
 
-                            <div className='button-update'>
-                                <button className='update1' type='submit'>Update</button>
-                            </div>
-
                         </div>
 
                     </div>

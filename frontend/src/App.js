@@ -10,7 +10,7 @@ import Admin from "./pages/Admin";
 import Register from "./components/AuththenComponent/Register";
 import ContactPage from "./pages/ContactPage";
 import ProfilePage from "./pages/ProfilePage";
-import OrderManagementPage from "./pages/OrderManagementPage";
+import BlogPostPage from "./pages/BlogPostPage";
 // chứa các trang
 function App() {
   return (
@@ -26,7 +26,8 @@ function App() {
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/admin" element={<Admin />}></Route>
       <Route path="/profile" element={<ProfilePage/>}></Route>
-      <Route path="/profile/ordermanagement" element={<OrderManagementPage/>}></Route>
+      <Route path="/blogpost" element={<BlogPostPage/>}></Route>
+
     </Routes>
   );
 }
