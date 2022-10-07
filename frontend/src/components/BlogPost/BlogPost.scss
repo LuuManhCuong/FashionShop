@@ -1,0 +1,53 @@
+.blogPost {
+    width: 60%;
+    margin-left: 19.5%;
+    height: 430px;
+    margin-top: 3%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 10px 4px;
+    border: 1px solid rgb(234, 233, 233);
+
+    .title{
+        display: flex;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+
+    .wrap {
+        width: calc(100% - 20px);
+        margin: 10px 10px 10px 10px;
+        height: auto;
+      
+
+
+
+
+        .wrap-content{
+            margin-top: 10px;
+          
+            .form-control{
+                height: 200px;
+                
+            }
+        }
+
+        .submit{
+            margin-top: 20px;
+            .submit-btn{
+                float: right;
+                width: 60px;
+                height: 40px;
+                background: #33CC66;
+                border-radius: 5px;
+                color: white;
+                font-weight: 600;
+            }
+        }
+    }
+
+
+   
+
+
+
+}
