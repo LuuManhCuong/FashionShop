@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // optional
 import "./header.scss";
 import Typewriter from "typewriter-effect";
 import Menu from "../Menu/Menu";
@@ -16,6 +18,7 @@ import {
 } from "@mui/icons-material";
 import CartNoti from "../CartNoti/CartNoti";
 import Noti from "../Noti/Noti";
+import SearchItems from "../SearchItems/SearchItem";
 
 function Header() {
   const [keyWord, setKeyWord] = useState("");
@@ -53,21 +56,42 @@ function Header() {
 
       <div className={"header-search"}>
         <div className={"div logo"}>
-          <Link to = '/'><h1>Fashion.</h1></Link>
+          <Link to='/'><h1>Fashion.</h1></Link>
         </div>
         <div className={"div search-wrap"}>
-          <input
-            id="search-input"
-            className={"search-input"}
-            type="text"
-            value={keyWord}
-            onFocus={() => setShowWriter(false)}
-            onBlur={(e) => {
-              let lengValue = e.currentTarget.value.length;
-              lengValue > 0 ? setShowWriter(false) : setShowWriter(true);
-            }}
-            onChange={(e) => setKeyWord(e.target.value)}
-          />
+          <Tippy
+            placement={'left-end'}
+            content='minh duy'
+            // onClickOutside={'callback'}
+            visible={false}
+            interactive={true}
+            appendTo={document.body}
+            render={attrs => (
+              <div className="search-result" tabIndex="-1" {...attrs}>
+                <div className="popover">
+                  <h4 >result</h4>
+                  <SearchItems items={{ to: 'a', name: 'ao so mi nam' }} />
+                  <SearchItems items={{ to: 'a', name: 'ao so mi nam' }} />
+                  <SearchItems items={{ to: 'a', name: 'ao so mi nam' }} />
+                </div>
+              </div>
+            )}
+          >
+            <input
+              id="search-input"
+              className={"search-input"}
+              type="text"
+              value={keyWord}
+              onFocus={() => setShowWriter(false)}
+              onBlur={(e) => {
+                let lengValue = e.currentTarget.value.length;
+                lengValue > 0 ? setShowWriter(false) : setShowWriter(true);
+              }}
+              onChange={(e) => setKeyWord(e.target.value)}
+            />
+
+          </Tippy>
+
           {showWiter && (
             <Typewriter
               options={{
