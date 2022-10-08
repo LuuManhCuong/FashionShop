@@ -10,6 +10,18 @@ function ProductBlock({ slug }) {
         <ProductItem></ProductItem>
         <ProductItem></ProductItem>
         <ProductItem></ProductItem>
+        <ProductItem></ProductItem>
+        <ProductItem></ProductItem>
+        <ProductItem></ProductItem>
+        <ProductItem></ProductItem>
+        <ProductItem></ProductItem>
+        <ProductItem></ProductItem>
+        <ProductItem></ProductItem>
+        <ProductItem></ProductItem>
+        <ProductItem></ProductItem>
+        <ProductItem></ProductItem>
+        <ProductItem></ProductItem>
+        <ProductItem></ProductItem>
       </div>
     </div>
   );

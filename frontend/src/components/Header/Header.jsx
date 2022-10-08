@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+
+import { NavLink} from "react-router-dom";
 import "./header.scss";
 
 import {
@@ -9,7 +9,6 @@ import {
   YouTube,
   Twitter,
 } from "@mui/icons-material";
-import Noti from "../Noti/Noti";
 import HeaderSearch from "../HeaderSearch/HeaderSearch";
 
 function Header() {
