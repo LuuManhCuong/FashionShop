@@ -74,9 +74,9 @@ function Header() {
               <div className="search-result" tabIndex="-1" {...attrs}>
                 <div className="popover">
                   <h4 >result</h4>
-                  <SearchItems items={{ to: 'a', name: 'ao so mi nam' }} />
-                  <SearchItems items={{ to: 'a', name: 'ao so mi nam' }} />
-                  <SearchItems items={{ to: 'a', name: 'ao so mi nam' }} />
+                  <SearchItems items={{ to: 'a', name: 'ao so mi nam 2' }} />
+                  <SearchItems items={{ to: 'a', name: 'ao so mi nam 4' }} />
+                  <SearchItems items={{ to: 'a', name: 'ao so mi nam 5' }} />
                 </div>
               </div>
             )}
