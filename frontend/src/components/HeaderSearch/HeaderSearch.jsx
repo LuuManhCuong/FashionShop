@@ -20,7 +20,7 @@ const cx = classNames.bind(styles);
 function HeaderSearch() {
     const [keyWord, setKeyWord] = useState("");
   const [showWiter, setShowWriter] = useState(false);
-
+  console.log(!!(keyWord.length))
   useEffect(() => {
     keyWord.length === 0 ? setShowWriter(true) : setShowWriter(false);
   }, [keyWord]);
@@ -33,14 +33,14 @@ function HeaderSearch() {
       <Tippy
         placement={'left-end'}
         // onClickOutside={'callback'}
-        visible={true}
+        visible={!!(keyWord.length)}
         interactive={true}
         appendTo={document.body}
         render={attrs => (
           <div className="search-result" tabIndex="-1" {...attrs}>
             <div className="popover">
               <h4 >result</h4>
-              <SearchItems items={{ to: 'a', name: 'ao so mi nam' }} />
+              <SearchItems items={{ to: 'a', name: 'ao so mi nam 555' }} />
               <SearchItems items={{ to: 'a', name: 'ao so mi nam' }} />
               <SearchItems items={{ to: 'a', name: 'ao so mi nam' }} />
             </div>
