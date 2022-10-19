@@ -1,5 +1,5 @@
 const connection = require("../config/database");
-const authen = require("../middlewares/authen")
+const authen = require("../middlewares/authen");
 
 class HomeControllers {
   // [GET] /home
@@ -7,7 +7,7 @@ class HomeControllers {
     // authen.verifyToken()
     let sql2 = `select * from user`;
     connection.query(`${sql2}`, (err, result) => {
-      err ? console.log(err) : res.send(result);
+      err ? console.log(err) : res.json(result);
     });
   }
 }

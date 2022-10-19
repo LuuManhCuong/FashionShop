@@ -11,6 +11,7 @@ import Register from "./components/AuththenComponent/Register";
 import ContactPage from "./pages/ContactPage";
 import ProfilePage from "./pages/ProfilePage";
 import BlogPostPage from "./pages/BlogPostPage";
+import Doremon from "./components/Doremon/Doremon";
 // chứa các trang
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Route path="/admin" element={<Admin />}></Route>
       <Route path="/profile" element={<ProfilePage />}></Route>
       <Route path="/blogpost" element={<BlogPostPage />}></Route>
+      <Route path="/gfu" element={<Doremon />}></Route>
     </Routes>
   );
 }

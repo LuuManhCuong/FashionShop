@@ -12,6 +12,8 @@ class authen {
     const result = jwt.verify(token, process.env.JWT_SECRET_KEY);
     return result;
   }
+
+  
 }
 
 module.exports = new authen();

@@ -1,16 +1,27 @@
 import classNames from "classnames/bind";
 import styles from "./adminHeader.module.scss";
+import { useContext } from "react";
+import { ShowComponent } from "../WareHouse/WareHouse";
 import { TrendingDown, TrendingUp } from "@mui/icons-material";
 
 const cx = classNames.bind(styles);
 
 function AdminHeader({ showAddBtn, overview }) {
   // console.log(overview);
+
+  const values = useContext(ShowComponent);
+
   return (
     <div className={cx("header")}>
       <div className={cx("header-between")}>
         <h5>Overview</h5>
-        {showAddBtn && <a href="/">Thêm Sản Phẩm Mới</a>}
+        {showAddBtn && (
+          <button onClick={() => values.handleShow()}>
+            {values.showAddProduct === true
+              ? "Xem Tất Cả Sản Phẩm"
+              : "Thêm Sản Phẩm Mới"}
+          </button>
+        )}
       </div>
       <ul>
         {overview.map((field, i) => (
