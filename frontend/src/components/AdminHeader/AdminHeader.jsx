@@ -8,9 +8,7 @@ const cx = classNames.bind(styles);
 
 function AdminHeader({ showAddBtn, overview }) {
   // console.log(overview);
-
   const values = useContext(ShowComponent);
-
   return (
     <div className={cx("header")}>
       <div className={cx("header-between")}>
@@ -18,8 +16,8 @@ function AdminHeader({ showAddBtn, overview }) {
         {showAddBtn && (
           <button onClick={() => values.handleShow()}>
             {values.showAddProduct === true
-              ? "Xem Tất Cả Sản Phẩm"
-              : "Thêm Sản Phẩm Mới"}
+              ? "Xem tất cả sản phẩm"
+              : "Tạo sản phẩm mới"}
           </button>
         )}
       </div>

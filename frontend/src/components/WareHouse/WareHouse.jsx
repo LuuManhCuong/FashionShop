@@ -41,23 +41,20 @@ export const ShowComponent = createContext();
 
 function WareHouse() {
   const [showAddProduct, setShowAddProduct] = useState(false);
-
-  const handleShow = () => {
+  function handleShow() {
     setShowAddProduct(!showAddProduct);
-  };
-  let values = { showAddProduct, handleShow };
+    window.scrollTo({ top: 100, behavior: "smooth" });
+  }
+  let values = { handleShow, showAddProduct };
   return (
     <ShowComponent.Provider value={values}>
       <div className={cx("wrap")}>
         <AdminHeader showAddBtn={true} overview={overview}></AdminHeader>
-
         {showAddProduct === true ? (
           <AddProductContent></AddProductContent>
         ) : (
           <div className={cx("body")}>
-            <h5 className={cx("body-header")}>
-              Tất Cả Sản Phẩm Trong Cửa Hàng
-            </h5>
+            <h5 className={cx("body-header")}>Sản Phẩm Trong Cửa Hàng</h5>
             <table>
               <thead>
                 <th>Tên Sản Phẩm</th>
