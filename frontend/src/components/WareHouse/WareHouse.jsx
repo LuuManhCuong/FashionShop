@@ -3,6 +3,7 @@ import styles from "./wareHouse.module.scss";
 import TableBodyOverview from "../TableBodyOverView/TableBodyOverview";
 import AdminHeader from "../AdminHeader/AdminHeader";
 import AddProductContent from "../AddProductContent/AddProductContent";
+import { useState, createContext } from "react";
 const cx = classNames.bind(styles);
 
 const overview = [
@@ -37,54 +38,70 @@ const overview = [
   
 ];
 
+export const ShowComponent = createContext()
+
+
+
 function WareHouse() {
+  const [showAddProduct, setShowAddProduct] = useState(false)
+  function handleShow(){
+    setShowAddProduct(!showAddProduct)
+    window.scrollTo({top:100, behavior:'smooth'})
+  }
+  let values = {handleShow, showAddProduct}
   return (
-    <div className={cx("wrap")}>
-      <AdminHeader showAddBtn={true} overview={overview}></AdminHeader>
+    <ShowComponent.Provider value={values}>
+      <div className={cx("wrap")}>
+        <AdminHeader showAddBtn={true} overview={overview}></AdminHeader>
+        {
+          showAddProduct === true
+          ?<AddProductContent></AddProductContent> 
+          :<div className={cx("body")}>
+          <h5 className={cx("body-header")}>Sản Phẩm Trong Cửa Hàng</h5>
+          <table>
+            <thead>
+              <th>Tên Sản Phẩm</th>
+              <th>Giá</th>
+              <th>Số Lượng</th>
+              <th>Số lượng bán</th>
+              <th>tỉ lệ</th>
+              <th>Action</th>
+            </thead>
+            <tbody className={cx("table-body")}>
+              <TableBodyOverview />
+              <TableBodyOverview />
+              <TableBodyOverview />
+              <TableBodyOverview />
+              <TableBodyOverview />
+              {/* tao khoang cach */}
+            </tbody>
+            <tfoot className={cx("table-footer")}>
+              <tr>
+                <td
+                  style={{
+                    textAlign: "center",
+                    padding: "10px 0",
+                    color: "#637381",
+                    cursor: "pointer",
+                    fontSize: "14px",
+                  }}
+                  colSpan={5}
+                  rowSpan="5"
+                >
+                  {" "}
+                  xem thêm ---{">"}{" "}
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+          
+        }
 
-      <AddProductContent></AddProductContent>
+        
 
-      <div className={cx("body")}>
-        <h5 className={cx("body-header")}>Sản Phẩm Trong Cửa Hàng</h5>
-        <table>
-          <thead>
-            <th>Tên Sản Phẩm</th>
-            <th>Giá</th>
-            <th>Số Lượng</th>
-            <th>Số lượng bán</th>
-            <th>tỉ lệ</th>
-            <th>Action</th>
-          </thead>
-          <tbody className={cx("table-body")}>
-            <TableBodyOverview />
-            <TableBodyOverview />
-            <TableBodyOverview />
-            <TableBodyOverview />
-            <TableBodyOverview />
-            {/* tao khoang cach */}
-          </tbody>
-          <tfoot className={cx("table-footer")}>
-            <tr>
-              <td
-                style={{
-                  textAlign: "center",
-                  padding: "10px 0",
-                  color: "#637381",
-                  cursor: "pointer",
-                  fontSize: "14px",
-                }}
-                colSpan={5}
-                rowSpan="5"
-              >
-                {" "}
-                xem thêm ---{">"}{" "}
-              </td>
-            </tr>
-          </tfoot>
-        </table>
       </div>
-
-    </div>
+    </ShowComponent.Provider>
   );
 }
 
