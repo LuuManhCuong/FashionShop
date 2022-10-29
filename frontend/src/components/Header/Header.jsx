@@ -1,5 +1,4 @@
-
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./header.scss";
 
 import {
@@ -12,8 +11,6 @@ import {
 import HeaderSearch from "../HeaderSearch/HeaderSearch";
 
 function Header() {
-
-
   return (
     <div className={"header"}>
       <div className={"header-contact"}>
@@ -40,7 +37,7 @@ function Header() {
         </ul>
       </div>
 
-      <HeaderSearch/>
+      <HeaderSearch />
 
       <div className={"header-nav"}>
         <ul>
@@ -78,6 +75,15 @@ function Header() {
               to="/blog"
             >
               Blog
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              end
+              className={(navData) => (navData.isActive ? "active-item" : " ")}
+              to="/postblog"
+            >
+              Create Blog
             </NavLink>
           </li>
           <li>

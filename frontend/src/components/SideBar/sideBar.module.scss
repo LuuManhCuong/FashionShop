@@ -1,4 +1,4 @@
-.sidebar-wrap{
+.sidebar-wrap {
   display: flex;
   width: 100%;
 }
@@ -15,7 +15,7 @@
   flex-direction: column;
   width: 100%;
 
-  div{
+  div {
     display: flex;
     input {
       flex: 1;
@@ -25,7 +25,7 @@
       font-size: 16px;
       margin-bottom: 55px;
     }
-  
+
     .submit {
       background: #252525;
       border: 1px solid #252525;
@@ -54,6 +54,14 @@
     position: relative;
     margin-left: 8px;
     flex: 1;
+
+    h4 {
+      line-height: 2.6rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
     .fashion {
       position: absolute;
       bottom: 0;
@@ -69,9 +77,10 @@
   }
   .items {
     display: flex;
-    img {
+    .img {
       width: 80px;
       height: 80px;
+      object-fit: cover;
     }
   }
   .items + .items {
@@ -209,7 +218,7 @@
     color: #636363;
     line-height: 38px;
     text-transform: capitalize;
-    transition: all .3s;
+    transition: all 0.3s;
     cursor: pointer;
     border-bottom: 1px solid transparent;
 

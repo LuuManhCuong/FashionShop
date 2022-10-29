@@ -3,13 +3,13 @@ const app = express();
 const connection = require("./config/database");
 const router = require("./router/router");
 const bodyParser = require("body-parser");
-const port = 3001;
-
-
+const cors = require("cors");
+const port = 5000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(cors());
 
 router(app);
 

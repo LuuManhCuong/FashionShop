@@ -11,9 +11,14 @@ import Register from "./components/AuththenComponent/Register";
 import ContactPage from "./pages/ContactPage";
 import ProfilePage from "./pages/ProfilePage";
 import BlogPostPage from "./pages/BlogPostPage";
-import Doremon from "./components/Doremon/Doremon";
+import { useDispatch } from "react-redux";
+import { getHomeRequest } from "./redux/reducer/homeSlice";
+import { getBlogRequest } from "./redux/reducer/blogSlice";
 // chứa các trang
 function App() {
+  const dispatch = useDispatch();
+  dispatch(getHomeRequest());
+  dispatch(getBlogRequest());
   return (
     <Routes>
       <Route path="/" element={<Home></Home>}></Route>
@@ -27,8 +32,7 @@ function App() {
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/admin" element={<Admin />}></Route>
       <Route path="/profile" element={<ProfilePage />}></Route>
-      <Route path="/blogpost" element={<BlogPostPage />}></Route>
-      <Route path="/gfu" element={<Doremon />}></Route>
+      <Route path="/postblog" element={<BlogPostPage />}></Route>
     </Routes>
   );
 }

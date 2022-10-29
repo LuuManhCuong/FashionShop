@@ -4,6 +4,7 @@ import "./gg.scss";
 function Doremon() {
   return (
     <div className="gg">
+      {/* <h3>Đang tìm dữ liệu</h3> */}
       <div className="wrap"></div>
       <div className="bell"></div>
       <div className="eyes-left">
@@ -24,10 +25,8 @@ function Doremon() {
         <li className="li_2"></li>
         <li className="li_3"></li>
       </ul>
-      <div className="lip1">
-      </div>
-      <div className="lip2">
-      </div>
+      <div className="lip1"></div>
+      <div className="lip2"></div>
     </div>
   );
 }

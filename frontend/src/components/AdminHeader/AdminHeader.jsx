@@ -7,7 +7,6 @@ import { TrendingDown, TrendingUp } from "@mui/icons-material";
 const cx = classNames.bind(styles);
 
 function AdminHeader({ showAddBtn, overview }) {
-  // console.log(overview);
   const values = useContext(ShowComponent);
   return (
     <div className={cx("header")}>

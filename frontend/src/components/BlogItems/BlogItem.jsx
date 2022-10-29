@@ -8,33 +8,29 @@ import {
   ModeCommentOutlined,
 } from "@mui/icons-material";
 const cx = classNames.bind(styles);
-function BlogItem() {
+function BlogItem({ blogItem }) {
+  // console.log("blogItem:", blogItem);
   return (
-    <Link to='/blog/detail/3' className={cx("container")}>
-      
-      <img
-        className=""
-        src="https://preview.colorlib.com/theme/fashi/img/blog/xblog-detail.jpg.pagespeed.ic.yMe25f0qz_.webp"
-        alt=""
-      />
+    <Link to={`/blog/detail/${blogItem.idblog}`} className={cx("container")}>
+      <img className={cx("blog-img")} src={blogItem.image} alt="img" />
       <p className={cx("fashion")}>
-        fashion
+        {blogItem.category}
         <span>
           <CalendarTodayOutlined className={cx("icon")}></CalendarTodayOutlined>
-          May 19,2021
+          20{blogItem.timeCreate}
         </span>
         <span>
           <ModeCommentOutlined className={cx("icon")}></ModeCommentOutlined>7
         </span>
       </p>
-      
-        <h3>The Personality Trait That Makes People Happier</h3>
-      
+
+      <h3>{blogItem.title}</h3>
+
       {/* <a href="/blog/detail/3">
         The Personality Trait That Makes People Happier
       </a> */}
-      <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam</p>
-      </Link>
+      <p>{blogItem.content}</p>
+    </Link>
   );
 }
 

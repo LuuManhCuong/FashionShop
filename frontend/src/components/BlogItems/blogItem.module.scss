@@ -1,8 +1,9 @@
 .container {
   width: 412px;
   padding: 8px 10px 0;
-  img {
+  .blog-img {
     width: 100%;
+    height: 260px;
     object-fit: cover;
   }
   a {
@@ -20,7 +21,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }
-  h3{
+  h3 {
     font-size: 2rem;
     font-weight: 500;
   }

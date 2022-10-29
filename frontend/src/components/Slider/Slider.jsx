@@ -1,4 +1,5 @@
 import "./slider.css";
+
 import { NavLink } from "react-router-dom";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,91 +12,52 @@ import "swiper/css/navigation";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
 
+import { useSelector } from "react-redux";
+import { homeDataSelector} from "../../redux/selectors";
+import Doremon from "../Doremon/Doremon";
+
 export default function App() {
+  const sliderData = useSelector(homeDataSelector);
+  // console.log("sliderData");
   return (
     <>
-      <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
-        loop={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
-      >
-        <SwiperSlide className="slider-wrap">
-          <img
-            className="slider-img"
-            src="	https://preview.colorlib.com/theme/fashi/img/hero-1.jpg"
-            alt="slider"
-          />
-          <div className="slider-context">
-            <h2>Black friday</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore
-            </p>
-            <NavLink to={"/shop"}>
-              <button>Shop now</button>
-            </NavLink>
-          </div>
+      {sliderData.isLoading ? (
+        <Doremon></Doremon>
+      ) : (
+        <Swiper
+          spaceBetween={30}
+          centeredSlides={true}
+          loop={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Autoplay, Pagination, Navigation]}
+          className="mySwiper"
+        >
+          {sliderData.data[0].map((slider) => (
+            <SwiperSlide key={slider.id} className="slider-wrap">
+              <img className="slider-img" src={slider.src} alt="slider" />
+              <div className="slider-context">
+                <h2>{slider.title}</h2>
+                <p>{slider.description}</p>
+                <NavLink to={"/shop"}>
+                  <button>Shop now</button>
+                </NavLink>
+              </div>
 
-          <div className="slider-sale">
-            <h2>Sale</h2>
-            <p>50%</p>
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide className="slider-wrap">
-          <img
-            className="slider-img"
-            src="	https://preview.colorlib.com/theme/fashi/img/hero-2.jpg"
-            alt="slider"
-          />
-          <div className="slider-context">
-            <h2>Autumn Sale</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore
-            </p>
-            <NavLink to={"/shop"}>
-              <button>Shop now</button>
-            </NavLink>
-          </div>
-          <div className="slider-sale">
-            <h2>Sale</h2>
-            <p>50%</p>
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide className="slider-wrap">
-          <img
-            className="slider-img"
-            src="	https://preview.colorlib.com/theme/fashi/img/time-bg.jpg"
-            alt="slider"
-          />
-          <div className="slider-context">
-            <h2>Winter Sale</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore
-            </p>
-            <NavLink to={"/shop"}>
-              <button>Shop now</button>
-            </NavLink>
-          </div>
-          <div className="slider-sale">
-            <h2>Sale</h2>
-            <p>50%</p>
-          </div>
-        </SwiperSlide>
-      </Swiper>
+              <div className="slider-sale">
+                <h2>Sale</h2>
+                <p>{slider.sale}%</p>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </>
   );
 }

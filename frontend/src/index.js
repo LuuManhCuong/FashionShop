@@ -2,9 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, useLocation } from "react-router-dom";
 import App from "./App";
+import { Provider } from "react-redux";
 import GlobalStyle from "./components/GlobalStyle/GlobalStyle";
 import reportWebVitals from "./reportWebVitals";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import store from "./redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const Wrapper = ({ children }) => {
@@ -20,7 +22,9 @@ root.render(
     <GlobalStyle>
       <BrowserRouter>
         <Wrapper>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
           <ScrollToTop />
         </Wrapper>
       </BrowserRouter>

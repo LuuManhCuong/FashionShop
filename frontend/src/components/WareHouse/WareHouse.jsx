@@ -43,7 +43,7 @@ function WareHouse() {
   const [showAddProduct, setShowAddProduct] = useState(false);
   function handleShow() {
     setShowAddProduct(!showAddProduct);
-    window.scrollTo({ top: 100, behavior: "smooth" });
+    window.scrollTo({ top: 500, behavior: "smooth" });
   }
   let values = { handleShow, showAddProduct };
   return (

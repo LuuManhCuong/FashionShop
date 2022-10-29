@@ -3,11 +3,14 @@ import classNames from "classnames/bind";
 import styles from "./sideBar.module.scss";
 import Tag from "../Tags/Tag";
 import { SearchOutlined } from "@mui/icons-material";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { blogDataSelector } from "../../redux/selectors";
 const cx = classNames.bind(styles);
 
 function SideBar(props) {
-  // console.log(props)
+  const blogData = useSelector(blogDataSelector);
+  // console.log(blogData);
   const [active, setActive] = useState(props.data[0].category);
   const [startPrice, setStartPrice] = useState(0 + " $");
   const [endPrice, setEndPrice] = useState(50 + " $");
@@ -44,51 +47,21 @@ function SideBar(props) {
           </ul>
         </div>
 
-        {props.showPost && (
+        {props.showPost && !blogData.isLoading && (
           <div className={cx("recent-post")}>
             <h2>Recent Post</h2>
-            <Link to="/blog/detail/1" className={cx("items")}>
-              <img
-                src="https://didongviet.vn/dchannel/wp-content/uploads/2022/01/duong-cong-didongviet.jpg"
-                alt=""
-              />
-              <div className={cx("infos")}>
-                <h4 className={cx("name")}>
-                  The Personality Trait That Makes...
-                </h4>
-                <p className={cx("fashion")}>
-                  Fashion <span className={cx("day")}>mon 19/12/2022</span>
-                </p>
-              </div>
-            </Link>
-            <Link to="/blog/detail/1" className={cx("items")}>
-              <img
-                src="https://didongviet.vn/dchannel/wp-content/uploads/2022/01/duong-cong-didongviet.jpg"
-                alt=""
-              />
-              <div className={cx("infos")}>
-                <h4 className={cx("name")}>
-                  The Personality Trait That Makes...
-                </h4>
-                <p className={cx("fashion")}>
-                  Fashion <span className={cx("day")}>mon 19/12/2022</span>
-                </p>
-              </div>
-            </Link>
-            <Link to="/blog/detail/1" className={cx("items")}>
-              <img
-                src="https://didongviet.vn/dchannel/wp-content/uploads/2022/01/duong-cong-didongviet.jpg"
-                alt=""
-              />
-              <div className={cx("infos")}>
-                <h4 className={cx("name")}>
-                  The Personality Trait That Makes...
-                </h4>
-                <p className={cx("fashion")}>
-                  Fashion <span className={cx("day")}>mon 19/12/2022</span>
-                </p>
-              </div>
-            </Link>
+            {blogData.data[1].map((blog) => (
+              <Link to={`/blog/detail/${blog.idblog}`} className={cx("items")}>
+                <img className={cx("img")} src={blog.image} alt="img" />
+                <div className={cx("infos")}>
+                  <h4 className={cx("name")}>{blog.title}</h4>
+                  <p className={cx("fashion")}>
+                    {blog.category}{" "}
+                    <span className={cx("day")}>{blog.timeCreate}</span>
+                  </p>
+                </div>
+              </Link>
+            ))}
           </div>
         )}
 
@@ -98,20 +71,20 @@ function SideBar(props) {
               <h2>Fillter</h2>
               <ul>
                 <li>
-                  <input id="clothings"  type="checkbox" />
-                  <label htmlFor="clothings" >Clothings</label >
+                  <input id="clothings" type="checkbox" />
+                  <label htmlFor="clothings">Clothings</label>
                 </li>
                 <li>
                   <input id="handbag" type="checkbox" />
-                  <label htmlFor="handbag" >HandBag</label >
+                  <label htmlFor="handbag">HandBag</label>
                 </li>
                 <li>
                   <input id="shoes" type="checkbox" />
-                  <label htmlFor="shoes" >Shoes</label >
+                  <label htmlFor="shoes">Shoes</label>
                 </li>
                 <li>
                   <input id="accessories" type="checkbox" />
-                  <label htmlFor="accessories" >Accessories</label >
+                  <label htmlFor="accessories">Accessories</label>
                 </li>
               </ul>
             </div>
@@ -188,9 +161,7 @@ function SideBar(props) {
         <Tag />
       </div>
 
-      {props.data.map((item, i) =>
-        active === item.category && item.component
-      )}
+      {props.data.map((item, i) => active === item.category && item.component)}
     </div>
   );
 }
