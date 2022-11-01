@@ -1,7 +1,9 @@
 .product-block-wrap {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 1 1;
+  // overflow: auto;
+  // height: 130vh;
 
   h1 {
     width: 100%;

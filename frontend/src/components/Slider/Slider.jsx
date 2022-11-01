@@ -13,12 +13,12 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper";
 
 import { useSelector } from "react-redux";
-import { homeDataSelector} from "../../redux/selectors";
+import { homeDataSelector } from "../../redux/selectors";
 import Doremon from "../Doremon/Doremon";
 
 export default function App() {
   const sliderData = useSelector(homeDataSelector);
-  // console.log("sliderData");
+  console.log("re-render");
   return (
     <>
       {sliderData.isLoading ? (

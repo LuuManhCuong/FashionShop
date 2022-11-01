@@ -8,17 +8,17 @@ import ProductBlock from "../components/ProductBlock/ProductBlock";
 const data = [
   {
     category: "men",
-    component: <ProductBlock slug={"men"}></ProductBlock>,
+    component: <ProductBlock key={1} slug={"men"}></ProductBlock>,
   },
 
   {
     category: "women",
-    component: <ProductBlock slug={"women"}></ProductBlock>,
+    component: <ProductBlock key={2} slug={"women"}></ProductBlock>,
   },
 
   {
     category: "kids",
-    component: <ProductBlock slug={"kids"}></ProductBlock>,
+    component: <ProductBlock key={3} slug={"kids"}></ProductBlock>,
   },
 ];
 

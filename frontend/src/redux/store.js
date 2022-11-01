@@ -3,12 +3,14 @@ import createSagaMiddleware from "redux-saga";
 import homeReducer from "./reducer/homeSlice";
 import blogReducer from "./reducer/blogSlice";
 import rootSaga from "./saga/rootSaga";
+import shopReducer from "./reducer/shopSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = configureStore({
   reducer: {
     home: homeReducer,
     blog: blogReducer,
+    shop: shopReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(sagaMiddleware),

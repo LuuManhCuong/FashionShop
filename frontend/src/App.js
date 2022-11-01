@@ -14,11 +14,14 @@ import BlogPostPage from "./pages/BlogPostPage";
 import { useDispatch } from "react-redux";
 import { getHomeRequest } from "./redux/reducer/homeSlice";
 import { getBlogRequest } from "./redux/reducer/blogSlice";
+import { getShopRequest } from "./redux/reducer/shopSlice";
+
 // chứa các trang
 function App() {
   const dispatch = useDispatch();
   dispatch(getHomeRequest());
   dispatch(getBlogRequest());
+  dispatch(getShopRequest());
   return (
     <Routes>
       <Route path="/" element={<Home></Home>}></Route>

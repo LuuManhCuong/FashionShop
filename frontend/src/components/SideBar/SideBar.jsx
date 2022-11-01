@@ -10,7 +10,6 @@ const cx = classNames.bind(styles);
 
 function SideBar(props) {
   const blogData = useSelector(blogDataSelector);
-  // console.log(blogData);
   const [active, setActive] = useState(props.data[0].category);
   const [startPrice, setStartPrice] = useState(0 + " $");
   const [endPrice, setEndPrice] = useState(50 + " $");
@@ -50,8 +49,12 @@ function SideBar(props) {
         {props.showPost && !blogData.isLoading && (
           <div className={cx("recent-post")}>
             <h2>Recent Post</h2>
-            {blogData.data[1].map((blog) => (
-              <Link to={`/blog/detail/${blog.idblog}`} className={cx("items")}>
+            {blogData.data[1].map((blog, i) => (
+              <Link
+                to={`/blog/detail/${blog.idblog}`}
+                key={i}
+                className={cx("items")}
+              >
                 <img className={cx("img")} src={blog.image} alt="img" />
                 <div className={cx("infos")}>
                   <h4 className={cx("name")}>{blog.title}</h4>

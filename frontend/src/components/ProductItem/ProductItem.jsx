@@ -1,22 +1,21 @@
 import React from "react";
 import "./productItem.scss";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import {
   FavoriteBorder,
   ShoppingCartOutlined,
   HeartBroken,
 } from "@mui/icons-material";
 
-function ProductItem() {
+function ProductItem({ product }) {
   return (
     <Link to="/shop/detail/1" className="product-item">
       <div className="product-content">
-        <img
-          src="https://preview.colorlib.com/theme/fashi/img/products/xwomen-2.jpg.pagespeed.ic.9lv2o7iXWr.webp"
-          alt="product"
-        />
+        <img src={product.avatar} alt="product" />
         <div className="label">
-          <h4>SALE 10%</h4>
+          <h4>
+            SALE {product.sale}% ({product.gender}/{product.category})
+          </h4>
         </div>
         <FavoriteBorder className="heart"></FavoriteBorder>
         <ul className="view">
@@ -32,15 +31,14 @@ function ProductItem() {
         </ul>
       </div>
       <div className="product-price">
-        <p>Coat</p>
-        <h4 className="name">Pure pineapple</h4>
+        <p>{product.category}</p>
+        <h4 className="name">{product.name}</h4>
         <h3 className="price">
-          $34.00
+          ${product.price}
           <span>$35.00</span>
         </h3>
       </div>
     </Link>
-    
   );
 }
 
