@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import {useDispatch} from 'react-redux'
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
 import classNames from "classnames/bind";
@@ -9,7 +10,7 @@ import Menu from "../Menu/Menu";
 import CartNoti from "../CartNoti/CartNoti";
 import Noti from "../Noti/Noti";
 import SearchItems from "../SearchItems/SearchItem";
-
+import {fetchSearchApi} from '../../api/api'
 import {
   SearchOutlined,
   FavoriteBorderOutlined,
@@ -17,16 +18,26 @@ import {
   TipsAndUpdates,
   TipsAndUpdatesOutlined,
 } from "@mui/icons-material";
+// import { getShopSuccessTest } from "../../redux/reducer/shopSlice";
+import shopSlice from "../../redux/reducer/shopSlice";
 
 const cx = classNames.bind(styles);
 function HeaderSearch() {
+  const dispatch = useDispatch()
   const [keyWord, setKeyWord] = useState("");
+  const [listSearch, setListSearch] = useState([]);
   const [showWiter, setShowWriter] = useState(false);
   const [showTippy, setShowTippy] = useState(false);
 
   useEffect(() => {
     keyWord.length === 0 ? setShowWriter(true) : setShowWriter(false);
+    fetchSearchApi(keyWord)
+    .then(res=>{
+      setListSearch(res.data)
+      
+    })
   }, [keyWord]);
+ 
   return (
     <div className={cx("header-search")}>
       <div className={cx("div logo")}>
@@ -34,21 +45,26 @@ function HeaderSearch() {
           <h1>Fashion.</h1>
         </Link>
       </div>
+      {/* search */}
       <div className={cx("div search-wrap")}>
         <Tippy
           placement={"left-end"}
-          // onClickOutside={'callback'}
+          onClickOutside={'callback'}
           visible={true}
           interactive={true}
           appendTo={document.body}
           render={(attrs) =>
             showTippy && (
               <div className="search-result" tabIndex="-1" {...attrs}>
-                <div className="popover">
-                  <h4>result</h4>
-                  <SearchItems items={{ to: "/login", name: "ao so mi nam" }} />
-                  <SearchItems items={{ to: "a", name: "ao so mi nam" }} />
-                  <SearchItems items={{ to: "a", name: "ao so mi nam" }} />
+                <div className="popover"> 
+                {
+                listSearch.length == 0 ? <h4>k tìm thấy cai m muốn tìm</h4> : <h4>result</h4>
+                }
+                  {
+                    listSearch.map(function(value){
+                      return <SearchItems items={{ to: "/login", name: value.category }} />
+                    })
+                  }
                 </div>
               </div>
             )
@@ -71,6 +87,7 @@ function HeaderSearch() {
               let lengValue = e.currentTarget.value.length;
               lengValue > 0 ? setShowTippy(true) : setShowTippy(false);
               setKeyWord(e.target.value);
+              dispatch(shopSlice.actions.getShopSuccessTest(listSearch))
             }}
           />
         </Tippy>
@@ -95,6 +112,8 @@ function HeaderSearch() {
           ></SearchOutlined>
         </button>
       </div>
+
+      {/* action */}
       <div className={cx("div action-btn")}>
         <ul>
           <li className={cx("cart")}>
