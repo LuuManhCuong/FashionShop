@@ -14,6 +14,8 @@ import {
   SearchOutlined,
   FavoriteBorderOutlined,
   ShoppingCartOutlined,
+  TipsAndUpdates,
+  TipsAndUpdatesOutlined,
 } from "@mui/icons-material";
 
 const cx = classNames.bind(styles);
@@ -58,12 +60,11 @@ function HeaderSearch() {
             type="text"
             value={keyWord}
             onFocus={() => {
-              setShowWriter(false)
+              setShowWriter(false);
             }}
-          
             onBlur={(e) => {
               let lengValue = e.currentTarget.value.length;
-              setShowTippy(false)
+              setShowTippy(false);
               lengValue > 0 ? setShowWriter(false) : setShowWriter(true);
             }}
             onChange={(e) => {
@@ -97,12 +98,30 @@ function HeaderSearch() {
       <div className={cx("div action-btn")}>
         <ul>
           <li className={cx("cart")}>
+            <TipsAndUpdates
+              className={cx("dark-active")}
+              style={{ width: "2rem", height: "2rem" }}
+              onClick={() => {
+                document.querySelector(".global").classList.toggle("darkmode");
+                console.log(document.querySelector(".global"));
+              }}
+            ></TipsAndUpdates>
+            <TipsAndUpdatesOutlined
+              className={cx("light-active")}
+              style={{ width: "2rem", height: "2rem" }}
+              onClick={() => {
+                document.querySelector(".global").classList.toggle("darkmode");
+                // console.log(document.querySelector(".global"));
+              }}
+            ></TipsAndUpdatesOutlined>
+          </li>
+
+          <li className={cx("cart")}>
             <FavoriteBorderOutlined
               style={{ width: "2rem", height: "2rem" }}
             ></FavoriteBorderOutlined>
             <span>10</span>
             <Noti />
-            {/* <CartNoti className={cx("cart-)}noti"></CartNoti> */}
           </li>
           <li className={cx("cart")}>
             <ShoppingCartOutlined

@@ -6,3 +6,4 @@ export const fetchHomeApi = () => axios.get(`${URL}`);
 export const fetchBlogApi = () => axios.get(`${URL}/blog`);
 export const fetchBestSaleApi = () => axios.get(`${URL}/bestSale/`);
 export const fetchShopApi = () => axios.get(`${URL}/shop`);
+export const fetchAdminApi = () => axios.get(`${URL}/admin`);

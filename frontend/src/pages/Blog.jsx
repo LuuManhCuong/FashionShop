@@ -18,6 +18,10 @@ function Blog() {
       category: "Modle",
       component: <BlogContent key={3} slug="modle" />,
     },
+    {
+      category: "Music",
+      component: <BlogContent key={4} slug="music" />,
+    },
   ];
 
   return (
@@ -28,6 +32,7 @@ function Blog() {
           showPost={true}
           showSearch={true}
           showFilter={false}
+          showTag={true}
           data={data}
         ></SideBar>
       </div>

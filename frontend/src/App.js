@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { getHomeRequest } from "./redux/reducer/homeSlice";
 import { getBlogRequest } from "./redux/reducer/blogSlice";
 import { getShopRequest } from "./redux/reducer/shopSlice";
+import { getAdminRequest } from "./redux/reducer/adminSlice";
 
 // chứa các trang
 function App() {
@@ -22,6 +23,8 @@ function App() {
   dispatch(getHomeRequest());
   dispatch(getBlogRequest());
   dispatch(getShopRequest());
+  dispatch(getAdminRequest());
+
   return (
     <Routes>
       <Route path="/" element={<Home></Home>}></Route>

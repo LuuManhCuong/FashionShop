@@ -13,6 +13,35 @@
   --white-color: rgb(255, 255, 255);
 }
 
+.global.darkmode {
+  background-color: beige;
+  .dark-active {
+    display: block !important;
+    color: var(--primary-color);
+  }
+  .light-active {
+    display: none !important;
+    color: var(--primary-color);
+  }
+  .countdown {
+    margin: 60px 80px;
+    height: 600px;
+    box-shadow: 0 0 10px 4px rgb(203 203 202 / 30%);
+    background-color: unset;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .adminHeader_header__xcNsf::after {
+    background-color: #e7ab3c99 !important;
+  }
+}
+
+.dark-active {
+  display: none !important;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -203,4 +232,18 @@ li {
     font-size: 3rem;
     color: var(--primary-color);
   }
+}
+
+.css-1p5q5e5-MuiStack-root {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

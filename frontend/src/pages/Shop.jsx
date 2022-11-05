@@ -31,6 +31,7 @@ function Shop() {
           showPost={false}
           showSearch={false}
           showFilter={true}
+          showTag={false}
           data={data}
         ></SideBar>
       </div>

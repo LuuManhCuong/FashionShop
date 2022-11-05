@@ -3,6 +3,7 @@ import { homeSlice } from "../reducer/homeSlice";
 import { blogSlice } from "../reducer/blogSlice";
 import { bestSaleSlice } from "../reducer/bestSaleSlice";
 import { shopSlice } from "../reducer/shopSlice";
+import { adminSlice } from "../reducer/adminSlice";
 import * as api from "../../api/api";
 
 function* fetchHomeSaga(action) {
@@ -29,12 +30,19 @@ function* fetchShopSaga(action) {
   yield put(shopSlice.actions.getShopSuccess(shop.data));
 }
 
+function* fetchAdminSaga(action) {
+  const admin = yield call(api.fetchAdminApi);
+  // console.log(admin);
+  yield put(adminSlice.actions.getAdminSuccess(admin.data));
+}
+
 function* rootSaga() {
   console.log("rootsaga");
   yield takeLatest(homeSlice.actions.getHomeRequest, fetchHomeSaga);
   yield takeLatest(blogSlice.actions.getBlogRequest, fetchBlogSaga);
   yield takeLatest(bestSaleSlice.actions.getBestSaleRequest, fetchBestSaleSaga);
   yield takeLatest(shopSlice.actions.getShopRequest, fetchShopSaga);
+  yield takeLatest(adminSlice.actions.getAdminRequest, fetchAdminSaga);
 }
 
 export default rootSaga;

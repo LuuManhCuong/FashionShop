@@ -23,6 +23,7 @@ function BlogItem({ blogItem }) {
           <ModeCommentOutlined className={cx("icon")}></ModeCommentOutlined>7
         </span>
       </p>
+      <p>tags: {blogItem.blogTag}</p>
 
       <h3>{blogItem.title}</h3>
 

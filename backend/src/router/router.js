@@ -2,6 +2,7 @@ const HomeControllers = require("../controllers/HomeControllers");
 const AccountControllers = require("../controllers/AccountControllers");
 const BlogController = require("../controllers/BlogController");
 const ShopControllers = require("../controllers/ShopController");
+const AdminController = require("../controllers/AdminController");
 
 function router(app) {
   app.route("/register").post(AccountControllers.register);
@@ -14,7 +15,14 @@ function router(app) {
 
   app.route("/shop").get(ShopControllers.shop);
 
+  app.route("/shop/count").get(ShopControllers.countProduct);
+
+  app.route("/shop/getPrice").get(ShopControllers.getPrice);
+
   app.route("/blog").get(BlogController.blog);
+  app.route("/blog/count").get(BlogController.countBlog);
+
+  app.route("/admin").get(AdminController.admin);
 
   app.route("*").get((req, res) => {
     res.status(400).json("t ko tìm thấy trang m muốn");

@@ -1,8 +1,14 @@
-import React from "react";
 import { Table } from "reactstrap";
 import "./dataCustomer.scss";
+import * as React from "react";
 import DataCustomerItem from "../DataCustomerItem/DataCustomerItem";
 import AdminHeader from "../AdminHeader/AdminHeader";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { adminDataSelector } from "../../redux/selectors";
+import { Pagination } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 
 const overview = [
   {
@@ -28,6 +34,26 @@ const overview = [
   },
 ];
 function DataCustomer() {
+  const adminData = useSelector(adminDataSelector);
+  let customerData = adminData.data[0];
+  const [ListUser, setListUser] = useState(customerData)
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    let offset;
+    page === 0 ? (offset = 0) : (offset = (page - 1) * 4);
+    fetch(`http://localhost:5000/admin?page=${offset}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setListUser(data[0]);
+      });
+  }, [page]);
+
+  function handleChange(event: React.ChangeEvent<unknown>, value: number) {
+    setPage(value);
+    window.scrollTo({ top: 110, behavior: "smooth" });
+  }
   return (
     <div className="data-customer">
       <AdminHeader overview={overview}></AdminHeader>
@@ -46,13 +72,23 @@ function DataCustomer() {
           </tr>
         </thead>
         <tbody>
-          <DataCustomerItem />
-          <DataCustomerItem />
-          <DataCustomerItem />
-          <DataCustomerItem />
-          <DataCustomerItem />
+          {customerData.map((user, i) => (
+            <DataCustomerItem userItem={user} stt={i} key={i} />
+          ))}
         </tbody>
       </Table>
+      <Stack spacing={2}>
+        <Typography className="page">
+          Page: {page || 1} / {totalPages} Of Customers
+        </Typography>
+        <Pagination
+          className="pagination"
+          count={totalPages}
+          color="primary"
+          page={page || 1}
+          onChange={handleChange}
+        />
+      </Stack>
     </div>
   );
 }
