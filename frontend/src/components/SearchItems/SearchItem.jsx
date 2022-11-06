@@ -7,7 +7,9 @@ const cx = classNames.bind(styles);
 function SearchItems({items}) {
   return (
     <div className={cx('wrap')}>
-      <Link to={items.to} className={cx('item')}> {items.name} </Link>
+      <Link to={items.to} className={cx('item')}> 
+        {items.name}
+       </Link>
     </div>
   )
 }

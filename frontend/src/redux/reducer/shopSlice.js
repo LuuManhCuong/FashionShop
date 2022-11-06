@@ -20,10 +20,7 @@ export const shopSlice = createSlice({
       state.isLoading = false;
       state.data = [];
     },
-    getShopSuccessTest: (state, action) => {
-      state.isLoading = false;
-      state.data = action.payload;
-    },
+   
   },
 });
 

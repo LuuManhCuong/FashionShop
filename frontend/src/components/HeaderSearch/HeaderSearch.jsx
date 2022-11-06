@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {useDispatch} from 'react-redux'
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
 import classNames from "classnames/bind";
@@ -19,13 +18,13 @@ import {
   TipsAndUpdatesOutlined,
 } from "@mui/icons-material";
 // import { getShopSuccessTest } from "../../redux/reducer/shopSlice";
-import shopSlice from "../../redux/reducer/shopSlice";
+import SearchProduct from "../searchProduct";
 
 const cx = classNames.bind(styles);
 function HeaderSearch() {
-  const dispatch = useDispatch()
   const [keyWord, setKeyWord] = useState("");
   const [listSearch, setListSearch] = useState([]);
+  const [listProduct, setListProduct] = useState([]);
   const [showWiter, setShowWriter] = useState(false);
   const [showTippy, setShowTippy] = useState(false);
 
@@ -33,11 +32,14 @@ function HeaderSearch() {
     keyWord.length === 0 ? setShowWriter(true) : setShowWriter(false);
     fetchSearchApi(keyWord)
     .then(res=>{
-      setListSearch(res.data)
-      
+      setListSearch(res.data[0])
+      setListProduct(res.data[1])
     })
   }, [keyWord]);
  
+const outSize= ()=>{
+    setShowTippy(false)
+ }
   return (
     <div className={cx("header-search")}>
       <div className={cx("div logo")}>
@@ -49,22 +51,30 @@ function HeaderSearch() {
       <div className={cx("div search-wrap")}>
         <Tippy
           placement={"left-end"}
-          onClickOutside={'callback'}
-          visible={true}
+          onClickOutside={()=>outSize()}
+          visible={showTippy&& listSearch.length !== 0 && listProduct.length !== 0}
           interactive={true}
           appendTo={document.body}
+          trigger={'click'}
           render={(attrs) =>
             showTippy && (
               <div className="search-result" tabIndex="-1" {...attrs}>
-                <div className="popover"> 
+                <div className="popover" style={{padding:'10px 5px'}}> 
                 {
-                listSearch.length == 0 ? <h4>k tìm thấy cai m muốn tìm</h4> : <h4>result</h4>
+                listSearch.length === 0 && listProduct.length === 0 ? <h4>k tìm thấy cái m muốn tìm</h4> :''
                 }
+                { listSearch.length !== 0 ?  <h4 style={{fontSize:'20px'}}>Danh mục</h4>:''}
                   {
                     listSearch.map(function(value){
-                      return <SearchItems items={{ to: "/login", name: value.category }} />
+                      return <SearchItems items={{ to: "/blog", name: value.category }} />
                     })
                   }
+                  {listProduct.length !== 0 ? <h4 style={{fontSize:'20px'}}>sản phẩm </h4>: ''}
+                  {
+                    listProduct.map((value)=>{
+                     return <SearchProduct items={{ to: "/blog", name: value.name ,avatar:value.avatar ,}}  /> 
+                    })
+              } 
                 </div>
               </div>
             )
@@ -75,6 +85,9 @@ function HeaderSearch() {
             className={cx("search-input")}
             type="text"
             value={keyWord}
+            onClick={()=>{
+              setShowTippy(true)
+            }}
             onFocus={() => {
               setShowWriter(false);
             }}
@@ -87,7 +100,7 @@ function HeaderSearch() {
               let lengValue = e.currentTarget.value.length;
               lengValue > 0 ? setShowTippy(true) : setShowTippy(false);
               setKeyWord(e.target.value);
-              dispatch(shopSlice.actions.getShopSuccessTest(listSearch))
+              
             }}
           />
         </Tippy>
