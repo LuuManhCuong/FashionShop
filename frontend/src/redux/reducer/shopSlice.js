@@ -20,6 +20,7 @@ export const shopSlice = createSlice({
       state.isLoading = false;
       state.data = [];
     },
+   
   },
 });
 
