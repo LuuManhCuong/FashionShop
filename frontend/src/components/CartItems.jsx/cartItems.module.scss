@@ -1,47 +1,43 @@
 tbody tr {
+  .img-table {
+    width: 60%;
+  }
 
-    .img-table {
-        width: 60%;
-    }
+  td {
+    padding: 10px;
+    font-size: 18px;
+    min-width: 120px !important;
+  }
 
-    td:nth-child(1) {
-        padding-top: 20px;
-    }
+  .product-name {
+    font-size: 20px;
+    font-weight: 700;
+  }
 
-    td {
-        padding-bottom: 20px;
-        font-size: 18px;
-    }
-
-    .product-name {
-        font-size: 20px;
-        font-weight: 700;
-    }
-
-    .delete {
-        font-weight: 700px !important;
-    }
+  .delete {
+    font-weight: 700px !important;
+  }
 }
 
 .quatity {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 2px solid #ebebeb;
-    width: 123px;
-    height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #ebebeb;
+  width: 123px;
+  height: 46px;
 
-    span {
-        font-family: 700;
-        font-size: 20px;
-        user-select: none;
-    }
+  span {
+    font-family: 700;
+    font-size: 20px;
+    user-select: none;
+  }
 
-    .subtraction,
-    .sumation {
-        display: inline-block;
-        font-size: 24px;
-        padding: 0 8px;
-        cursor: pointer;
-    }
+  .subtraction,
+  .sumation {
+    display: inline-block;
+    font-size: 24px;
+    padding: 0 8px;
+    cursor: pointer;
+  }
 }

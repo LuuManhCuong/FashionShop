@@ -1,6 +1,5 @@
 .wrap {
   flex: 1;
-  
 }
 
 thead th {
@@ -15,3 +14,14 @@ thead th {
 .table-body {
   width: 100%;
 }
+
+.body-header {
+  display: flex;
+  align-items: flex-end;
+  .num-page {
+    color: var(--primary-color);
+    margin: 0 20px;
+    font-size: 1.6rem;
+  }
+}
+

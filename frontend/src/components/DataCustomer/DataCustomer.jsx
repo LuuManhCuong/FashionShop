@@ -5,7 +5,7 @@ import DataCustomerItem from "../DataCustomerItem/DataCustomerItem";
 import AdminHeader from "../AdminHeader/AdminHeader";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { adminDataSelector } from "../../redux/selectors";
+import { reloadApiSlector } from "../../redux/selectors";
 import { Pagination } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
@@ -34,21 +34,33 @@ const overview = [
   },
 ];
 function DataCustomer() {
-  const adminData = useSelector(adminDataSelector);
-  let customerData = adminData.data[0];
-  const [ListUser, setListUser] = useState(customerData)
+  const reloadApis = useSelector(reloadApiSlector);
+
+  const [ListUser, setListUser] = useState([]);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
-
+  // count page
   useEffect(() => {
-    let offset;
-    page === 0 ? (offset = 0) : (offset = (page - 1) * 4);
-    fetch(`http://localhost:5000/admin?page=${offset}`)
+    fetch(`http://localhost:5000/admin/count/user`)
       .then((res) => res.json())
       .then((data) => {
-        setListUser(data[0]);
+        setTotalPages(Math.ceil(Number(data[0].total) / 10));
       });
-  }, [page]);
+  }, [reloadApis.reload]);
+
+  // call api
+  useEffect(() => {
+    let offset;
+    page === 0 ? (offset = 0) : (offset = (page - 1) * 10);
+    fetch(`http://localhost:5000/admin/?page=${offset}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.length <= 0) {
+          setPage(page - 1);
+        }
+        setListUser(data);
+      });
+  }, [page, reloadApis.reload, totalPages]);
 
   function handleChange(event: React.ChangeEvent<unknown>, value: number) {
     setPage(value);
@@ -57,7 +69,12 @@ function DataCustomer() {
   return (
     <div className="data-customer">
       <AdminHeader overview={overview}></AdminHeader>
-      <h3>Dữ liệu khách hàng</h3>
+      <h3>
+        Dữ liệu khách hàng{" "}
+        <Typography className="page">
+          Page: {page || 1} / {totalPages}
+        </Typography>
+      </h3>
       <Table bordered>
         <thead>
           <tr>
@@ -72,15 +89,12 @@ function DataCustomer() {
           </tr>
         </thead>
         <tbody>
-          {customerData.map((user, i) => (
+          {ListUser.map((user, i) => (
             <DataCustomerItem userItem={user} stt={i} key={i} />
           ))}
         </tbody>
       </Table>
       <Stack spacing={2}>
-        <Typography className="page">
-          Page: {page || 1} / {totalPages} Of Customers
-        </Typography>
         <Pagination
           className="pagination"
           count={totalPages}

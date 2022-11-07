@@ -20,6 +20,18 @@ export const adminSlice = createSlice({
   },
 });
 
+export const reloadApi = createSlice({
+  name: "reload",
+  initialState: {
+    reload: 1,
+  },
+  reducers: {
+    setReload: (state, action) => {
+      state.reload += 1;
+    },
+  },
+});
+
 export const { getAdminRequest, getAdminFailure, getAdminSuccess } =
   adminSlice.actions;
 

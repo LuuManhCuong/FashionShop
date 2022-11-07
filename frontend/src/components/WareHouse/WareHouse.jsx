@@ -1,9 +1,14 @@
 import classNames from "classnames/bind";
 import styles from "./wareHouse.module.scss";
+import { Pagination } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import TableBodyOverview from "../TableBodyOverView/TableBodyOverview";
 import AdminHeader from "../AdminHeader/AdminHeader";
 import AddProductContent from "../AddProductContent/AddProductContent";
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { reloadApiSlector } from "../../redux/selectors";
 const cx = classNames.bind(styles);
 
 const overview = [
@@ -40,11 +45,46 @@ const overview = [
 export const ShowComponent = createContext();
 
 function WareHouse() {
+  const reloadApi = useSelector(reloadApiSlector);
+
   const [showAddProduct, setShowAddProduct] = useState(false);
+  const [listProducts, setListProducts] = useState([]);
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
+
+  // count page
+  useEffect(() => {
+    fetch(`http://localhost:5000/admin/count/product`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTotalPages(Math.ceil(Number(data[0].total) / 10));
+      });
+  }, [reloadApi.reload]);
+
+  // call api
+  useEffect(() => {
+    let offset;
+    page === 0 ? (offset = 0) : (offset = (page - 1) * 10);
+    fetch(`http://localhost:5000/admin/warehouse?page=${offset}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.length <= 0) {
+          setPage(page - 1);
+        }
+        setListProducts(data);
+      });
+  }, [page, reloadApi.reload]);
+
   function handleShow() {
     setShowAddProduct(!showAddProduct);
     window.scrollTo({ top: 500, behavior: "smooth" });
   }
+
+  function handleChange(event: React.ChangeEvent<unknown>, value: number) {
+    setPage(value);
+    window.scrollTo({ top: 110, behavior: "smooth" });
+  }
+
   let values = { handleShow, showAddProduct };
   return (
     <ShowComponent.Provider value={values}>
@@ -54,43 +94,43 @@ function WareHouse() {
           <AddProductContent></AddProductContent>
         ) : (
           <div className={cx("body")}>
-            <h5 className={cx("body-header")}>Sản Phẩm Trong Cửa Hàng</h5>
+            <h5 className={cx("body-header")}>
+              Sản Phẩm Trong Cửa Hàng
+              <Typography className={cx("num-page")}>
+                Page: {page || 1} / {totalPages}
+              </Typography>
+            </h5>
             <table>
               <thead>
+                <th>Stt</th>
                 <th>Tên Sản Phẩm</th>
+                <th>Danh mục</th>
                 <th>Giá</th>
+                <th>Size</th>
                 <th>Số Lượng</th>
-                <th>Số lượng bán</th>
+                <th>Đã bán</th>
                 <th>tỉ lệ</th>
                 <th>Action</th>
               </thead>
               <tbody className={cx("table-body")}>
-                <TableBodyOverview />
-                <TableBodyOverview />
-                <TableBodyOverview />
-                <TableBodyOverview />
-                <TableBodyOverview />
-                {/* tao khoang cach */}
+                {listProducts.map((product, i) => (
+                  <TableBodyOverview
+                    stt={i}
+                    product={product}
+                    key={product.idProduct}
+                  />
+                ))}
               </tbody>
-              <tfoot className={cx("table-footer")}>
-                <tr>
-                  <td
-                    style={{
-                      textAlign: "center",
-                      padding: "10px 0",
-                      color: "#637381",
-                      cursor: "pointer",
-                      fontSize: "14px",
-                    }}
-                    colSpan={5}
-                    rowSpan="5"
-                  >
-                    {" "}
-                    xem thêm ---{">"}{" "}
-                  </td>
-                </tr>
-              </tfoot>
             </table>
+            <Stack spacing={2}>
+              <Pagination
+                className="pagination"
+                count={totalPages}
+                color="primary"
+                page={page || 1}
+                onChange={handleChange}
+              />
+            </Stack>
           </div>
         )}
       </div>

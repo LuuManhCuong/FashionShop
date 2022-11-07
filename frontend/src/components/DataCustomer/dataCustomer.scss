@@ -1,7 +1,14 @@
-.data-customer{
-    flex: 1;
-    h3{
-        font-size: 2.4rem;
-        margin-bottom: 20px;
+.data-customer {
+  flex: 1;
+  h3 {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-end;
+    .page {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      margin: 0 20px;
     }
+  }
 }

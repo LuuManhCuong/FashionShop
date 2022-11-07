@@ -4,23 +4,27 @@ import Action from "../Action/Action";
 import styles from "./tableBodyOverView.module.scss";
 const cx = classNames.bind(styles);
 
-function TableBodyOverview() {
+function TableBodyOverview({ product, stt }) {
   return (
     <tr className={cx("wrap")}>
+      <td>{stt + 1}</td>
       <td className="">
         <div className={cx("info")}>
-          <img
-            src="https://cf.shopee.vn/file/32ea51ab59fc1275c9b199584ac43c59"
-            alt=""
-          />
-          <h4>áo sơ mi</h4>
+          <img src={product.avatar} alt="img" />
+          <h4>{product.name}</h4>
         </div>
       </td>
-      <td>20.000</td>
-      <td>100</td>
-      <td>50</td>
-      <td>60%</td>
-      <td><Action/></td>
+      <td>
+        {product.gender} / {product.category}
+      </td>
+      <td>{product.price} $</td>
+      <td>{product.size}</td>
+      <td>{product.quantity}</td>
+      <td>{product.sold || 0}</td>
+      <td>{Math.round((product.sold / product.quantity) * 100 * 10) / 10} %</td>
+      <td>
+        <Action item={product} />
+      </td>
     </tr>
   );
 }

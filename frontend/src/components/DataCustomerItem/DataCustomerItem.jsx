@@ -13,7 +13,7 @@ function DataCustomerItem({ userItem, stt }) {
       <td>{userItem.address}</td>
       <td>{userItem.dateOfBirth}</td>
       <td>
-        <Action />
+        <Action item={userItem} showInfoUser={true}/>
       </td>
     </tr>
 

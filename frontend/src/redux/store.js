@@ -3,7 +3,7 @@ import createSagaMiddleware from "redux-saga";
 import homeReducer from "./reducer/homeSlice";
 import blogReducer from "./reducer/blogSlice";
 import rootSaga from "./saga/rootSaga";
-import adminReducer from "./reducer/adminSlice";
+import adminReducer, { reloadApi } from "./reducer/adminSlice";
 
 import shopReducer, {
   shopFilter,
@@ -20,8 +20,9 @@ const store = configureStore({
     filter: shopFilter.reducer,
     filterPrice: shopFilterPrice.reducer,
     size: shopFilterSize.reducer,
-    // tag: blogFilterTag.reducer,
     admin: adminReducer,
+    reloadApi: reloadApi.reducer,
+    
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(sagaMiddleware),

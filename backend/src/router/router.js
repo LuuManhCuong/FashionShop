@@ -14,15 +14,19 @@ function router(app) {
   app.route("/bestSale/").get(HomeControllers.bestSale);
 
   app.route("/shop").get(ShopControllers.shop);
-
   app.route("/shop/count").get(ShopControllers.countProduct);
-
   app.route("/shop/getPrice").get(ShopControllers.getPrice);
 
   app.route("/blog").get(BlogController.blog);
   app.route("/blog/count").get(BlogController.countBlog);
 
-  app.route("/admin").get(AdminController.admin);
+  app.route("/admin").get(AdminController.adminUser);
+  app.route("/admin/count/user").get(AdminController.countUser);
+  app.route("/admin/delete/user/:id").delete(AdminController.deleteUser);
+  app.route("/admin/delete/product/:id").delete(AdminController.deleteProduct);
+
+  app.route("/admin/warehouse").get(AdminController.adminWarehouse);
+  app.route("/admin/count/product").get(AdminController.countProduct);
 
   app.route("*").get((req, res) => {
     res.status(400).json("t ko tìm thấy trang m muốn");

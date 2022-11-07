@@ -9,17 +9,17 @@ import Revenue from "../components/Revenue/Revenue";
 const data = [
   {
     category: "Revenue",
-    component: <Revenue></Revenue>,
+    component: <Revenue key={"revenue"}></Revenue>,
   },
 
   {
     category: "data customer",
-    component: <DataCustomer></DataCustomer>,
+    component: <DataCustomer key={"customer"}></DataCustomer>,
   },
 
   {
     category: "warehouse",
-    component: <WareHouse></WareHouse>,
+    component: <WareHouse key={"warehouse"}></WareHouse>,
   },
 ];
 function Admin() {

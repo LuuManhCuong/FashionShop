@@ -30,7 +30,7 @@ class ShopControllers {
         }
       );
     } else if (req.query.size) {
-      console.log("size");
+      // console.log("size");
       let sizes = `"${req.query.size.replaceAll(",", '","')}"`;
       let sql = `SELECT * FROM fashion_shop.product where product.gender=? and product.size in (${sizes}) and product.price <= ? LIMIT 6 OFFSET ? `;
 
