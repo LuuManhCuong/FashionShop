@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
 import classNames from "classnames/bind";
 import styles from "./headerSearch.module.scss";
@@ -8,20 +7,22 @@ import Typewriter from "typewriter-effect";
 import Menu from "../Menu/Menu";
 import CartNoti from "../CartNoti/CartNoti";
 import Noti from "../Noti/Noti";
-import SearchItems from "../SearchItems/SearchItem";
-import {fetchSearchApi} from '../../api/api'
+import { fetchSearchApi } from "../../api/api";
 import {
   SearchOutlined,
   FavoriteBorderOutlined,
   ShoppingCartOutlined,
   TipsAndUpdates,
   TipsAndUpdatesOutlined,
+  HighlightOff,
 } from "@mui/icons-material";
-// import { getShopSuccessTest } from "../../redux/reducer/shopSlice";
-import SearchProduct from "../searchProduct";
+import { useDispatch } from "react-redux";
+import { shopFilter } from "../../redux/reducer/shopSlice";
 
 const cx = classNames.bind(styles);
 function HeaderSearch() {
+  const dispatch = useDispatch();
+
   const [keyWord, setKeyWord] = useState("");
   const [listSearch, setListSearch] = useState([]);
   const [listProduct, setListProduct] = useState([]);
@@ -30,16 +31,12 @@ function HeaderSearch() {
 
   useEffect(() => {
     keyWord.length === 0 ? setShowWriter(true) : setShowWriter(false);
-    fetchSearchApi(keyWord)
-    .then(res=>{
-      setListSearch(res.data[0])
-      setListProduct(res.data[1])
-    })
+    fetchSearchApi(keyWord).then((res) => {
+      setListSearch(res.data[0]);
+      setListProduct(res.data[1]);
+    });
   }, [keyWord]);
- 
-const outSize= ()=>{
-    setShowTippy(false)
- }
+
   return (
     <div className={cx("header-search")}>
       <div className={cx("div logo")}>
@@ -48,62 +45,100 @@ const outSize= ()=>{
         </Link>
       </div>
       {/* search */}
-      <div className={cx("div search-wrap")}>
-        <Tippy
-          placement={"left-end"}
-          onClickOutside={()=>outSize()}
-          visible={showTippy&& listSearch.length !== 0 && listProduct.length !== 0}
-          interactive={true}
-          appendTo={document.body}
-          trigger={'click'}
-          render={(attrs) =>
-            showTippy && (
-              <div className="search-result" tabIndex="-1" {...attrs}>
-                <div className="popover" style={{padding:'10px 5px'}}> 
-                {
-                listSearch.length === 0 && listProduct.length === 0 ? <h4>k tìm thấy cái m muốn tìm</h4> :''
-                }
-                { listSearch.length !== 0 ?  <h4 style={{fontSize:'20px'}}>Danh mục</h4>:''}
-                  {
-                    listSearch.map(function(value){
-                      return <SearchItems items={{ to: "/blog", name: value.category }} />
-                    })
-                  }
-                  {listProduct.length !== 0 ? <h4 style={{fontSize:'20px'}}>sản phẩm </h4>: ''}
-                  {
-                    listProduct.map((value)=>{
-                     return <SearchProduct items={{ to: "/blog", name: value.name ,avatar:value.avatar ,}}  /> 
-                    })
-              } 
+      <div
+        className={cx("div search-wrap")}
+        onBlur={(e) => {
+          // e.preventDefault();
+          let lengValue = e.target.value.length;
+
+          // trường hợp blur ra ngoài chưa xử lý dc
+          // setShowTippy(false);
+          lengValue > 0 ? setShowWriter(false) : setShowWriter(true);
+        }}
+      >
+        <input
+          id="search-input"
+          className={cx("search-input")}
+          type="text"
+          value={keyWord}
+          onClick={() => {
+            setShowTippy(true);
+          }}
+          onFocus={() => {
+            setShowWriter(false);
+          }}
+          onChange={(e) => {
+            let lengValue = e.currentTarget.value.length;
+            lengValue > 0 ? setShowTippy(true) : setShowTippy(false);
+            setKeyWord(e.target.value);
+          }}
+        />
+
+        {showTippy && (
+          <div className={cx("popover")} style={{ padding: "10px 5px" }}>
+            {listSearch.length === 0 && listProduct.length === 0 ? (
+              <h4 style={{ color: "red" }}>
+                T tìm ko thấy thứ m muốn, m tìm lại đi!!!
+              </h4>
+            ) : (
+              ""
+            )}
+
+            {listSearch.length !== 0 ? (
+              <>
+                <h4 className={cx("cate")} style={{ fontSize: "20px" }}>
+                  Danh mục
+                </h4>
+              </>
+            ) : (
+              ""
+            )}
+            {listSearch.map(function (value, i) {
+              return (
+                <Link
+                  key={i}
+                  className={cx("item")}
+                  to="/shop"
+                  onClick={() => {
+                    dispatch(
+                      shopFilter.actions.SetFilter({
+                        payload: value.category,
+                        isSearch: "true",
+                      })
+                    );
+                    setShowTippy(false);
+                  }}
+                >
+                  {value.category}
+                </Link>
+              );
+            })}
+            {listProduct.length !== 0 ? (
+              <h4 className={cx("cate")} style={{ fontSize: "20px" }}>
+                Sản phẩm{" "}
+              </h4>
+            ) : (
+              ""
+            )}
+            {listProduct.map((item, i) => {
+              return (
+                <div key={i} className={cx("wrap")}>
+                  <Link
+                    to={`/shop/detail/${item.idProduct}`}
+                    className={cx("item")}
+                  >
+                    <img
+                      src={item.avatar}
+                      className={cx("img-product")}
+                      alt=""
+                    />
+                    {item.name}
+                  </Link>
                 </div>
-              </div>
-            )
-          }
-        >
-          <input
-            id="search-input"
-            className={cx("search-input")}
-            type="text"
-            value={keyWord}
-            onClick={()=>{
-              setShowTippy(true)
-            }}
-            onFocus={() => {
-              setShowWriter(false);
-            }}
-            onBlur={(e) => {
-              let lengValue = e.currentTarget.value.length;
-              setShowTippy(false);
-              lengValue > 0 ? setShowWriter(false) : setShowWriter(true);
-            }}
-            onChange={(e) => {
-              let lengValue = e.currentTarget.value.length;
-              lengValue > 0 ? setShowTippy(true) : setShowTippy(false);
-              setKeyWord(e.target.value);
-              
-            }}
-          />
-        </Tippy>
+              );
+            })}
+          </div>
+        )}
 
         {showWiter && (
           <Typewriter
@@ -119,10 +154,20 @@ const outSize= ()=>{
             }}
           />
         )}
+        <button
+          className={cx("clear")}
+          onClick={() => {
+            setKeyWord("");
+            setShowTippy(false);
+          }}
+        >
+          <HighlightOff
+            style={{ color: "black", width: "2rem", height: "2rem" }}
+          ></HighlightOff>
+        </button>
+
         <button className={cx("search-btn")}>
-          <SearchOutlined
-            style={{ color: "white", width: "2rem", height: "2rem" }}
-          ></SearchOutlined>
+          <SearchOutlined style={{ color: "white" }}></SearchOutlined>
         </button>
       </div>
 
@@ -135,7 +180,6 @@ const outSize= ()=>{
               style={{ width: "2rem", height: "2rem" }}
               onClick={() => {
                 document.querySelector(".global").classList.toggle("darkmode");
-                console.log(document.querySelector(".global"));
               }}
             ></TipsAndUpdates>
             <TipsAndUpdatesOutlined
@@ -143,7 +187,6 @@ const outSize= ()=>{
               style={{ width: "2rem", height: "2rem" }}
               onClick={() => {
                 document.querySelector(".global").classList.toggle("darkmode");
-                // console.log(document.querySelector(".global"));
               }}
             ></TipsAndUpdatesOutlined>
           </li>

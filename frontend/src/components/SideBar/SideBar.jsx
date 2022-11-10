@@ -19,7 +19,7 @@ import {
 } from "../../redux/reducer/shopSlice";
 
 const cx = classNames.bind(styles);
-const categories = ["clothings", "handBag", "Shoes", "Accessories"];
+const categories = ["Clothings", "Handbag", "Shoes", "Accessories"];
 const sizeArr = ["S", "M", "L", "SX"];
 const tagArr = ["style", "relax", "enjoy", "scenery", "beautiful"];
 

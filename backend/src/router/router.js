@@ -3,7 +3,7 @@ const AccountControllers = require("../controllers/AccountControllers");
 const BlogController = require("../controllers/BlogController");
 const ShopControllers = require("../controllers/ShopController");
 const AdminController = require("../controllers/AdminController");
-const SearchController = require("../controllers/Search");
+const SearchController = require("../controllers/SearchController");
 
 function router(app) {
   app.route("/search").get(SearchController.SearchProduct);
