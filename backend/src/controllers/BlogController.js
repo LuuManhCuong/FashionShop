@@ -1,5 +1,8 @@
 const connection = require("../config/database");
 const authen = require("../middlewares/authen");
+const cloudinary = require("../config/cloudnary");
+
+const { v4: uuidv4 } = require("uuid");
 
 class BlogControllers {
   // [GET] /blog
@@ -24,6 +27,31 @@ class BlogControllers {
     connection.query(`${sql}`, [req.query.category], (err, result) => {
       err ? console.log(err) : res.json(result);
     });
+  }
+
+  async createBlog(req, res, next) {
+    console.log(req.body);
+
+    const d = new Date();
+    let day = d.getDay();
+    let month = d.getMonth();
+    let year = d.getFullYear();
+
+    let fullDay = `${year}-${month}-${day}`;
+
+    const { field, content, title, image } = req.body;
+
+    const id = uuidv4();
+    // id author cho tương lai
+    let sql = `INSERT INTO  blog (idblog,title,content,category,createAt,image,author)   value (?,?,?,?,?,?,'id author')`;
+
+    connection.query(
+      `${sql}`,
+      [id, title, content, field, fullDay, image, "5555"],
+      (err, result) => {
+        err ? console.log(err) : res.json('');
+      }
+    );
   }
 }
 

@@ -20,7 +20,7 @@ function router(app) {
   app.route("/shop/count").get(ShopControllers.countProduct);
   app.route("/shop/getPrice").get(ShopControllers.getPrice);
 
-  app.route("/blog").get(BlogController.blog);
+  app.route("/blog").get(BlogController.blog).post(BlogController.createBlog);
   app.route("/blog/count").get(BlogController.countBlog);
 
   app.route("/admin").get(AdminController.adminUser);
