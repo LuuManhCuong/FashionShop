@@ -3,11 +3,13 @@ const app = express();
 const connection = require("./config/database");
 const router = require("./router/router");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const port = 5000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
 

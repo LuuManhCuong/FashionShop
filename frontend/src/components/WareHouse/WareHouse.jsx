@@ -8,7 +8,10 @@ import AdminHeader from "../AdminHeader/AdminHeader";
 import AddProductContent from "../AddProductContent/AddProductContent";
 import { useState, createContext, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { userSelector } from "../../redux/selectors";
 import { reloadApiSlector } from "../../redux/selectors";
+import { useNavigate, Link } from "react-router-dom";
+
 const cx = classNames.bind(styles);
 
 const overview = [
@@ -45,35 +48,52 @@ const overview = [
 export const ShowComponent = createContext();
 
 function WareHouse() {
+  const navigate = useNavigate();
+  const checkUser = useSelector(userSelector);
+  const user = checkUser.login?.currentUser;
+  // console.log("user: ", user.accessToken);
   const reloadApi = useSelector(reloadApiSlector);
 
   const [showAddProduct, setShowAddProduct] = useState(false);
   const [listProducts, setListProducts] = useState([]);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
-
   // count page
   useEffect(() => {
-    fetch(`http://localhost:5000/admin/count/product`)
+    fetch(`http://localhost:5000/admin/count/product`, {
+      headers: {
+        token: `Bearer ${user.accessToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setTotalPages(Math.ceil(Number(data[0].total) / 10));
+      })
+      .catch((err) => {
+        navigate("/login");
       });
-  }, [reloadApi.reload]);
+  }, [reloadApi.reload, user.accessToken]);
 
   // call api
   useEffect(() => {
     let offset;
     page === 0 ? (offset = 0) : (offset = (page - 1) * 10);
-    fetch(`http://localhost:5000/admin/warehouse?page=${offset}`)
+    fetch(`http://localhost:5000/admin/warehouse?page=${offset}`, {
+      headers: {
+        token: `Bearer ${user.accessToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.length <= 0) {
           setPage(page - 1);
         }
         setListProducts(data);
+      })
+      .catch((err) => {
+        navigate("/login");
       });
-  }, [page, reloadApi.reload]);
+  }, [page, reloadApi.reload, user.accessToken]);
 
   function handleShow() {
     setShowAddProduct(!showAddProduct);
@@ -87,54 +107,66 @@ function WareHouse() {
 
   let values = { handleShow, showAddProduct };
   return (
-    <ShowComponent.Provider value={values}>
-      <div className={cx("wrap")}>
-        <AdminHeader showAddBtn={true} overview={overview}></AdminHeader>
-        {showAddProduct === true ? (
-          <AddProductContent></AddProductContent>
-        ) : (
-          <div className={cx("body")}>
-            <h5 className={cx("body-header")}>
-              Sản Phẩm Trong Cửa Hàng
-              <Typography className={cx("num-page")}>
-                Page: {page || 1} / {totalPages}
-              </Typography>
-            </h5>
-            <table>
-              <thead>
-                <th>Stt</th>
-                <th>Tên Sản Phẩm</th>
-                <th>Danh mục</th>
-                <th>Giá</th>
-                <th>Size</th>
-                <th>Số Lượng</th>
-                <th>Đã bán</th>
-                <th>tỉ lệ</th>
-                <th>Action</th>
-              </thead>
-              <tbody className={cx("table-body")}>
-                {listProducts.map((product, i) => (
-                  <TableBodyOverview
-                    stt={i}
-                    product={product}
-                    key={product.idProduct}
+    <>
+      {user.isAdmin ? (
+        <ShowComponent.Provider value={values}>
+          <div className={cx("wrap")}>
+            <AdminHeader showAddBtn={true} overview={overview}></AdminHeader>
+            {showAddProduct === true ? (
+              <AddProductContent></AddProductContent>
+            ) : (
+              <div className={cx("body")}>
+                <h5 className={cx("body-header")}>
+                  Sản Phẩm Trong Cửa Hàng
+                  <Typography className={cx("num-page")}>
+                    Page: {page || 1} / {totalPages}
+                  </Typography>
+                </h5>
+                <table>
+                  <thead>
+                    <th>Stt</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Danh mục</th>
+                    <th>Giá</th>
+                    <th>Size</th>
+                    <th>Số Lượng</th>
+                    <th>Đã bán</th>
+                    <th>tỉ lệ</th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody className={cx("table-body")}>
+                    {typeof listProducts == "object" ? (
+                      listProducts?.map((product, i) => (
+                        <TableBodyOverview
+                          stt={i}
+                          product={product}
+                          key={product.idProduct}
+                        />
+                      ))
+                    ) : (
+                      <Link style={{ color: "blue" }} to={"/login"}>
+                        Hết phiên, vui lòng đăng nhập lại
+                      </Link>
+                    )}
+                  </tbody>
+                </table>
+                <Stack spacing={2}>
+                  <Pagination
+                    className="pagination"
+                    count={totalPages}
+                    color="primary"
+                    page={page || 1}
+                    onChange={handleChange}
                   />
-                ))}
-              </tbody>
-            </table>
-            <Stack spacing={2}>
-              <Pagination
-                className="pagination"
-                count={totalPages}
-                color="primary"
-                page={page || 1}
-                onChange={handleChange}
-              />
-            </Stack>
+                </Stack>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </ShowComponent.Provider>
+        </ShowComponent.Provider>
+      ) : (
+        <h3>m ko phải admin</h3>
+      )}
+    </>
   );
 }
 

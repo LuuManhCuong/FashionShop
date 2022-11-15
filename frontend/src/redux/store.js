@@ -4,6 +4,7 @@ import homeReducer from "./reducer/homeSlice";
 import blogReducer from "./reducer/blogSlice";
 import rootSaga from "./saga/rootSaga";
 import adminReducer, { reloadApi } from "./reducer/adminSlice";
+import { userSlice } from "./reducer/userSlice";
 
 import shopReducer, {
   shopFilter,
@@ -14,6 +15,7 @@ import shopReducer, {
 const sagaMiddleware = createSagaMiddleware();
 const store = configureStore({
   reducer: {
+    user: userSlice.reducer,
     home: homeReducer,
     blog: blogReducer,
     shop: shopReducer,
@@ -22,6 +24,7 @@ const store = configureStore({
     size: shopFilterSize.reducer,
     admin: adminReducer,
     reloadApi: reloadApi.reducer,
+  
     
   },
   middleware: (getDefaultMiddleware) =>

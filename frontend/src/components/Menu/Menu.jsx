@@ -8,30 +8,34 @@ import {
   DropdownItem,
 } from "reactstrap";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { userSelector } from "../../redux/selectors";
 
 function Menu({ direction, ...args }) {
+  const checkUser = useSelector(userSelector);
+  const user = checkUser.login?.currentUser;
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
-
-  const [isLogin, setIsLogin] = useState(true);
   return (
     <>
-      {!isLogin && (
-        <a href="/login" className="login-btn">
+      {!user ? (
+        <Link to={"/login"} className="login-btn">
           Login
-        </a>
-      )}
-      {isLogin && (
+        </Link>
+      ) : (
         <div className="d-flex p-5">
           <Dropdown isOpen={dropdownOpen} toggle={toggle} direction={direction}>
             <DropdownToggle caret>
               <img
                 className="avatar"
-                src="https://thumbs.dreamstime.com/b/business-man-icon-illustration-business-man-icon-white-background-107722188.jpg"
+                src={
+                  user.avatar ||
+                  "https://live.staticflickr.com/491/31818797506_41e52a8b36.jpg"
+                }
                 alt="avata"
               />
-              Mạnh Cường
+              {user.username}
             </DropdownToggle>
             <DropdownMenu {...args}>
               <DropdownItem>

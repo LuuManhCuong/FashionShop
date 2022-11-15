@@ -1,12 +1,21 @@
 const connection = require("../config/database");
 const account = require("../middlewares/account");
-const authen = require("../middlewares/authen");
+const authen = require("../middlewares/authenJwt");
+const jwt = require("jsonwebtoken");
+
 const { v4: uuidv4 } = require("uuid");
+
+// lưu trữ các refresh token
+let refreshTokenArr = [];
 
 class AccountControllers {
   //   [POST] /register
   register(req, res, next) {
     const id = uuidv4();
+    console.log(req.body);
+    if (!req.body.username || !req.body.password || !req.body.email) {
+      return res.json("điền thiếu thông tin rồi kìa");
+    }
     const hashPassword = account.createPassword(req.body.password);
 
     let sql =
@@ -17,19 +26,20 @@ class AccountControllers {
       [id, req.body.username, hashPassword, req.body.email],
       function (err, results) {
         if (err) {
-          throw err;
+          res.send("vui lòng nhập đầy đủ thông tin");
         }
-        res.send("add user thành công");
+        res.status(200).json("thêm user thành công");
       }
     );
   }
 
   //   [POST] /login
-  login(req, res) {
+  login(req, res, next) {
     const sql = "select * from user where user.username = ? limit 1";
     connection.query(sql, [req.body.username], (err, results) => {
       if (err) {
-        throw err;
+        // throw err;
+        console.log("lỗi");
       }
       if (results[0]) {
         let checkPassword = account.checkPassword(
@@ -38,25 +48,86 @@ class AccountControllers {
         );
 
         const dataToken = {
-          username: req.body.username,
-          email: results[0].email,
+          idUser: results[0].idUser,
+          isAdmin: results[0].isAdmin,
         };
 
         // kiểm tra password sau khi hash và kiểm tra so vs DB
-        checkPassword === true || req.body.password === results[0].password
-          ? res.json(authen.createToken(dataToken))
-          : res.status(404).json("sai mật khẩu");
+        if (
+          checkPassword === true ||
+          req.body.password === results[0].password
+        ) {
+          let accessToken = authen.createAccessToken(dataToken);
+          let refreshToken = authen.createRefreshToken(dataToken);
+
+          refreshTokenArr.push(refreshToken);
+
+          let { password, ...orther } = results[0];
+          // lưu refreshToken vào httpOnly
+          // access token lưu vào redux-store và chỉ dùng cho api request
+          res.cookie("refreshToken", refreshToken, {
+            httpOnly: true,
+            // khi deloy thì sửa lại true
+            secure: false,
+            path: "/",
+            sameSite: "strict",
+          });
+
+          return res.status(200).json({ ...orther, accessToken });
+          
+        } else {
+          return res.status(403).json({ err: "sai mật khẩu" });
+        }
       } else {
-        res.status(404).json("ko tìm thấy user");
+        return res.status(403).json({ err: "ko tìm thấy user" });
       }
     });
   }
 
-  // check username or email
-  // check password
-  // gửi token
-  // cấu hình redux saga
-  // sửa frontend
+  // [GET]  /refresh
+  refreshToken(req, res, next) {
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) {
+      return res
+        .status(401)
+        .json("m chưa đăng nhập kìa, quay lại đăng nhập đi");
+    }
+    if (!refreshTokenArr.includes(refreshToken)) {
+      req.status(403).json("token này có gì đó sai sai");
+    }
+    // trả về user bao gồm id và isAmin đc giải mã từ token
+    jwt.verify(refreshToken, process.env.JWT_REFRESH_TOKEN_KEY, (err, user) => {
+      if (err) {
+        console.log("lỗi rồi kìa: ", err);
+      }
+      refreshTokenArr.filter((token) => token !== refreshToken);
+      // rồi truyền user đó vào thằng dưới để tạo token mới
+      const { idUser, isAdmin, ...rest } = user;
+      const newAccessToken = authen.createAccessToken({ idUser, isAdmin });
+      const newRefreshToken = authen.createRefreshToken({ idUser, isAdmin });
+      refreshTokenArr.push(newRefreshToken);
+
+      res.cookie("refreshToken", newRefreshToken, {
+        httpOnly: true,
+        // khi deloy thì sửa lại true
+        secure: false,
+        path: "/",
+        sameSite: "strict",
+      });
+      res.status(200).json({ "access token ": newAccessToken });
+    });
+  }
+
+  // [POST] /logout
+  logout(req, res) {
+    res.clearCookie("refreshToken");
+    refreshTokenArr = refreshTokenArr.filter(
+      (token) => token !== req.cookies.refreshToken
+    );
+    console.log("rr: ", refreshTokenArr);
+
+    res.json("logout thành công");
+  }
 }
 
 module.exports = new AccountControllers();

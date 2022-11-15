@@ -10,7 +10,8 @@ import {
   Email,
 } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { reloadApiSlector } from "../../redux/selectors";
+import { useNavigate, Link } from "react-router-dom";
+import { userSelector } from "../../redux/selectors";
 import { reloadApi } from "../../redux/reducer/adminSlice";
 
 const style = {
@@ -26,29 +27,43 @@ const style = {
 };
 
 function Action({ item, showInfoUser }) {
+  const navigate = useNavigate();
+  const checkUser = useSelector(userSelector);
+  const user = checkUser.login?.currentUser;
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
   const handleDeleteUser = (id) => {
     fetch(`http://localhost:5000/admin/delete/user/${id}`, {
       method: "DELETE",
-    }).then(() => {
-      // console.log("xóa thành công: ");
-      dispatch(reloadApi.actions.setReload());
-    });
+      headers: {
+        token: `Bearer ${user.accessToken}`,
+      },
+    })
+      .then(() => {
+        dispatch(reloadApi.actions.setReload());
+      })
+      .catch((err) => {
+        navigate("/login");
+      });
     setOpen(false);
   };
 
   const handleDeleteProduct = (id) => {
-    console.log("id product dlete: ", id);
-
     fetch(`http://localhost:5000/admin/delete/product/${id}`, {
       method: "DELETE",
-    }).then(() => {
-      console.log("xóa thành công: ");
-      dispatch(reloadApi.actions.setReload());
-    });
+      headers: {
+        token: `Bearer ${user.accessToken}`,
+      },
+    })
+      .then(() => {
+        dispatch(reloadApi.actions.setReload());
+      })
+      .catch((err) => {
+        navigate("/login");
+      });
     setOpen(false);
   };
   return (
