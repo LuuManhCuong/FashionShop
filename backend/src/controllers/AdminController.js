@@ -5,12 +5,13 @@ class AdminController {
   // [GET] /admin/
   adminUser(req, res, next) {
     // authen.verifyToken()
-    let sql = `SELECT * FROM fashion_shop.user limit 10 offset ?`;
+    let sql = `SELECT * FROM fashion_shop.user order by createAt desc  limit 10 offset ?`;
     connection.query(`${sql}`, [Number(req.query.page || 0)], (err, result) => {
       err ? console.log(err) : res.json(result);
     });
   }
 
+  // [GET] /admin/warehouse
   adminWarehouse(req, res, next) {
     // authen.verifyToken()
     let sql2 = `select * from product limit 10 offset ?`;

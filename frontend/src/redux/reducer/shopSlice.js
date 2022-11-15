@@ -33,7 +33,10 @@ export const shopFilter = createSlice({
   reducers: {
     SetFilter(state, action) {
       state.isFilter = true;
-      if (state.filter.includes(action.payload)) {
+      if (typeof action.payload == "object") {
+        // console.log(action.payload.payload);
+        state.filter = [action.payload.payload];
+      } else if (state.filter.includes(action.payload)) {
         state.filter = state.filter.filter((e) => e !== action.payload);
       } else {
         state.filter = [...state.filter, action.payload];

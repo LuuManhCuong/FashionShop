@@ -4,7 +4,7 @@ class ShopControllers {
   // [GET] /shop
   shop(req, res, next) {
     if (req.query.filter && req.query.size) {
-      console.log("cả 2");
+      // console.log("cả 2");
       let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
       let sizes = `"${req.query.size.replaceAll(",", '","')}"`;
       let sql = `SELECT * FROM fashion_shop.product where product.gender=? and product.size in (${sizes}) and product.category in (${filters}) and product.price <= ? LIMIT 6 OFFSET ? `;
@@ -17,7 +17,7 @@ class ShopControllers {
         }
       );
     } else if (req.query.filter) {
-      console.log("filter");
+      // console.log("filter");
 
       let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
       let sql = `SELECT * FROM fashion_shop.product where product.gender=? and product.category in (${filters}) and product.price <= ? LIMIT 6 OFFSET ? `;

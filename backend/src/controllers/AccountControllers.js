@@ -11,7 +11,7 @@ class AccountControllers {
 
     let sql =
       "INSERT INTO user (idUser, username, password, email) VALUES (?, ?, ?, ?) ";
-    // simple query
+
     connection.query(
       sql,
       [id, req.body.username, hashPassword, req.body.email],
@@ -19,7 +19,7 @@ class AccountControllers {
         if (err) {
           throw err;
         }
-        res.redirect("/home");
+        res.send("add user thành công");
       }
     );
   }

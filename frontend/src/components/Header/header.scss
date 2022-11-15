@@ -38,7 +38,7 @@
     padding: 10px 80px;
     border-bottom: 1px solid #ccc;
 
-    .div{
+    .div {
       min-width: 30%;
     }
 
@@ -52,21 +52,24 @@
     }
 
     .search-wrap {
-      width: 100% ;
+      width: 100%;
       height: 50px;
       border: 1px solid #ccc;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: relative;
+      user-select: none;
 
       .search-input {
         padding: 0 20px;
         width: 600px;
+        height: 100%;
         font-size: 1.5rem;
         color: var(--text-color);
         flex: 1;
         z-index: 3;
+        margin-right: 100px;
         background-color: transparent;
       }
 
@@ -76,6 +79,8 @@
         align-items: center;
         width: 50px;
         height: 50px;
+        position: absolute;
+        right: 0;
         color: var(--text-color);
         background-color: var(--primary-color);
       }
@@ -168,20 +173,22 @@
     }
   }
 }
-.box{
+.box {
   display: block;
 }
 
-.popover{
-  h4{
+.popover {
+  max-width: 400px !important;
+  position: absolute;
+  left: 0;
+  display: none;
+  top: 110%;
+  h4 {
     padding-top: 5px;
     padding-left: 10px;
     width: 400px;
   }
-  max-width: 400px !important;
-  margin-top: 16px;
-  margin-left: 8px;
 }
-.tippy-2{
+.tippy-2 {
   width: 100%;
 }

@@ -11,13 +11,11 @@ function DataCustomerItem({ userItem, stt }) {
       <td>{userItem.email}</td>
       <td>{userItem.phone}</td>
       <td>{userItem.address}</td>
-      <td>{userItem.dateOfBirth}</td>
+      <td>{userItem.createAt}</td>
       <td>
-        <Action item={userItem} showInfoUser={true}/>
+        <Action item={userItem} showInfoUser={true} />
       </td>
     </tr>
-
-  
   );
 }
 
