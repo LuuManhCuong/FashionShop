@@ -67,7 +67,7 @@ function BlogPost() {
           setImage("");
           toast.success(`🦄 Đã thêm thành công blog `, {
             position: "top-right",
-            autoClose: 5000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -80,7 +80,7 @@ function BlogPost() {
           setOnSend(false);
           toast.error(`🦄 lỗi rồi  `, {
             position: "top-right",
-            autoClose: 5000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,

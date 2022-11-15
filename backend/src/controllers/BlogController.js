@@ -29,15 +29,16 @@ class BlogControllers {
     });
   }
 
+  // [POST]
   async createBlog(req, res, next) {
     console.log(req.body);
 
-    const d = new Date();
-    let day = d.getDay();
-    let month = d.getMonth();
-    let year = d.getFullYear();
+    const date = new Date();
+    let getDate = `${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}`;
 
-    let fullDay = `${year}-${month}-${day}`;
+    console.log("date: ", getDate);
 
     const { field, content, title, image } = req.body;
 
@@ -47,9 +48,9 @@ class BlogControllers {
 
     connection.query(
       `${sql}`,
-      [id, title, content, field, fullDay, image, "5555"],
+      [id, title, content, field, getDate, image, "5555"],
       (err, result) => {
-        err ? console.log(err) : res.json('');
+        err ? console.log(err) : res.json("");
       }
     );
   }
