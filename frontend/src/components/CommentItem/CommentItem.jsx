@@ -1,7 +1,7 @@
 import React from "react";
 import "./commentItem.scss";
 
-function CommentItem() {
+function CommentItem({ item }) {
   return (
     <div className="comment">
       <div className="res-wrap">
@@ -12,13 +12,10 @@ function CommentItem() {
         />
         <div className="user-info">
           <h3 className="username">
-            Mai Trinh
-            <span> 01/10/2022</span>
+            {item.username}
+            <span> {item.createAt}</span>
           </h3>
-          <p className="text-comment">
-            Mua cái quần ở đây mặc 10 năm chưa rách, sản phẩm quá xịn xò. Lần
-            sau sẽ mua 100 cái:D
-          </p>
+          <p className="text-comment">{item.comment}</p>
         </div>
       </div>
     </div>

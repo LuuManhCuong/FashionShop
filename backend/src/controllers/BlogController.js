@@ -49,10 +49,20 @@ class BlogControllers {
       `${sql}`,
       [id, title, content, field, fullDay, image, "5555"],
       (err, result) => {
-        err ? console.log(err) : res.json('');
+        err ? console.log(err) : res.json("");
       }
     );
   }
+
+  // [get] blog/detail/:id
+  getBlogDetail(req, res, next) {
+    let sql = "select *   from blog where idblog = ?";
+
+    connection.query(`${sql}`, [req.params.id], (err, result) => {
+      err ? console.log(err) : res.json(result);
+    });
+  }
+  
 }
 
 module.exports = new BlogControllers();

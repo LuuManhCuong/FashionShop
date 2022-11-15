@@ -4,6 +4,7 @@ const BlogController = require("../controllers/BlogController");
 const ShopControllers = require("../controllers/ShopController");
 const AdminController = require("../controllers/AdminController");
 const SearchController = require("../controllers/SearchController");
+const CommentController = require("../controllers/CommentController");
 
 function router(app) {
   app.route("/search").get(SearchController.SearchProduct);
@@ -22,6 +23,7 @@ function router(app) {
 
   app.route("/blog").get(BlogController.blog).post(BlogController.createBlog);
   app.route("/blog/count").get(BlogController.countBlog);
+  app.route("/blog/detail/:id").get(BlogController.getBlogDetail);
 
   app.route("/admin").get(AdminController.adminUser);
   app.route("/admin/count/user").get(AdminController.countUser);
@@ -30,6 +32,9 @@ function router(app) {
 
   app.route("/admin/warehouse").get(AdminController.adminWarehouse);
   app.route("/admin/count/product").get(AdminController.countProduct);
+
+  app.route("/comment").post(CommentController.postComment)
+  app.route("/comment/:idDetail").get(CommentController.getComment);
 
   app.route("*").get((req, res) => {
     res.status(400).json("t ko tìm thấy trang m muốn");
