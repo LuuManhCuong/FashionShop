@@ -27,6 +27,9 @@ export const reloadApi = createSlice({
   },
   reducers: {
     setReload: (state, action) => {
+      if (state.reload >= 10) {
+        return (state.reload = 1);
+      }
       state.reload += 1;
     },
   },

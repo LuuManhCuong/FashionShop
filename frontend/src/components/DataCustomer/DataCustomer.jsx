@@ -1,16 +1,20 @@
 import { Table } from "reactstrap";
 import "./dataCustomer.scss";
+import axios from "axios";
+import jwtDecode from "jwt-decode";
 import * as React from "react";
 import DataCustomerItem from "../DataCustomerItem/DataCustomerItem";
 import AdminHeader from "../AdminHeader/AdminHeader";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { reloadApiSlector } from "../../redux/selectors";
 import { Pagination } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { userSelector } from "../../redux/selectors";
 import { useNavigate, Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
+import { userSlice } from "../../redux/reducer/userSlice";
+// import { checkToken } from "../../api/api";
 
 const overview = [
   {
@@ -36,7 +40,10 @@ const overview = [
   },
 ];
 function DataCustomer() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const axiosJwt = axios.create({ withCredentials: true });
+
   const checkUser = useSelector(userSelector);
   const user = checkUser.login?.currentUser;
   const reloadApis = useSelector(reloadApiSlector);
@@ -44,14 +51,54 @@ function DataCustomer() {
   const [ListUser, setListUser] = useState([]);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
+
+  // checkToken(user, dispatch);
+
+  const newToken = async () => {
+    try {
+      const res = await axios.post(`http://localhost:5000/refresh`, {
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // kiểm tra xem token đã hết hạn hay chưa
+  axiosJwt.interceptors.request.use(
+    async (config) => {
+      let date = new Date();
+      const decodedToken = jwtDecode(user?.accessToken);
+
+      if (decodedToken.exp < date.getTime() / 1000) {
+        console.log("token hết hạn");
+        const data = await newToken();
+        console.log("token mới", data);
+        // refresh user khi token hết hạn
+        const refreshUser = {
+          ...user,
+          accessToken: data.accessToken,
+        };
+        dispatch(userSlice.actions.loginSuccess(refreshUser));
+        config.headers["token"] = `Bearer ${data.accessToken}`;
+      }
+      return config;
+    },
+    (err) => {
+      return Promise.reject(err);
+    }
+  );
+
   // count page
   useEffect(() => {
-    fetch(`http://localhost:5000/admin/count/user`, {
-      headers: {
-        token: `Bearer ${user.accessToken}`,
-      },
-    })
-      .then((res) => res.json())
+    axiosJwt
+      .get(`http://localhost:5000/admin/count/user`, {
+        withCredentials: true,
+        headers: {
+          token: `Bearer ${user.accessToken}`,
+        },
+      })
+      .then((res) => res.data)
       .then((data) => {
         setTotalPages(Math.ceil(Number(data[0].total) / 10));
       })
@@ -64,12 +111,14 @@ function DataCustomer() {
   useEffect(() => {
     let offset;
     page === 0 ? (offset = 0) : (offset = (page - 1) * 10);
-    fetch(`http://localhost:5000/admin/?page=${offset}`, {
-      headers: {
-        token: `Bearer ${user.accessToken}`,
-      },
-    })
-      .then((res) => res.json())
+    axiosJwt
+      .get(`http://localhost:5000/admin/?page=${offset}`, {
+        withCredentials: true,
+        headers: {
+          token: `Bearer ${user.accessToken}`,
+        },
+      })
+      .then((res) => res.data)
       .then((data) => {
         if (data.length <= 0) {
           setPage(page - 1);
@@ -83,7 +132,7 @@ function DataCustomer() {
 
   function handleChange(event: React.ChangeEvent<unknown>, value: number) {
     setPage(value);
-    window.scrollTo({ top: 110, behavior: "smooth" });
+    window.scrollTo({ top: 300, behavior: "smooth" });
   }
   return (
     <div className="data-customer">

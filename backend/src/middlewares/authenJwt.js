@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 class authen {
   createAccessToken(data) {
     const accessToken = jwt.sign(data, process.env.JWT_SECRET_KEY, {
-      expiresIn: "30s",
+      expiresIn: "24h",
     });
     return accessToken;
   }
@@ -45,8 +45,8 @@ class authen {
         } else {
           req.user = user;
           // tự xóa tài khoản: check xem có phải id của mình hoặc admin ko
-          console.log(req.user);
           if (req.user.idUser === req.params.id || req.user.isAdmin == 1) {
+            // if (req.user.isAdmin == 1) {
             next();
           } else {
             res.status(403).json("m ko dc làm điều này");

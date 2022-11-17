@@ -4,6 +4,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import SideBar from "../components/SideBar/SideBar";
 import ProductBlock from "../components/ProductBlock/ProductBlock";
+import { ToastContainer} from "react-toastify";
 
 const data = [
   {
@@ -36,6 +37,18 @@ function Shop() {
         ></SideBar>
       </div>
       <Footer />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={true}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 }

@@ -56,11 +56,18 @@
     flex: 1;
 
     h4 {
-      line-height: 2.6rem;
+      line-height: 1.8rem;
+      font-weight: 500;
       overflow: hidden;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
+      margin: 0;
+    }
+    .author{
+      font-size: 1.4rem;
+      float: inline-end;
+      color: var(--primary-color);
     }
     .fashion {
       position: absolute;

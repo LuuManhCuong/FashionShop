@@ -1,6 +1,8 @@
 tbody tr {
   .img-table {
-    width: 60%;
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
   }
 
   td {
@@ -16,6 +18,18 @@ tbody tr {
 
   .delete {
     font-weight: 700px !important;
+    button {
+      width: 50px;
+      height: 50px;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .delete-btn {
+        font-size: 3rem;
+        font-weight: 500;
+      }
+    }
   }
 }
 

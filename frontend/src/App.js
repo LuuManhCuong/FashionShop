@@ -14,7 +14,7 @@ import BlogPostPage from "./pages/BlogPostPage";
 import Doremon from "./components/Doremon/Doremon";
 import { useDispatch } from "react-redux";
 // import { getHomeRequest } from "./redux/reducer/homeSlice";
-import { getBlogRequest } from "./redux/reducer/blogSlice";
+// import { getBlogRequest } from "./redux/reducer/blogSlice";
 import { getShopRequest } from "./redux/reducer/shopSlice";
 // import { getAdminRequest } from "./redux/reducer/adminSlice";
 
@@ -22,7 +22,7 @@ import { getShopRequest } from "./redux/reducer/shopSlice";
 function App() {
   const dispatch = useDispatch();
   // dispatch(getHomeRequest());
-  dispatch(getBlogRequest());
+  // dispatch(getBlogRequest());
   dispatch(getShopRequest());
   // dispatch(getAdminRequest());
 

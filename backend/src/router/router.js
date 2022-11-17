@@ -25,17 +25,26 @@ function router(app) {
   app.route("/shop").get(ShopControllers.shop);
   app.route("/shop/count").get(ShopControllers.countProduct);
   app.route("/shop/getPrice").get(ShopControllers.getPrice);
+  app.route("/cart/add/").post(authenJwt.verifyToken, ShopControllers.cartAdd);
+  app
+    .route("/cart/:idUser")
+    .get(authenJwt.verifyToken, ShopControllers.getCart);
+  app
+    .route("/cart/delete/:idCart")
+    .delete(authenJwt.verifyToken, ShopControllers.cartDelete);
+  app
+    .route("/cart/update/incart/:idProduct")
+    .patch(authenJwt.verifyToken, ShopControllers.inCart);
 
   // blog router
-  // app.route("/blog").get(BlogController.blog);
-  app.route("/blog")
-  .get(BlogController.blog)
-  .post(BlogController.createBlog);
+  app.route("/blog").get(BlogController.blog).post(BlogController.createBlog);
   app.route("/blog/count").get(BlogController.countBlog);
 
   // admin router
-  app.route("/admin").get(authenJwt.verifyToken, AdminController.adminUser);
-  app.route("/admin/count/user").get(AdminController.countUser);
+  app.route("/admin").get(authenJwt.verifyAdmin, AdminController.adminUser);
+  app
+    .route("/admin/count/user")
+    .get(authenJwt.verifyAdmin, AdminController.countUser);
   app
     .route("/admin/delete/user/:id")
     .delete(authenJwt.verifyAdmin, AdminController.deleteUser);
@@ -45,10 +54,10 @@ function router(app) {
 
   app
     .route("/admin/warehouse")
-    .get(authenJwt.verifyToken, AdminController.adminWarehouse);
+    .get(authenJwt.verifyAdmin, AdminController.adminWarehouse);
   app
     .route("/admin/count/product")
-    .get(authenJwt.verifyToken, AdminController.countProduct);
+    .get(authenJwt.verifyAdmin, AdminController.countProduct);
 
   // * router
   app.route("*").get((req, res) => {

@@ -6,13 +6,12 @@ const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 
 // lưu trữ các refresh token
-let refreshTokenArr = [];
 
-class AccountControllers {
+let refreshTokenArr = [];
+const AccountControllers = {
   //   [POST] /register
-  register(req, res, next) {
+  register: async (req, res, next) => {
     const id = uuidv4();
-    console.log(req.body);
     if (!req.body.username || !req.body.password || !req.body.email) {
       return res.json("điền thiếu thông tin rồi kìa");
     }
@@ -31,10 +30,10 @@ class AccountControllers {
         res.status(200).json("thêm user thành công");
       }
     );
-  }
+  },
 
   //   [POST] /login
-  login(req, res, next) {
+  login: async (req, res, next) => {
     const sql = "select * from user where user.username = ? limit 1";
     connection.query(sql, [req.body.username], (err, results) => {
       if (err) {
@@ -74,7 +73,6 @@ class AccountControllers {
           });
 
           return res.status(200).json({ ...orther, accessToken });
-          
         } else {
           return res.status(403).json({ err: "sai mật khẩu" });
         }
@@ -82,10 +80,20 @@ class AccountControllers {
         return res.status(403).json({ err: "ko tìm thấy user" });
       }
     });
-  }
+  },
 
-  // [GET]  /refresh
-  refreshToken(req, res, next) {
+  // [POST] /logout
+  logout: (req, res) => {
+    res.clearCookie("refreshToken");
+    refreshTokenArr = refreshTokenArr.filter(
+      (token) => token !== req.cookies.refreshToken
+    );
+
+    res.json("logout thành công");
+  },
+
+  // [POST]  /refresh
+  refreshToken: async (req, res, next) => {
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) {
       return res
@@ -93,12 +101,12 @@ class AccountControllers {
         .json("m chưa đăng nhập kìa, quay lại đăng nhập đi");
     }
     if (!refreshTokenArr.includes(refreshToken)) {
-      req.status(403).json("token này có gì đó sai sai");
+      return res.status(403).json("token này có gì đó sai sai");
     }
     // trả về user bao gồm id và isAmin đc giải mã từ token
     jwt.verify(refreshToken, process.env.JWT_REFRESH_TOKEN_KEY, (err, user) => {
       if (err) {
-        console.log("lỗi rồi kìa: ", err);
+        return console.log("lỗi rồi kìa: ", err);
       }
       refreshTokenArr.filter((token) => token !== refreshToken);
       // rồi truyền user đó vào thằng dưới để tạo token mới
@@ -116,18 +124,7 @@ class AccountControllers {
       });
       res.status(200).json({ "access token ": newAccessToken });
     });
-  }
+  },
+};
 
-  // [POST] /logout
-  logout(req, res) {
-    res.clearCookie("refreshToken");
-    refreshTokenArr = refreshTokenArr.filter(
-      (token) => token !== req.cookies.refreshToken
-    );
-    console.log("rr: ", refreshTokenArr);
-
-    res.json("logout thành công");
-  }
-}
-
-module.exports = new AccountControllers();
+module.exports = AccountControllers;

@@ -102,7 +102,7 @@ function WareHouse() {
 
   function handleChange(event: React.ChangeEvent<unknown>, value: number) {
     setPage(value);
-    window.scrollTo({ top: 110, behavior: "smooth" });
+    window.scrollTo({ top: 300, behavior: "smooth" });
   }
 
   let values = { handleShow, showAddProduct };

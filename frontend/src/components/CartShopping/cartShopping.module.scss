@@ -1,80 +1,93 @@
-table{
-    width: 100%;
-    min-width: 480px;
-    border: 1px solid #ebebeb;
-    // padding: 0 36px;
+table {
+  width: 100%;
+  min-width: 480px;
+  border: 1px solid #ebebeb;
+  // padding: 0 36px;
 }
-th,td{
-    padding: 0 20px;
+th,
+td {
+  padding: 0 20px;
 }
-thead  tr {
-   
-    font-size: 20px !important;
-    color: #252525;
-    font-weight: 700;
-    border-bottom: 1px solid #ebebeb;
-    padding: 18px 0 19px;
-    text-transform: uppercase;
-    
-   
+thead tr {
+  font-size: 20px !important;
+  color: #252525;
+  font-weight: 700;
+  border-bottom: 1px solid #ebebeb;
+  padding: 18px 0 19px;
+  text-transform: uppercase;
 }
-.card-body{
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
 
-    display:flex ;
-    justify-content: space-between;
-    margin-top: 30px;
-    
-
-    .discount-code{
-        width: 357px;
-        h5{
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        form{
-            width: 100%;
-            border: 1px solid black;
-            display: flex;
-            padding: 4px 10px ;
-            align-items: center;
-            input{
-                flex: 1;
-                font-size: 16px;
-            }
-            div{
-                font-size: 16px;
-                font-weight: 700;
-                cursor: pointer;
-            }
-        }
+  .discount-code {
+    width: 357px;
+    h5 {
+      font-size: 16px;
+      margin-bottom: 10px;
     }
-    .totol{
-        padding: 20px 30px;
-        width: 360px;
-        background-color: #f3f3f3;
-        .total-info {
-            display: flex;
-            justify-content: space-between;
-            h5{
-                font-size: 20px;
-                font-weight: 700;
-            }
-            .totol-money{
-                font-size: 16px;
-                font-weight: 700;
-            }
-        }
-
-        .pay-now{
-            margin-top: 10px;
-            width: 100%;
-            text-align: center;
-            font-size: 18px;
-            font-weight: 700;
-            color: white;
-            background: #252525;
-            padding: 10px 0;
-            border-radius: 5px;
-        }
+    form {
+      width: 100%;
+      border: 1px solid black;
+      display: flex;
+      padding: 4px 10px;
+      align-items: center;
+      input {
+        flex: 1;
+        font-size: 16px;
+      }
+      div {
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+      }
     }
+  }
+  .totol {
+    padding: 20px 30px;
+    width: 360px;
+    background-color: #f3f3f3;
+    .total-info {
+      display: flex;
+      justify-content: space-between;
+      h5 {
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .totol-money {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+    }
+
+    .pay-now {
+      margin-top: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      background: var(--primary-color);
+      padding: 10px 0;
+      border-radius: 5px;
+    }
+  }
+}
+
+.empty-cart {
+  .link {
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 500;
+    img {
+      width: 50%;
+    }
+  }
 }

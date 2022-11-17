@@ -31,24 +31,24 @@ class BlogControllers {
 
   // [POST]
   async createBlog(req, res, next) {
-    console.log(req.body);
+    // console.log(req.body);
 
     const date = new Date();
     let getDate = `${date.getFullYear()}-${
       date.getMonth() + 1
-    }-${date.getDate()}`;
+    }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
-    console.log("date: ", getDate);
+    console.log(req.body);
 
-    const { field, content, title, image } = req.body;
+    const { category, content, title, image, idAuthor, author } = req.body;
 
     const id = uuidv4();
-    // id author cho tương lai
-    let sql = `INSERT INTO  blog (idblog,title,content,category,createAt,image,author)   value (?,?,?,?,?,?,'id author')`;
+    let sql = `INSERT INTO  blog (idblog,title,content,category,createAt,image,idAuthor, author)
+     value (?,?,?,?,?,?,?,?)`;
 
     connection.query(
       `${sql}`,
-      [id, title, content, field, getDate, image, "5555"],
+      [id, title, content, category, getDate, image, idAuthor, author],
       (err, result) => {
         err ? console.log(err) : res.json("");
       }

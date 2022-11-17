@@ -4,7 +4,7 @@ import styles from "./blogContent.module.scss";
 import BlogItem from "../BlogItems/BlogItem";
 // import LoadingPage from "../LoadingPage/LoadingPage";
 import { useSelector } from "react-redux";
-import { blogDataSelector } from "../../redux/selectors";
+import { blogDataSelector, reloadApiSlector } from "../../redux/selectors";
 import Doremon from "../Doremon/Doremon";
 import { useEffect, useState } from "react";
 import { Pagination } from "@mui/material";
@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 const cx = classNames.bind(styles);
 function BlogContent({ slug }) {
   const blogData = useSelector(blogDataSelector);
+  const reloadApi = useSelector(reloadApiSlector);
   // const tagData = useSelector(blogFilterTagSelector);
   const [listBlog, setListBlog] = useState([]);
   const [page, setPage] = useState(0);
@@ -25,7 +26,7 @@ function BlogContent({ slug }) {
       .then((data) => {
         setTotalPages(Math.ceil(Number(data[0].total) / 4));
       });
-  }, [slug]);
+  }, [slug, reloadApi.reload]);
 
   useEffect(() => {
     let offset;
@@ -35,7 +36,7 @@ function BlogContent({ slug }) {
       .then((data) => {
         setListBlog(data[0]);
       });
-  }, [page, slug]);
+  }, [page, slug, reloadApi.reload]);
 
   function handleChange(event: React.ChangeEvent<unknown>, value: number) {
     setPage(value);

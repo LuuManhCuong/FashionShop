@@ -103,6 +103,10 @@ function SideBar(props) {
                 <img className={cx("img")} src={blog.image} alt="img" />
                 <div className={cx("infos")}>
                   <h4 className={cx("name")}>{blog.title}</h4>
+                  <p className={cx("author")}>
+                    <span style={{ color: "black" }}>Author: </span>
+                    {blog.author}
+                  </p>
                   <p className={cx("fashion")}>
                     {blog.category}{" "}
                     <span className={cx("day")}>{blog.timeCreate}</span>

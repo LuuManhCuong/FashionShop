@@ -2,11 +2,20 @@ import Header from "../components/Header/Header";
 import BlogContent from "../components/BlogContent/BlogContent";
 import SideBar from "../components/SideBar/SideBar";
 import Footer from "../components/Footer/Footer";
+import { getBlogRequest } from "../redux/reducer/blogSlice";
+import { useDispatch } from "react-redux";
+
 function Blog() {
+  const dispatch = useDispatch();
+  dispatch(getBlogRequest());
   const data = [
     {
       category: "Fashion",
       component: <BlogContent key={1} slug="fashion" />,
+    },
+    {
+      category: "Life",
+      component: <BlogContent key={0} slug="Life" />,
     },
 
     {

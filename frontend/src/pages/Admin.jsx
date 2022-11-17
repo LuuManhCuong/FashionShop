@@ -30,11 +30,11 @@ function Admin() {
   const checkUser = useSelector(userSelector);
   const user = checkUser.login?.currentUser;
   // console.log("user: ", checkUser);
-  useEffect(() => {
-    if (!user) {
-      navigate("/login");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!user) {
+  //     navigate("/login");
+  //   }
+  // }, []);
   return (
     <>
       {user?.isAdmin ? (
@@ -51,7 +51,7 @@ function Admin() {
           <Footer />
         </>
       ) : (
-        <h3>ko co giu lieu</h3>
+        <h3>M ko phải là admin</h3>
       )}
     </>
   );
