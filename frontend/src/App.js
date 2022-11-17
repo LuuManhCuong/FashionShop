@@ -17,6 +17,10 @@ import { getHomeRequest } from "./redux/reducer/homeSlice";
 import { getBlogRequest } from "./redux/reducer/blogSlice";
 import { getShopRequest } from "./redux/reducer/shopSlice";
 // import { getAdminRequest } from "./redux/reducer/adminSlice";
+import io from "socket.io-client";
+const socket = io.connect(`http://localhost:5000`);
+
+console.log(socket);
 
 // chứa các trang
 function App() {

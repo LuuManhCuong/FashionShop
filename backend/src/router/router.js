@@ -33,8 +33,13 @@ function router(app) {
   app.route("/admin/warehouse").get(AdminController.adminWarehouse);
   app.route("/admin/count/product").get(AdminController.countProduct);
 
-  app.route("/comment").post(CommentController.postComment)
-  app.route("/comment/:idDetail").get(CommentController.getComment);
+  app
+    .route("/comment")
+    .post(CommentController.postComment)
+    // .get(CommentController.realTimeComment);
+  app.route("/comment/:idDetail")
+  .get(CommentController.realTimeComment);
+  // .get(CommentController.getComment);
 
   app.route("*").get((req, res) => {
     res.status(400).json("t ko tìm thấy trang m muốn");
