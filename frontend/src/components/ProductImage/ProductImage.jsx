@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "./productImage.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 
 import {
   ArrowBackIosNewOutlined,
   ArrowForwardIosOutlined,
 } from "@mui/icons-material";
 import ProductItem from "../ProductItem/ProductItem";
-import { useEffect, useState } from "react";
 
-function productImage({ gender, category, initMen, initWomen }) {
+function ProductImage({ gender, category, initMen, initWomen }) {
   const [dataWomen, setDataWomen] = useState(initWomen);
   const [dataMen, setDataMen] = useState(initMen);
 
@@ -68,21 +66,16 @@ function productImage({ gender, category, initMen, initWomen }) {
   );
 }
 
-export default productImage;
+export default ProductImage;
 
-
-    
-    // <div className="product-image">
-    //   <div className="img-sp">
-    //   <img src="https://i.pinimg.com/236x/e6/4e/98/e64e9814f84644b27316d0d317afb1c8.jpg" alt="img"></img>
-    //   </div>
-    //   <div className="alt">
-    //   <img src="https://i.pinimg.com/236x/e6/4e/98/e64e9814f84644b27316d0d317afb1c8.jpg" alt="img"></img>
-    //   <img src="https://i.pinimg.com/236x/e6/4e/98/e64e9814f84644b27316d0d317afb1c8.jpg" alt="img"></img>
-    //   <img src="https://i.pinimg.com/236x/e6/4e/98/e64e9814f84644b27316d0d317afb1c8.jpg" alt="img"></img>
-    //   <img src="https://i.pinimg.com/236x/e6/4e/98/e64e9814f84644b27316d0d317afb1c8.jpg" alt="img"></img>
-    //   </div>
-    // </div>
-
-
-
+// <div className="product-image">
+//   <div className="img-sp">
+//   <img src="https://i.pinimg.com/236x/e6/4e/98/e64e9814f84644b27316d0d317afb1c8.jpg" alt="img"></img>
+//   </div>
+//   <div className="alt">
+//   <img src="https://i.pinimg.com/236x/e6/4e/98/e64e9814f84644b27316d0d317afb1c8.jpg" alt="img"></img>
+//   <img src="https://i.pinimg.com/236x/e6/4e/98/e64e9814f84644b27316d0d317afb1c8.jpg" alt="img"></img>
+//   <img src="https://i.pinimg.com/236x/e6/4e/98/e64e9814f84644b27316d0d317afb1c8.jpg" alt="img"></img>
+//   <img src="https://i.pinimg.com/236x/e6/4e/98/e64e9814f84644b27316d0d317afb1c8.jpg" alt="img"></img>
+//   </div>
+// </div>
