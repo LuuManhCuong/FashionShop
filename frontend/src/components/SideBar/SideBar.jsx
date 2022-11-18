@@ -109,7 +109,7 @@ function SideBar(props) {
                   </p>
                   <p className={cx("fashion")}>
                     {blog.category}{" "}
-                    <span className={cx("day")}>{blog.timeCreate}</span>
+                    <span className={cx("day")}>20{blog.timeCreate}</span>
                   </p>
                 </div>
               </Link>

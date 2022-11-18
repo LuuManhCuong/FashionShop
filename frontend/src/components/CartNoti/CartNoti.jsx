@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import CartItem from "../CartItem/CartItem";
 import "./cartNoti.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { reloadApiSlector, userSelector } from "../../redux/selectors";
+import { countNoti } from "../../redux/reducer/homeSlice";
 
 function CartNoti({ className }) {
+  const dispatch = useDispatch();
   const checkUser = useSelector(userSelector);
   const user = checkUser.login?.currentUser;
   const reloadApi = useSelector(reloadApiSlector);
@@ -20,6 +22,7 @@ function CartNoti({ className }) {
           },
         })
         .then((res) => {
+          dispatch(countNoti.actions.setNotiCart(res.data.length));
           setCartData(res.data);
         })
         .catch((err) => console.log(err));

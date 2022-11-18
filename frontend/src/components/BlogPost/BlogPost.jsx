@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./BlogPost.scss";
 import { useForm } from "react-hook-form";
-// import cloudinaryUpload from "../../api/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -11,7 +10,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { userSelector } from "../../redux/selectors";
 import { reloadApi } from "../../redux/reducer/adminSlice";
 import { getBlogRequest } from "../../redux/reducer/blogSlice";
-// import { URL } from " ../../../src/api/api";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -47,7 +45,7 @@ function BlogPost() {
     if (!user) {
       navigate("/login");
     }
-  }, []);
+  }, [navigate, user]);
 
   const handleSubmit1 = async () => {
     if (!onsend) {
@@ -241,20 +239,6 @@ function BlogPost() {
                   <label class="input-group-text" htmlFor="inputGroupSelect01">
                     Field
                   </label>
-                  {/* <select
-                    name="field"
-                    class="form-select"
-                    id="inputGroupSelect01"
-                    onChange={(e) => {
-                      setCategory(e.target.value);
-                    }}
-                    {...register("field", { required: true })}
-                  >
-                    <option value="Fashion">Fashion</option>
-                    <option value="Travel">Travel</option>
-                    <option value="Modle">Modle</option>
-                    <option value="Music">Music</option>
-                  </select> */}
 
                   <Box sx={{ minWidth: 120 }}>
                     <FormControl fullWidth>

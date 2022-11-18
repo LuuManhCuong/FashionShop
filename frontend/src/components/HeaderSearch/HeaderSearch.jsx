@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { Link } from "react-router-dom";
 import "tippy.js/dist/tippy.css"; // optional
 import classNames from "classnames/bind";
@@ -16,12 +16,15 @@ import {
   TipsAndUpdatesOutlined,
   HighlightOff,
 } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { shopFilter } from "../../redux/reducer/shopSlice";
+import { countNotiSelector } from "../../redux/selectors";
 
 const cx = classNames.bind(styles);
 function HeaderSearch() {
   const dispatch = useDispatch();
+  const countNoti = useSelector(countNotiSelector);
+  // console.log("d=no: ", countNoti);
 
   const [keyWord, setKeyWord] = useState("");
   const [listSearch, setListSearch] = useState([]);
@@ -195,14 +198,14 @@ function HeaderSearch() {
             <FavoriteBorderOutlined
               style={{ width: "2rem", height: "2rem" }}
             ></FavoriteBorderOutlined>
-            <span>10</span>
+            <span>{countNoti.notiLike}</span>
             <Noti />
           </li>
           <li className={cx("cart")}>
             <ShoppingCartOutlined
               style={{ width: "2rem", height: "2rem" }}
             ></ShoppingCartOutlined>
-            <span>10</span>
+            <span>{countNoti.notiCart}</span>
 
             <CartNoti className={cx("cart-noti")}></CartNoti>
           </li>
@@ -215,4 +218,4 @@ function HeaderSearch() {
   );
 }
 
-export default HeaderSearch;
+export default memo(HeaderSearch);

@@ -5,6 +5,7 @@ import blogReducer from "./reducer/blogSlice";
 import rootSaga from "./saga/rootSaga";
 import adminReducer, { reloadApi } from "./reducer/adminSlice";
 import { userSlice } from "./reducer/userSlice";
+import { countNoti } from "./reducer/homeSlice";
 
 import shopReducer, {
   shopFilter,
@@ -24,7 +25,7 @@ const store = configureStore({
     size: shopFilterSize.reducer,
     admin: adminReducer,
     reloadApi: reloadApi.reducer,
-  
+    countNoti: countNoti.reducer
     
   },
   middleware: (getDefaultMiddleware) =>

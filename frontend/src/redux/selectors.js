@@ -7,3 +7,4 @@ export const shopFilterPriceSelector = (state) => state.filterPrice;
 export const shopFilterSizeSelector = (state) => state.size;
 export const adminDataSelector = (state) => state.admin;
 export const reloadApiSlector = (state) => state.reloadApi;
+export const countNotiSelector = (state) => state.countNoti;
