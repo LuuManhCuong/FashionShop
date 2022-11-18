@@ -1,5 +1,5 @@
 const connection = require("../config/database");
-const authen = require("../middlewares/authen");
+const authen = require("../middlewares/authenJwt");
 
 class HomeControllers {
   // [GET] /home

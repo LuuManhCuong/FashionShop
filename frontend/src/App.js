@@ -13,7 +13,7 @@ import ProfilePage from "./pages/ProfilePage";
 import BlogPostPage from "./pages/BlogPostPage";
 import Doremon from "./components/Doremon/Doremon";
 import { useDispatch } from "react-redux";
-import { getHomeRequest } from "./redux/reducer/homeSlice";
+// import { getHomeRequest } from "./redux/reducer/homeSlice";
 import { getBlogRequest } from "./redux/reducer/blogSlice";
 import { getShopRequest } from "./redux/reducer/shopSlice";
 // import { getAdminRequest } from "./redux/reducer/adminSlice";
@@ -21,7 +21,7 @@ import { getShopRequest } from "./redux/reducer/shopSlice";
 // chứa các trang
 function App() {
   const dispatch = useDispatch();
-  dispatch(getHomeRequest());
+  // dispatch(getHomeRequest());
   dispatch(getBlogRequest());
   dispatch(getShopRequest());
   // dispatch(getAdminRequest());

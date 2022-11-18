@@ -113,6 +113,17 @@ class ShopControllers {
       err ? console.log(err) : res.json(result);
     });
   }
+
+  // [GET] /shop/detail/:idProduct
+  getDetailProduct(req, res, next) {
+    let sql1 = `SELECT * FROM fashion_shop.image_product where image_product.idProduct = ? `;
+
+    let sql2 = `SELECT * FROM fashion_shop.product where product.idProduct = ? `;
+
+    connection.query(`${sql1} ; ${sql2}`, [req.params.id , req.params.id,],(err, result) => {
+      err ? console.log(err) : res.json(result);
+    });
+  }
 }
 
 module.exports = new ShopControllers();

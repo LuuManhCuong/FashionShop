@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import { reloadApiSlector } from "../../redux/selectors";
 import { Pagination } from "@mui/material";
 import Stack from "@mui/material/Stack";
+import { userSelector } from "../../redux/selectors";
+import { useNavigate, Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 
 const overview = [
@@ -34,6 +36,9 @@ const overview = [
   },
 ];
 function DataCustomer() {
+  const navigate = useNavigate();
+  const checkUser = useSelector(userSelector);
+  const user = checkUser.login?.currentUser;
   const reloadApis = useSelector(reloadApiSlector);
 
   const [ListUser, setListUser] = useState([]);
@@ -41,26 +46,40 @@ function DataCustomer() {
   const [totalPages, setTotalPages] = useState(1);
   // count page
   useEffect(() => {
-    fetch(`http://localhost:5000/admin/count/user`)
+    fetch(`http://localhost:5000/admin/count/user`, {
+      headers: {
+        token: `Bearer ${user.accessToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setTotalPages(Math.ceil(Number(data[0].total) / 10));
+      })
+      .catch((err) => {
+        navigate("/login");
       });
-  }, [reloadApis.reload]);
+  }, [navigate, reloadApis.reload, user.accessToken]);
 
   // call api
   useEffect(() => {
     let offset;
     page === 0 ? (offset = 0) : (offset = (page - 1) * 10);
-    fetch(`http://localhost:5000/admin/?page=${offset}`)
+    fetch(`http://localhost:5000/admin/?page=${offset}`, {
+      headers: {
+        token: `Bearer ${user.accessToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.length <= 0) {
           setPage(page - 1);
         }
         setListUser(data);
+      })
+      .catch((err) => {
+        navigate("/login");
       });
-  }, [page, reloadApis.reload, totalPages]);
+  }, [navigate, page, reloadApis.reload, totalPages, user.accessToken]);
 
   function handleChange(event: React.ChangeEvent<unknown>, value: number) {
     setPage(value);
@@ -89,9 +108,15 @@ function DataCustomer() {
           </tr>
         </thead>
         <tbody>
-          {ListUser.map((user, i) => (
-            <DataCustomerItem userItem={user} stt={i} key={i} />
-          ))}
+          {typeof ListUser == "object" ? (
+            ListUser.map((user, i) => (
+              <DataCustomerItem userItem={user} stt={i} key={i} />
+            ))
+          ) : (
+            <Link style={{ color: "blue" }} to={"/login"}>
+              Hết phiên, vui lòng đăng nhập lại
+            </Link>
+          )}
         </tbody>
       </Table>
       <Stack spacing={2}>

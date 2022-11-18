@@ -1,6 +1,7 @@
 import React from "react";
 import "./productItem.scss";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   FavoriteBorder,
   ShoppingCartOutlined,
@@ -9,8 +10,9 @@ import {
 
 function ProductItem({ product }) {
   return (
-    <Link to="/shop/detail/1" className="product-item">
+    <Link to={`/shop/detail/${product.idProduct}`} onClick={dispatchEvent} className="product-item">
       <div className="product-content">
+
         <img src={product.avatar} alt="product" />
         <div className="label">
           <h4>

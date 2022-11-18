@@ -41,7 +41,12 @@ function HeaderSearch() {
     <div className={cx("header-search")}>
       <div className={cx("div logo")}>
         <Link to="/">
-          <h1>Fashion.</h1>
+          <img 
+          style={{
+            width:"150px",
+            height:"70px"
+          }}
+           src="/fslogo.png" alt="logo" />
         </Link>
       </div>
       {/* search */}

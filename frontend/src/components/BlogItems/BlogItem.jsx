@@ -14,7 +14,7 @@ function BlogItem({ blogItem }) {
     <Link to={`/blog/detail/${blogItem.idblog}`} className={cx("container")}>
       <img className={cx("blog-img")} src={blogItem.image} alt="img" />
       <p className={cx("fashion")}>
-        {blogItem.category}
+        {blogItem.category || "u bal a"}
         <span>
           <CalendarTodayOutlined className={cx("icon")}></CalendarTodayOutlined>
           20{blogItem.timeCreate}

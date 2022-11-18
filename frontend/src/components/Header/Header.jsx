@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./header.scss";
-
+import { useSelector } from "react-redux";
+import { userSelector } from "../../redux/selectors";
 import {
   Email,
   LocalPhone,
@@ -11,6 +12,9 @@ import {
 import HeaderSearch from "../HeaderSearch/HeaderSearch";
 
 function Header() {
+  const checkUser = useSelector(userSelector);
+  const user = checkUser.login?.currentUser;
+  // console.log("user :", user?.accessToken);
   return (
     <div className={"header"}>
       <div className={"header-contact"}>
@@ -60,15 +64,6 @@ function Header() {
             </NavLink>
           </li>
           <li>
-            {/* <NavLink
-              end
-              className={(navData) => (navData.isActive ? "active-item" : " ")}
-              to="/register"
-            >
-              register
-            </NavLink> */}
-          </li>
-          <li>
             <NavLink
               end
               className={(navData) => (navData.isActive ? "active-item" : " ")}
@@ -95,24 +90,19 @@ function Header() {
               Contact
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              end
-              className={(navData) => (navData.isActive ? "active-item" : " ")}
-              to="/admin"
-            >
-              Admin
-            </NavLink>
-          </li>
-          {/* <li>
-            <NavLink
-              end
-              className={(navData) => (navData.isActive ? "active-item" : " ")}
-              to="/Pages"
-            >
-              Pages
-            </NavLink>
-          </li> */}
+          {user?.isAdmin ? (
+            <li>
+              <NavLink
+                end
+                className={(navData) =>
+                  navData.isActive ? "active-item" : " "
+                }
+                to="/admin"
+              >
+                Admin
+              </NavLink>
+            </li>
+          ) : null}
         </ul>
       </div>
     </div>

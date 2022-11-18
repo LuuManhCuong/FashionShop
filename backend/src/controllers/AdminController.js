@@ -1,5 +1,5 @@
 const connection = require("../config/database");
-const authen = require("../middlewares/authen");
+const authen = require("../middlewares/authenJwt");
 
 class AdminController {
   // [GET] /admin/
@@ -49,7 +49,7 @@ class AdminController {
     let sql = `DELETE FROM user where idUser = ? `;
 
     connection.query(`${sql}`, [req.params.id], (err, result) => {
-      err ? console.log(err) : res.json(result);
+      err ? console.log(err) : res.json("xóa user thành công");
     });
   }
 
@@ -59,7 +59,7 @@ class AdminController {
     let sql = `DELETE FROM product where idProduct = ? `;
 
     connection.query(`${sql}`, [req.params.id], (err, result) => {
-      err ? console.log(err) : res.json(result);
+      err ? console.log(err) : res.json("xóa sản phẩm thành công");
     });
   }
 }

@@ -77,6 +77,19 @@ export const shopFilterSize = createSlice({
       }
     },
   },
+}); 
+
+// idProduct detail
+export const idProductDetailSlice = createSlice({
+  name: "idProductDetail",
+  initialState: {
+    id: 1,
+  },
+  reducers: {
+    SetId(state, action) {
+      state.id = action.payload;
+    },
+  },
 });
 
 export const { getShopRequest, getShopFailure, getShopSuccess } =
