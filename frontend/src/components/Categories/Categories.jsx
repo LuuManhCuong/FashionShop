@@ -6,7 +6,7 @@ function Categories() {
       <div className="banner">
         <img
           className="banner-img"
-          src="https://preview.colorlib.com/theme/fashi/img/xbanner-1.jpg.pagespeed.ic.WtoTbL-e6z.webp"
+          src="https://preview.colorlib.com/theme/fashi/img/banner-1.jpg"
           alt="banner"
         />
 
@@ -15,7 +15,7 @@ function Categories() {
       <div className="banner">
         <img
           className="banner-img"
-          src="https://preview.colorlib.com/theme/fashi/img/xbanner-2.jpg.pagespeed.ic.N15HuVVX4r.webp"
+          src="https://preview.colorlib.com/theme/fashi/img/blog/blog-5.jpg"
           alt="banner"
         />
         <h3 className="banner-text">WOMEN'S</h3>
@@ -23,7 +23,7 @@ function Categories() {
       <div className="banner">
         <img
           className="banner-img"
-          src="https://preview.colorlib.com/theme/fashi/img/xbanner-3.jpg.pagespeed.ic.BQA2S7WT5H.webp"
+          src="https://preview.colorlib.com/theme/fashi/img/banner-3.jpg"
           alt="banner"
         />
         <h3 className="banner-text">KID'S</h3>
