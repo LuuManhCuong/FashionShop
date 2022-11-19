@@ -43,9 +43,9 @@ function HeaderSearch() {
   return (
     <div className={cx("header-search")}>
       <div className={cx("div logo")}>
-        <Link to="/">
+        <a href="/">
           <h1>Fashion.</h1>
-        </Link>
+        </a>
       </div>
       {/* search */}
       <div

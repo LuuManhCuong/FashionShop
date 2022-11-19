@@ -11,21 +11,21 @@ function Footer() {
     <div className={cx("footer")}>
       <ul className={cx("footer-benefit")}>
           <li>
-            <img src="https://preview.colorlib.com/theme/fashi/img/xicon-1.png.pagespeed.ic.1MBleL9YE6.webp" alt="img" />
+            <img src="https://i.pinimg.com/564x/8c/21/e2/8c21e25405fc4258b154fc28266219a7.jpg" alt="img" />
             <div className={cx("context")}>
               <h3>FREE SHIPPING</h3>
               <p>For all order over 99$</p>
             </div>
           </li>
           <li>
-            <img src="https://preview.colorlib.com/theme/fashi/img/xicon-2.png.pagespeed.ic.GdrReyKBWV.webp" alt="img" />
+            <img src="https://cdn.ntlogistics.vn/images/NTX/new_images/don-vi-giao-hang-chat-luong-phai-cam-ket-thoi-gian-giao-hang-toan-trinh.jpg" alt="img" />
             <div className={cx("context")}>
               <h3>DELIVERY ON TIME</h3>
               <p>If good have prolems</p>
             </div>
           </li>
           <li>
-            <img src="https://preview.colorlib.com/theme/fashi/img/xicon-1.png.pagespeed.ic.1MBleL9YE6.webp" alt="img" />
+            <img src="https://gptvi.com/wp-content/uploads/2021/11/bigstock-205461277-15691418269121229889113.jpg" alt="img" />
             <div className={cx("context")}>
               <h3>SECURE PAYMENT</h3>
               <p>100% secure payment</p>

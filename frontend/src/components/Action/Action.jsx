@@ -10,7 +10,7 @@ import {
   Email,
 } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { userSelector } from "../../redux/selectors";
 import { reloadApi } from "../../redux/reducer/adminSlice";
 

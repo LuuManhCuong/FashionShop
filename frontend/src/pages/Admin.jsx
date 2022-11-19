@@ -30,11 +30,11 @@ function Admin() {
   const checkUser = useSelector(userSelector);
   const user = checkUser.login?.currentUser;
   // console.log("user: ", checkUser);
-  // useEffect(() => {
-  //   if (!user) {
-  //     navigate("/login");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [navigate, user]);
   return (
     <>
       {user?.isAdmin ? (

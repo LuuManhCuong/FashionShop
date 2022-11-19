@@ -1,73 +1,127 @@
 import "./productInfo.scss";
-import { Remove, Add } from "@mui/icons-material";
 import { useState } from "react";
 
+const sizes = [
+  { id: 1, name: "M" },
+  { id: 2, name: "L" },
+  { id: 3, name: "S" },
+];
+
+const colors = [
+  { id: 1, name: "red" },
+  { id: 2, name: "green" },
+  { id: 3, name: "black" },
+];
+
 function ProductInfo() {
-  const [quantity, setQuantity] = useState(1);
+  // color
+  const [color, setColor] = useState(2);
+
+  const handleColor = () => {
+    setColor(color);
+    // console.log(color)
+  };
+
+  // size
+
+  const [size, setSize] = useState(1);
+
+  const handleSize = () => {
+    setSize(size);
+    // console.log(size)
+  };
+
+  // so luong
+  const [add, setAdd] = useState(1);
+
+  const handleAdd = () => {
+    setAdd(add + 1);
+  };
+  const handleDelete = () => {
+    setAdd(add - 1);
+  };
+
   return (
     <div className="product-info">
-      <h3 className="product-name">Áo khoác thu đông nam nữ</h3>
-      <ul>
-        <li>
-          <h4>
-            105
-            <p>Đánh giá</p>
-          </h4>
-        </li>
-        <li>
-          <h4>
-            2305
-            <p>Đã bán</p>
-          </h4>
-        </li>
-      </ul>
-      <p className="desciption">
-        Quý Khách vui lòng đọc kỹ Thông Tin Sản Phẩm trước khi đặt hàng, tránh
-        đặt rồi hủy hàng nhé, hoặc có hủy thì hủy sớm trước khi đơn hàng đưa vận
-        chuyển nhé. Vì sau khi đặt hàng, hàng sẽ được Shop gói và gửi đi liền
-        trong ngày hoặc ngày hôm sau. Vì thế việc hủy hàng sẽ gây nhiều khó khăn
-        cho Shop. Rất mong Quý Khách cảm thông và đắn đo giúp Shop!!!
-      </p>
-      <div className="choose-color">
-        <h4>Color</h4>
-        <div className="color-item">
-          <button>Black</button>
-          <button>White</button>
-          <button>Red</button>
+      <div className="line"></div>
+
+      <div className="info">
+        <p>
+          Thương hiệu: <span>DoKo</span>
+        </p>
+
+        <h1>Áo hoodie nam vãi nhung thu đông 3 màu</h1>
+
+        <div className="feedback">
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+
+          <span style={{ marginLeft: "10px" }}>(xem 13 đánh giá)</span>
+          <span> | đã bán 21 sản phẩm</span>
         </div>
-      </div>
 
-      <div className="choose-size">
-        <h4>Size</h4>
-        <div className="size-item">
-          <button>S 45-50kg</button>
-          <button>M 50-60kg</button>
-          <button>L 60-70kg</button>
+        <div className="color">
+          <p>Colors: </p>
+
+          {colors.map((color) => (
+            <div className="cls" key={color.id}>
+              <input
+                type="radio"
+                checked={color === color.id}
+                onChange={() => setColor(color.id)}
+                onClick={handleColor}
+              ></input>
+              <div className="cln">{color.name}</div>
+            </div>
+          ))}
+          {/* 
+          <div className="cls">
+            <div className="red"></div>
+            <div className="green"></div>
+            <div className="black"></div>
+          </div> */}
         </div>
-      </div>
 
-      <div className="choose-quantity">
-        <h4>quantity</h4>
-        <div className="quantity-item">
-          <button
-            className="reduce"
-            onClick={() => {
-              quantity <= 1 ? setQuantity(1) : setQuantity(quantity - 1);
-            }}
-          >
-            <Remove></Remove>
-          </button>
-          <input type="text" value={quantity} />
-          <button className="increse" onClick={() => setQuantity(quantity + 1)}>
-            <Add></Add>
-          </button>
-        </div>{" "}
-        <h4>2022 sản phẩm có sẵn</h4>
-      </div>
+        <h1 className="price">165 000 đ</h1>
 
-      <div className="button">
-        <button>Thêm vào giỏ hàng</button>
-        <button>Mua ngay</button>
+        <div className="ship">
+          <p>
+            Giao đến
+            <span style={{ paddingLeft: "5px" }}>
+              <a href="tiki.vn">33 Xô Viết Nghệ Tĩnh</a>
+            </span>
+            <span style={{ paddingLeft: "20px" }}>Đổi địa chỉ</span>
+          </p>
+        </div>
+
+        <div className="size">
+          <p>
+            Kích thước: <span>M</span>{" "}
+          </p>
+
+          {sizes.map((size) => (
+            <div key={size.id} className="size-detail">
+              <button onClick={handleSize} onChange={() => setSize(size.id)}>
+                {size.name}
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <div className="soluong">
+          <p className="sl">Số lượng: </p>
+          <button onClick={handleDelete}>-</button>
+          <h4>{add}</h4>
+          <button onClick={handleAdd}>+</button>
+        </div>
+
+        <div className="but-add">
+          <button className="add">Thêm vào giỏ hàng</button>
+          <button className="buy">Mua ngay</button>
+        </div>
       </div>
     </div>
   );
