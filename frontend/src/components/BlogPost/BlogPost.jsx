@@ -57,9 +57,11 @@ function BlogPost() {
       const data = new FormData();
       data.append("file", image);
       data.append("upload_preset", "mpght0dj");
+      console.log("s: ", data);
       axios
         .post("https://api.cloudinary.com/v1_1/djcamu6kz/upload", data)
         .then((res) => {
+          // console.log("itm: ", res.data.secure_url);
           return res.data.secure_url;
         })
         .then((url) => {

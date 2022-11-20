@@ -5,6 +5,7 @@ const ShopControllers = require("../controllers/ShopController");
 const AdminController = require("../controllers/AdminController");
 const SearchController = require("../controllers/SearchController");
 const authenJwt = require("../middlewares/authenJwt");
+const uploadCloud = require("../config/cloudnary");
 
 function router(app) {
   app.route("/search").get(SearchController.SearchProduct);
@@ -21,7 +22,7 @@ function router(app) {
   app.route("/").get(HomeControllers.home);
   app.route("/bestSale/").get(HomeControllers.bestSale);
 
-  // shop router
+  // shop / product router
   app.route("/shop").get(ShopControllers.shop);
   app.route("/shop/count").get(ShopControllers.countProduct);
   app.route("/shop/getPrice").get(ShopControllers.getPrice);
@@ -58,6 +59,12 @@ function router(app) {
   app
     .route("/admin/count/product")
     .get(authenJwt.verifyAdmin, AdminController.countProduct);
+
+  app
+    .route("/admin/add/product")
+    .post(authenJwt.verifyAdmin, AdminController.addProduct);
+
+  app.route("/cloudinary-upload").post(AdminController.uploadCloudinary);
 
   // * router
   app.route("*").get((req, res) => {

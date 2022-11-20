@@ -1,5 +1,7 @@
 const connection = require("../config/database");
 const authen = require("../middlewares/authenJwt");
+const cloundinary = require("../config/cloudnary");
+const { v4: uuidv4 } = require("uuid");
 
 class AdminController {
   // [GET] /admin/
@@ -61,6 +63,78 @@ class AdminController {
     connection.query(`${sql}`, [req.params.id], (err, result) => {
       err ? console.log(err) : res.json("xóa sản phẩm thành công");
     });
+  }
+
+  // [POST] /cloudinary-upload
+  async uploadCloudinary(req, res, next) {
+    try {
+      let picture = req.body.picture;
+      let imgPusher = [];
+
+      for (let i = 0; i < picture.length; i++) {
+        const result = await cloundinary.uploader.upload(picture[i], {
+          folder: "imageProduct",
+        });
+        imgPusher.push(result.secure_url);
+      }
+
+      let avatar = req.body.avatar;
+      const avatarUrl = await cloundinary.uploader.upload(avatar[0], {
+        folder: "imageProduct",
+      });
+
+      // console.log("pictures: ", imgPusher);
+      // console.log("avatar: ", avatarUrl);
+
+      res.json({ imgPusher, avatarUrl });
+    } catch (error) {}
+  }
+
+  // [POST] /admin/add/product
+  addProduct(req, res, next) {
+    console.log("data: ", req.body);
+    const {
+      name,
+      price,
+      sale,
+      quantity,
+      avatar,
+      images,
+      description,
+      gender,
+      category,
+      color,
+      size,
+    } = req.body;
+    const id = uuidv4();
+
+    let sql = `INSERT INTO product (
+      product.idProduct, product.name, product.avatar, product.category,
+      product.color, product.description, product.gender,
+      product.price, product.sale, product.quantity, product.size)
+      VALUES (
+        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?
+      ) `;
+
+    connection.query(
+      `${sql}`,
+      [
+        id,
+        name,
+        avatar,
+        category,
+        color,
+        description,
+        gender,
+        Number(price),
+        Number(sale),
+        Number(quantity),
+        size,
+      ],
+      (err, result) => {
+        err ? console.log(err) : res.json(id);
+      }
+    );
   }
 }
 

@@ -29,7 +29,7 @@ class BlogControllers {
     });
   }
 
-  // [POST]
+  // [POST] /blog
   async createBlog(req, res, next) {
     // console.log(req.body);
 
@@ -38,7 +38,7 @@ class BlogControllers {
       date.getMonth() + 1
     }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
-    console.log(req.body);
+    // console.log(req.body);
 
     const { category, content, title, image, idAuthor, author } = req.body;
 

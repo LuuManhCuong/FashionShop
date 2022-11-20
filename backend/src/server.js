@@ -7,8 +7,14 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const port = 5000;
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+    limit: "50mb",
+    parameterLimit: 50000,
+  })
+);
+app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(

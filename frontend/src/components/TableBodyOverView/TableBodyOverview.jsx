@@ -17,9 +17,11 @@ function TableBodyOverview({ product, stt }) {
       <td>
         {product.gender} / {product.category}
       </td>
-      <td>{product.price} $</td>
       <td>{product.size}</td>
       <td>{product.quantity}</td>
+      <td>{product.price} $</td>
+      <td>{product.sale} %</td>
+      <td>{product.price - (product.price / 100) * product.sale} $</td>
       <td>{product.sold || 0}</td>
       <td>{Math.round((product.sold / product.quantity) * 100 * 10) / 10} %</td>
       <td>

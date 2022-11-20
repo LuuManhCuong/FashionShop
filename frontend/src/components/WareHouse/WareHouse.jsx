@@ -127,9 +127,11 @@ function WareHouse() {
                     <th>Stt</th>
                     <th>Tên Sản Phẩm</th>
                     <th>Danh mục</th>
-                    <th>Giá</th>
                     <th>Size</th>
                     <th>Số Lượng</th>
+                    <th>Giá gốc</th>
+                    <th>Khuyến mãi</th>
+                    <th>Giá bán</th>
                     <th>Đã bán</th>
                     <th>tỉ lệ</th>
                     <th>Action</th>
