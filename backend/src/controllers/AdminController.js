@@ -9,7 +9,7 @@ class AdminController {
     // authen.verifyToken()
     let sql = `SELECT * FROM fashion_shop.user order by createAt desc  limit 10 offset ?`;
     connection.query(`${sql}`, [Number(req.query.page || 0)], (err, result) => {
-      err ? console.log(err) : res.json(result);
+      err ? res.status(401).json("lỗi") : res.json(result);
     });
   }
 
@@ -22,7 +22,7 @@ class AdminController {
       ` ${sql2}`,
       [Number(req.query.page || 0)],
       (err, result) => {
-        err ? console.log(err) : res.json(result);
+        err ? res.status(401).json("lỗi") : res.json(result);
       }
     );
   }
@@ -32,7 +32,7 @@ class AdminController {
     let sql = `SELECT COUNT(*) as total FROM fashion_shop.user`;
 
     connection.query(`${sql}`, (err, result) => {
-      err ? console.log(err) : res.json(result);
+      err ? res.status(401).json("lỗi") : res.json(result);
     });
   }
 
@@ -41,7 +41,7 @@ class AdminController {
     let sql = `SELECT COUNT(*) as total FROM fashion_shop.product`;
 
     connection.query(`${sql}`, (err, result) => {
-      err ? console.log(err) : res.json(result);
+      err ? res.status(401).json("lỗi") : res.json(result);
     });
   }
 
@@ -51,7 +51,7 @@ class AdminController {
     let sql = `DELETE FROM user where idUser = ? `;
 
     connection.query(`${sql}`, [req.params.id], (err, result) => {
-      err ? console.log(err) : res.json("xóa user thành công");
+      err ? res.status(401).json("lỗi") : res.json("xóa user thành công");
     });
   }
 
@@ -61,7 +61,7 @@ class AdminController {
     let sql = `DELETE FROM product where idProduct = ? `;
 
     connection.query(`${sql}`, [req.params.id], (err, result) => {
-      err ? console.log(err) : res.json("xóa sản phẩm thành công");
+      err ? res.status(401).json("lỗi") : res.json("xóa sản phẩm thành công");
     });
   }
 
@@ -92,7 +92,7 @@ class AdminController {
 
   // [POST] /admin/add/product
   addProduct(req, res, next) {
-    console.log("data: ", req.body);
+    // console.log("data: ", req.body);
     const {
       name,
       price,
@@ -116,8 +116,18 @@ class AdminController {
         ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?
       ) `;
 
+    let arr = [];
+    images.map((img, i) => {
+      let sql = ` INSERT INTO image_product
+      (image_product.idImage, image_product.idProduct, image_product.url)
+      VALUES  ("${id + i}", "${id}", "${img}")`;
+      arr.push(sql);
+    });
+
+    let imageProduct = arr.join(";");
+
     connection.query(
-      `${sql}`,
+      `${sql}; ${imageProduct}`,
       [
         id,
         name,
@@ -132,7 +142,7 @@ class AdminController {
         size,
       ],
       (err, result) => {
-        err ? console.log(err) : res.json(id);
+        err ? res.status(401).json("lỗi") : res.json(id);
       }
     );
   }

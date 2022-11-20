@@ -54,7 +54,7 @@ function AddProductContent() {
       setOnSend(false);
       toast.error(` M nhập thiếu thông tin rồi kìa !!! `, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -87,8 +87,8 @@ function AddProductContent() {
         handleConverImg(images, setPicture);
         handleConverImg(avatar, setAvt);
 
-        console.log("imgBs64: ", picture);
-        console.log("avtBs64: ", avt);
+        // console.log("imgBs64: ", picture);
+        // console.log("avtBs64: ", avt);
 
         if (picture.length <= 0) {
           setTextButton("Hoàn tất");
@@ -114,7 +114,7 @@ function AddProductContent() {
                 size,
               };
 
-              console.log("send: ", setData);
+              // console.log("send: ", setData);
 
               axios
                 .post(`http://localhost:5000/admin/add/product`, setData, {
@@ -146,11 +146,18 @@ function AddProductContent() {
                   // navigate(`/shop/detail/${res.data}`);
                 })
                 .catch((err) => {
-                  setOnSend(false);
-
+                  setOnSend(true);
+                  setShowLoader(false);
+                  setAvatar([]);
+                  setImages([]);
+                  setName("");
+                  setPrice("");
+                  setSale("");
+                  setDescription("");
+                  setQuantity("");
                   toast.error(` Hôm nay t mệt, thử lại lần sau !!! `, {
                     position: "top-right",
-                    autoClose: 3000,
+                    autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,

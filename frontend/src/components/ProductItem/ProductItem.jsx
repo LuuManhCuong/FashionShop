@@ -110,7 +110,7 @@ function ProductItem({ product }) {
     <div className="product-item-wraper">
       <div className="product-item">
         <div className="product-content">
-          <Link to="/shop/detail/1">
+          <Link to={`/shop/detail/${product.idProduct}`}>
             <img src={product.avatar} alt="product" />
             <div className="label">
               <h4>

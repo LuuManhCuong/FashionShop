@@ -105,7 +105,7 @@ function DataCustomer() {
       .catch((err) => {
         navigate("/login");
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate, reloadApis.reload, user.accessToken]);
 
   // call api
@@ -129,7 +129,7 @@ function DataCustomer() {
       .catch((err) => {
         navigate("/login");
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate, page, reloadApis.reload, totalPages, user.accessToken]);
 
   function handleChange(event: React.ChangeEvent<unknown>, value: number) {
@@ -149,7 +149,7 @@ function DataCustomer() {
         <thead>
           <tr>
             <th>STT</th>
-            <th>ID</th>
+            {/* <th>ID</th> */}
             <th>Username</th>
             <th>Email</th>
             <th>Phone</th>
