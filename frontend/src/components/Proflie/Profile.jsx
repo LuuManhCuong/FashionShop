@@ -1,88 +1,66 @@
 import "./Profile.scss";
 import {
-  FavoriteBorder,
-  ManageAccounts,
-  AddShoppingCart,
+  // FavoriteBorder,
+  // ManageAccounts,
+  // AddShoppingCart,
   CreateSharp,
   PhoneCallback,
   Email,
   Password,
 } from "@mui/icons-material";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+
 function Profile() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [gender, setGender] = useState("");
+  const [nationally, setNationally] = useState("");
+  const [isAdmin, setIsAdmin] = useState(0);
+  const [avatar, setavatar] = useState("");
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+
   return (
     <div className="container">
       <div class="row g-0 text-center">
-        <div class="col-sm-6 col-md-3">
-          <div className="account-avatar">
-            <img className="avatar" src="../avatar4.jpg" alt="avatar"></img>
-            <div className="account">
-              Account of <br />
-              <strong>Username</strong>
-            </div>
-          </div>
-
-          <ul className="list-name">
-            <li className="li-is-active">
-              <a className="is-active" href="/profile">
-                <ManageAccounts
-                  style={{
-                    width: "3rem",
-                    height: "3rem",
-                    float: "left",
-                    marginLeft: "40px",
-                    color: "#3399FF",
-                  }}
-                ></ManageAccounts>
-                <span className="text-li">Account infomation</span>
-              </a>
-            </li>
-            <br />
-            <li className="li-order">
-              <a className="order" href="/profile">
-                <AddShoppingCart
-                  style={{
-                    width: "3rem",
-                    height: "3rem",
-                    float: "left",
-                    marginLeft: "40px",
-                    color: "	#009966",
-                  }}
-                ></AddShoppingCart>
-                <span className="text-li">Order management</span>
-              </a>
-            </li>{" "}
-            <br />
-            <li className="li-favorite">
-              <a className="favotite" href="/profile">
-                <FavoriteBorder
-                  style={{
-                    width: "3rem",
-                    height: "3rem",
-                    float: "left",
-                    marginLeft: "40px",
-                    color: "red",
-                  }}
-                ></FavoriteBorder>
-                <span className="text-li">Favorite product</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div className="detail col-6 col-md-9">
-          <div className="detail-name">Account infomation</div>
+        <div className="detail  col-10 col-md-12">
+          <div className="detail-nam0e">Account infomation</div>
 
           <div className="detail-container">
             <div className="info">
               <span>Personal infomation</span>
 
               <div className="detail-info">
-                <form>
+                <form
+                  onSubmit={handleSubmit(() => {
+                    let data = {
+                      username,
+                      email,
+                      password,
+                      address,
+                      gender,
+                      nationally,
+                      phone,
+                      avatar,
+                      isAdmin,
+                    };
+                    onSubmit(data);
+                  })}
+                >
                   <div className="form-info">
                     <div className="form-avatar">
                       <div className="avatar-style">
-                        <div className="avatar-view">
-                          <label class="btnChangeAvt1" for="ChangeAvatar">
+                        <label htmlFor="ChangeAvatar" className="avatar-view">
+                          <label class="btnChangeAvt1" htmlFor="ChangeAvatar">
                             <img
                               className="avatar-info"
                               src="avatar"
@@ -90,18 +68,20 @@ function Profile() {
                               alt="avatar"
                             ></img>
                           </label>
-                          <label class="btnChangeAvt" for="changeAvatar">
+                          <label class="btnChangeAvt" htmlFor="changeAvatar">
                             <CreateSharp />
                           </label>
                           <input
-                            required=""
+                            required={true}
                             id="changeAvatar"
                             hidden=""
                             type="file"
+                            accept="image/png, image/jpeg"
                             name="avatar"
                             class="text-center center-block file-upload"
+                            onChange={(e) => setavatar(e.target.files)}
                           ></input>
-                        </div>
+                        </label>
                       </div>
                     </div>
                     <div className="form-name">
@@ -109,69 +89,94 @@ function Profile() {
                         <label className="lable-name">Full name</label>
                         <div className="full-name">
                           <input
+                            required={true}
                             className="input-fullname"
                             type="text"
+                            value={username}
+                            onChange={(e) => {
+                              setUsername(e.target.value);
+                            }}
                             name="full name"
                             placeholder="full name"
                           ></input>
                         </div>
                       </div>
                       <div className="title-nickname">
-                        <label className="lable-nickname">Nick name</label>
+                        <label className="lable-nickname">Address</label>
                         <div className="nick-name">
                           <input
+                            required={true}
                             className="input-nickname"
                             type="text"
                             name="nick name"
-                            placeholder="nick name"
+                            placeholder="Address"
+                            value={address}
+                            onChange={(e) => {
+                              setAddress(e.target.value);
+                            }}
                           ></input>
                         </div>
                       </div>
                     </div>
-
+                    {/* 
                     <div class="form-day">
                       <label class="label-day">Date of birth</label>
-                      <input className="style-date" type="date"></input>
-                    </div>
+                      <input
+                        required={true} className="style-date" type="date"></input>
+                    </div> */}
 
                     <div class="form-sex">
-                      <label className="label-sex">Sex</label>
-                      <div className="label-radio">
-                        <label className="Radio">
-                          <input
-                            type="radio"
-                            name="gender"
-                            value="male"
-                          ></input>
-                          <span className="label">Male</span>
-                        </label>
-                        <label className="Radio">
-                          <input
-                            type="radio"
-                            name="gender"
-                            value="female"
-                          ></input>
-                          <span className="label">Female</span>
-                        </label>
-                        <label className="Radio">
-                          <input
-                            type="radio"
-                            name="gender"
-                            value="other"
-                          ></input>
-                          <span className="label">Other</span>
-                        </label>
-                      </div>
+                      <label className="label-sex">Gender</label>
+
+                      <select
+                        name="gender"
+                        id=""
+                        value={gender}
+                        onChange={(e) => {
+                          setGender(e.target.value);
+                        }}
+                      >
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                        <option value="orther">Orther</option>
+                      </select>
                     </div>
 
                     <div className="form-nation">
                       <label className="nation-name"> Nationally</label>
 
                       <div className="style-nation">
-                        <select className="select-nation">
+                        <select
+                          name="gender"
+                          id=""
+                          value={nationally}
+                          onChange={(e) => {
+                            setNationally(e.target.value);
+                          }}
+                          className="select-nation"
+                        >
                           <option value="VietNam">Việt Nam</option>
                           <option value="My">Mỹ</option>
                           <option value="Duc">Đức</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="form-nation">
+                      <label className="nation-name">Admin</label>
+
+                      <div className="style-nation">
+                        <select
+                          name="isAdmin"
+                          id=""
+                          value={isAdmin}
+                          onChange={(e) => {
+                            setIsAdmin(e.target.value);
+                          }}
+                          className="select-nation"
+                        >
+                          <option value="1">True</option>
+                          <option value="0">false</option>
                         </select>
                       </div>
                     </div>
@@ -202,12 +207,15 @@ function Profile() {
                   <span className="title-phone">Phone number</span>
                   <br></br>
                   <input
-                    required
+                    required={true}
                     type="text"
                     class="form-number"
                     name="numberPhone"
                     id="number-phone"
-                    value="0329161255"
+                    value={phone}
+                    onChange={(e) => {
+                      setPhone(e.target.value);
+                    }}
                   ></input>
                 </div>
               </div>
@@ -221,12 +229,16 @@ function Profile() {
                   <span className="title-phone">Email</span>
                   <br></br>
                   <input
-                    required
+                    required={true}
                     type="text"
                     class="form-number"
                     name="numberPhone"
                     id="number-phone"
                     placeholder="Email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
                   ></input>
                 </div>
               </div>
@@ -242,12 +254,16 @@ function Profile() {
                   <span className="title-phone">Password</span>
                   <br></br>
                   <input
-                    required
+                    required={true}
                     type="text"
                     class="form-number"
                     name="numberPhone"
                     id="number-phone"
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                   ></input>
                 </div>
               </div>
