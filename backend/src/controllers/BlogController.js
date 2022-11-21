@@ -14,7 +14,7 @@ class BlogControllers {
       `${sql}; ${sql2}`,
       [req.query.category, Number(req.query.page || 0)],
       (err, result) => {
-        err ? console.log(err) : res.json(result);
+        err ? res.status(401).json("lỗi") : res.json(result);
       }
     );
   }
@@ -25,7 +25,7 @@ class BlogControllers {
     let sql = `SELECT COUNT(*) as total FROM fashion_shop.blog where blog.category = ?`;
 
     connection.query(`${sql}`, [req.query.category], (err, result) => {
-      err ? console.log(err) : res.json(result);
+      err ? res.status(401).json("lỗi") : res.json(result);
     });
   }
 
@@ -50,9 +50,19 @@ class BlogControllers {
       `${sql}`,
       [id, title, content, category, getDate, image, idAuthor, author],
       (err, result) => {
-        err ? console.log(err) : res.json("");
+        err ? res.status(401).json("lỗi") : res.json("");
       }
     );
+  }
+
+  // [GET] /blog/detail/:id
+  blogDetail(req, res, next) {
+    // console.log(req.query.category);
+    let sql = `SELECT * FROM fashion_shop.blog where blog.idblog = ?`;
+
+    connection.query(`${sql}`, [req.params.id], (err, result) => {
+      err ? res.status(401).json("lỗi") : res.json(result);
+    });
   }
 }
 

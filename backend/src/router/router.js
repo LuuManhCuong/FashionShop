@@ -40,6 +40,7 @@ function router(app) {
   // blog router
   app.route("/blog").get(BlogController.blog).post(BlogController.createBlog);
   app.route("/blog/count").get(BlogController.countBlog);
+  app.route("/blog/detail/:id").get(BlogController.blogDetail);
 
   // admin router
   app.route("/admin").get(authenJwt.verifyAdmin, AdminController.adminUser);

@@ -54,16 +54,22 @@ function DataCustomer() {
 
   // checkToken(user, dispatch);
 
-  const newToken = async () => {
+  async function newToken() {
     try {
-      const res = await axios.post(`http://localhost:5000/refresh`, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        `http://localhost:5000/refresh`,
+        {
+          refreshToken: user.accessToken,
+        },
+        {
+          withCredentials: true,
+        }
+      );
       return res.data;
     } catch (error) {
       console.log(error);
     }
-  };
+  }
   // kiểm tra xem token đã hết hạn hay chưa
   axiosJwt.interceptors.request.use(
     async (config) => {
@@ -71,14 +77,16 @@ function DataCustomer() {
       const decodedToken = jwtDecode(user?.accessToken);
 
       if (decodedToken.exp < date.getTime() / 1000) {
-        console.log("token hết hạn");
+  
         const data = await newToken();
-        console.log("token mới", data);
+        // console.log(data);
         // refresh user khi token hết hạn
         const refreshUser = {
           ...user,
-          accessToken: data.accessToken,
+          accessToken: data,
         };
+
+        console.log("rf: ", refreshUser);
         dispatch(userSlice.actions.loginSuccess(refreshUser));
         config.headers["token"] = `Bearer ${data.accessToken}`;
       }

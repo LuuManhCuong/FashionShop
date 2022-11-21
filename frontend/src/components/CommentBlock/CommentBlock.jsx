@@ -1,47 +1,62 @@
-// import CommentItem from "../CommentItem/CommentItem";
+import CommentItem from "../CommentItem/CommentItem";
 import "./commentBlock.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { userSelector } from "../../redux/selectors";
+import { Link } from "react-router-dom";
 
 function CommentBlock() {
+  const checkUser = useSelector(userSelector);
+  const user = checkUser.login.currentUser;
+  // console.log("user: ", user);
 
-  const [comment, setComment] = useState('')
+  const [comment, setComment] = useState("");
 
-  const [comments, setComments] = useState(() => {
-    const stComments = JSON.parse(localStorage.getItem('comments'))
-    return (stComments ?? [])
-  })
+  // const [comments, setComments] = useState(() => {
+  //   const stComments = JSON.parse(localStorage.getItem('comments'))
+  //   return (stComments ?? [])
+  // })
 
-  const handleSubmit = () => {
-    setComments(prev => {
-      const newComments = [...prev, comment]
+  // const handleSubmit = () => {
+  //   setComments(prev => {
+  //     const newComments = [...prev, comment]
 
-      // save to local storage
-      const jsonComments = JSON.stringify(newComments)
-      localStorage.setItem('comments', jsonComments)
+  //     // save to local storage
+  //     const jsonComments = JSON.stringify(newComments)
+  //     localStorage.setItem('comments', jsonComments)
 
-      return newComments
-    })
-    setComment('')
-    console.log(comment)
-  }
+  //     return newComments
+  //   })
+  //   setComment('')
+  //   console.log(comment)
+  // }
 
   return (
     <div className="comment-block">
-      <h3 className="title">Đánh giá sản phẩm</h3>
+      <h3 className="title">Bình luận</h3>
       <div className="input-text">
-        <div className="cmt-input">
-          <textarea className="input" type="text" placeholder="Bình luận..."
-            value={comment}
-            onChange={e => setComment(e.target.value)}
-          />
-          <button className="submit-btn" type="submit"
-            onClick={handleSubmit}
-          >
-            Gửi
-          </button>
+        {user ? (
+          <div className="cmt-input">
+            <textarea
+              className="input"
+              type="text"
+              placeholder="Bình luận..."
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <button
+              className="submit-btn"
+              type="submit"
+              // onClick={handleSubmit}
+            >
+              Gửi
+            </button>
+          </div>
+        ) : (
+          <Link to="/login">Đăng nhập để bình luận</Link>
+        )}
 
-        </div>
-        <ul style={{ clear: "both" }}>
+        {/* <ul style={{ clear: "both" }}>
           {comments.map((comment, index) => (
 
             <li key={index}>
@@ -65,8 +80,12 @@ function CommentBlock() {
               </div>
             </li>
           ))}
-        </ul>
-
+        </ul> */}
+        <CommentItem></CommentItem>
+        <CommentItem></CommentItem>
+        <CommentItem></CommentItem>
+        <CommentItem></CommentItem>
+        <CommentItem></CommentItem>
       </div>
     </div>
   );

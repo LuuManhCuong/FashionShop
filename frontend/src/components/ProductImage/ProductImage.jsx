@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 function ProductImage() {
   let userId = useParams();
-  console.log("id: ", userId.id);
+  // console.log("id: ", userId.id);
   const [active, setActive] = useState(
     "https://preview.colorlib.com/theme/fashi/img/products/man-1.jpg"
   );

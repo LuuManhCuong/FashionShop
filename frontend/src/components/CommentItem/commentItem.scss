@@ -6,9 +6,10 @@
   .res-wrap {
     display: flex;
     border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+      rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
     padding: 10px;
-    .avatar {
+    .avatar-us {
       width: 40px;
       height: 40px;
       border-radius: 100%;

@@ -95,6 +95,7 @@ const AccountControllers = {
   // [POST]  /refresh
   refreshToken: async (req, res, next) => {
     const refreshToken = req.cookies.refreshToken;
+    // console.log(refreshToken);
     if (!refreshToken) {
       return res
         .status(401)
@@ -122,7 +123,7 @@ const AccountControllers = {
         path: "/",
         sameSite: "strict",
       });
-      res.status(200).json({ "access token ": newAccessToken });
+      res.status(200).json(newAccessToken);
     });
   },
 };

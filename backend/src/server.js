@@ -5,6 +5,13 @@ const router = require("./router/router");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const http = require('http').Server(app);
+const socketIO = require("socket.io")(http, {
+  cors: {
+    origin: "http://localhost:3000",
+  },
+});
+
 const port = 5000;
 
 app.use(
@@ -23,6 +30,14 @@ app.use(
     origin: ["http://localhost:3000"],
   })
 );
+
+//Add this before the app.get() block
+socketIO.on("connection", (socket) => {
+  console.log(`⚡: ${socket.id} user just connected!`);
+  socket.on("disconnect", () => {
+    console.log("🔥: A user disconnected");
+  });
+});
 
 router(app);
 
