@@ -9,7 +9,7 @@ import LoginPage from "./pages/LoginPage";
 import Admin from "./pages/Admin";
 import Register from "./components/AuththenComponent/Register";
 import ContactPage from "./pages/ContactPage";
-import ProfilePage from "./pages/ProfilePage";
+// import ProfilePage from "./pages/ProfilePage";
 import BlogPostPage from "./pages/BlogPostPage";
 import Doremon from "./components/Doremon/Doremon";
 import { useDispatch } from "react-redux";
@@ -38,7 +38,7 @@ function App() {
       <Route path="/contact" element={<ContactPage />}></Route>
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/admin" element={<Admin />}></Route>
-      <Route path="/profile" element={<ProfilePage />}></Route>
+      {/* <Route path="/profile" element={<ProfilePage />}></Route> */}
       <Route path="/postblog" element={<BlogPostPage />}></Route>
       <Route path="/gfu" element={<Doremon></Doremon>}></Route>
     </Routes>

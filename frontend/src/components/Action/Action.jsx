@@ -14,6 +14,9 @@ import { useNavigate } from "react-router-dom";
 import { userSelector } from "../../redux/selectors";
 import { reloadApi } from "../../redux/reducer/adminSlice";
 
+// import { useForm } from "react-hook-form";
+import Profile from "../Proflie/Profile";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -26,6 +29,8 @@ const style = {
   p: 4,
 };
 
+
+// action item là thông tin tương ứng với user
 function Action({ item, showInfoUser }) {
   const navigate = useNavigate();
   const checkUser = useSelector(userSelector);
@@ -35,6 +40,16 @@ function Action({ item, showInfoUser }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [opens, setOpens] = React.useState(false);
+  const handleOpens = () => setOpens(true);
+  const handleCloses = () => setOpens(false);
+
+  // const {
+  //   register,
+  //   formState: { errors },
+  //   handleSubmit,
+  // } = useForm();
+  // const onSubmit = (data) => console.log("send", data);
   const handleDeleteUser = (id) => {
     fetch(`http://localhost:5000/admin/delete/user/${id}`, {
       method: "DELETE",
@@ -133,9 +148,25 @@ function Action({ item, showInfoUser }) {
         </Modal>
       </div>
 
-      <button>
+      <button onClick={handleOpens}>
         <Edit className="edit-btn" />
       </button>
+
+      <div>
+        <Modal
+          open={opens}
+          onClose={handleCloses}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Chỉnh sửa thông tin người dùng
+            </Typography>
+            <Profile userInfo={item}></Profile>
+          </Box>
+        </Modal>
+      </div>
     </div>
   );
 }

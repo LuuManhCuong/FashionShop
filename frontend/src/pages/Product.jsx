@@ -9,11 +9,9 @@ import { getHomeRequest } from "../redux/reducer/homeSlice";
 // import axios from "axios"
 
 function Product() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();// gọi dữ liệu
   dispatch(getHomeRequest());
-  // useEffect(() => {
-  //   axios.get(`http://localhost:5000/shop/detail/${id}`)
-  // } , [])
+  
   return (
     <>
       <Header></Header>

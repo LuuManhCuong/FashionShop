@@ -10,13 +10,14 @@ const uploadCloud = require("../config/cloudnary");
 function router(app) {
   app.route("/search").get(SearchController.SearchProduct);
 
+  // account router
   app.route("/register").post(AccountControllers.register);
-
   app.route("/login").post(AccountControllers.login);
   app.route("/refresh").post(AccountControllers.refreshToken);
-
-  // mdw: đăng nhập rồi thì mới đăng xuất dc
   app.route("/logout").post(authenJwt.verifyToken, AccountControllers.logout);
+  app
+    .route("/update/user/:id")
+    .patch(authenJwt.verifyToken, AccountControllers.updateUser);
 
   // home router
   app.route("/").get(HomeControllers.home);
@@ -26,6 +27,8 @@ function router(app) {
   app.route("/shop").get(ShopControllers.shop);
   app.route("/shop/count").get(ShopControllers.countProduct);
   app.route("/shop/getPrice").get(ShopControllers.getPrice);
+  app.route("/shop/detail/:id").get(ShopControllers.productDetail);
+  app.route("/shop/detail/info/:id").get(ShopControllers.productDetailInfo);
   app.route("/cart/add/").post(authenJwt.verifyToken, ShopControllers.cartAdd);
   app
     .route("/cart/:idUser")

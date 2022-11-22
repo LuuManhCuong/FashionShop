@@ -38,9 +38,9 @@ function Menu({ direction, ...args }) {
               {user.username}
             </DropdownToggle>
             <DropdownMenu {...args}>
-              <DropdownItem>
+              {/* <DropdownItem>
                 <Link to="/profile">Profile</Link>
-              </DropdownItem>
+              </DropdownItem> */}
               <DropdownItem>
                 <Link to="/">My post</Link>
               </DropdownItem>

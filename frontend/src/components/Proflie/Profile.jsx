@@ -1,174 +1,289 @@
 import "./Profile.scss";
 import {
-  FavoriteBorder,
-  ManageAccounts,
-  AddShoppingCart,
   CreateSharp,
   PhoneCallback,
   Email,
   Password,
 } from "@mui/icons-material";
-function Profile() {
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { userSelector } from "../../redux/selectors";
+// import { reloadApiSlector } from "../../redux/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { reloadApi } from "../../redux/reducer/adminSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+function Profile({ userInfo }) {
+  // console.log(userInfo);
+  const dispatch = useDispatch();
+
+  const checkUser = useSelector(userSelector);
+  const user = checkUser.login?.currentUser;
+  // const reloadApi = useSelector(reloadApiSlector);
+
+  const [username, setUsername] = useState(userInfo.username);
+  const [email, setEmail] = useState(userInfo.email);
+  const [password, setPassword] = useState(userInfo.password);
+  const [phone, setPhone] = useState(userInfo.phone);
+  const [address, setAddress] = useState(userInfo.address);
+  const [gender, setGender] = useState(userInfo.gender || "male");
+  const [nationally, setNationally] = useState(
+    userInfo.nationally || "Việt Nam"
+  );
+  const [isAdmin, setIsAdmin] = useState(userInfo.isAdmin || 0);
+  const [avatar, setAvatar] = useState([]);
+  const [avt, setAvt] = useState([]);
+  const [textButton, setTextButton] = useState("next");
+
+  
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  // chuyển ảnh thành base 64
+  const handleConverImg = (arr, cb) => {
+    arr.forEach((file) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        cb((prev) => [...prev, reader.result]);
+      };
+    });
+  };
+
+  const onSubmit = (data) => {
+    // console.log(data);
+    handleConverImg(avatar, setAvt);
+
+    if (avt.length <= 0) {
+      setTextButton("Hoàn tất");
+    } else {
+      axios
+        .post(`http://localhost:5000/cloudinary-upload`, {
+          avatar: avt,
+        })
+
+
+        .then((resCloud) => {
+          let setData = {
+            ...data,
+            avatar: resCloud.data.avatarUrl.secure_url,
+          };
+          console.log("send: ", setData);
+          axios
+            .patch(
+              `http://localhost:5000/update/user/${userInfo.idUser}`,
+              setData,
+              {
+                headers: {
+                  token: `Bearer ${user.accessToken}`,
+                },
+              }
+            )
+            .then((res) => {
+              toast.success(` Sửa thông tin người dùng thành công!!! `, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+              dispatch(reloadApi.actions.setReload());
+            })
+            .catch((err) =>
+              toast.error(`Không thành công, vui lòng thử lại!!!`, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              })
+            );
+        })
+        .catch((err) => {
+          toast.error(`Không thành công, vui lòng thử lại!!!`, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        });
+    }
+  };
+
   return (
     <div className="container">
       <div class="row g-0 text-center">
-        <div class="col-sm-6 col-md-3">
-          <div className="account-avatar">
-            <img className="avatar" src="../avatar4.jpg" alt="avatar"></img>
-            <div className="account">
-              Account of <br />
-              <strong>Username</strong>
-            </div>
-          </div>
-
-          <ul className="list-name">
-            <li className="li-is-active">
-              <a className="is-active" href="/profile">
-                <ManageAccounts
-                  style={{
-                    width: "3rem",
-                    height: "3rem",
-                    float: "left",
-                    marginLeft: "40px",
-                    color: "#3399FF",
-                  }}
-                ></ManageAccounts>
-                <span className="text-li">Account infomation</span>
-              </a>
-            </li>
-            <br />
-            <li className="li-order">
-              <a className="order" href="/profile">
-                <AddShoppingCart
-                  style={{
-                    width: "3rem",
-                    height: "3rem",
-                    float: "left",
-                    marginLeft: "40px",
-                    color: "	#009966",
-                  }}
-                ></AddShoppingCart>
-                <span className="text-li">Order management</span>
-              </a>
-            </li>{" "}
-            <br />
-            <li className="li-favorite">
-              <a className="favotite" href="/profile">
-                <FavoriteBorder
-                  style={{
-                    width: "3rem",
-                    height: "3rem",
-                    float: "left",
-                    marginLeft: "40px",
-                    color: "red",
-                  }}
-                ></FavoriteBorder>
-                <span className="text-li">Favorite product</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div className="detail col-6 col-md-9">
-          <div className="detail-name">Account infomation</div>
+        <div className="detail  col-10 col-md-12">
 
           <div className="detail-container">
             <div className="info">
               <span>Personal infomation</span>
 
               <div className="detail-info">
-                <form>
+                <form
+                  onSubmit={handleSubmit(() => {
+                    let data = {
+                      username,
+                      email,
+                      password,
+                      address,
+                      gender,
+                      nationally,
+                      phone,
+                      isAdmin,
+                      avatar,
+                    };
+                    onSubmit(data);
+                  })}
+                >
                   <div className="form-info">
                     <div className="form-avatar">
                       <div className="avatar-style">
                         <div className="avatar-view">
-                          <label class="btnChangeAvt1" for="ChangeAvatar">
+                          <label class="btnChangeAvt1" htmlFor="changeAvatar">
                             <img
                               className="avatar-info"
-                              src="avatar"
+                              src={userInfo.avatar}
                               class="avatar img-circle img-thumbnail"
                               alt="avatar"
                             ></img>
                           </label>
-                          <label class="btnChangeAvt" for="changeAvatar">
+                          <label class="btnChangeAvt" htmlFor="changeAvatar">
                             <CreateSharp />
                           </label>
+                          {/* avatar */}
                           <input
-                            required=""
+                            {...register("avatar", { required: true })}
                             id="changeAvatar"
                             hidden=""
                             type="file"
+                            accept="image/png, image/jpeg"
                             name="avatar"
                             class="text-center center-block file-upload"
+                            onChange={(e) => setAvatar([e.target.files[0]])}
                           ></input>
+
+                          {errors.avatar?.type === "required" && (
+                            <p style={{ color: "red" }} role="alert">
+                              Vui lòng nhập trường này
+                            </p>
+                          )}
                         </div>
                       </div>
                     </div>
+
                     <div className="form-name">
                       <div className="title-name">
-                        <label className="lable-name">Full name</label>
+                        <label className="lable-name">Username</label>
                         <div className="full-name">
                           <input
+                          style={{width: "250px"}}
+                          // thu vien react hook form
+                            {...register("username", { required: true })}
                             className="input-fullname"
                             type="text"
-                            name="full name"
-                            placeholder="full name"
+                            value={username}
+                            onChange={(e) => {
+                              setUsername(e.target.value);
+                            }}
+                            name="username"
+                            placeholder={userInfo.username}
                           ></input>
+
+                          {/* thu vien react hook form */}
+                          {errors.username?.type === "required" && (
+                            <p style={{ color: "red" }} role="alert">
+                              Vui lòng nhập trường này
+                            </p>
+                          )}
                         </div>
                       </div>
                       <div className="title-nickname">
-                        <label className="lable-nickname">Nick name</label>
+                        <label className="lable-nickname">Address</label>
                         <div className="nick-name">
                           <input
+                          style={{width: "250px"}}
+                            {...register("address", { required: true })}
                             className="input-nickname"
                             type="text"
-                            name="nick name"
-                            placeholder="nick name"
+                            name="address"
+                            placeholder={userInfo.address || "address"}
+                            value={address}
+                            onChange={(e) => {
+                              setAddress(e.target.value);
+                            }}
                           ></input>
+                          {errors.address?.type === "required" && (
+                            <p style={{ color: "red" }} role="alert">
+                              Vui lòng nhập trường này
+                            </p>
+                          )}
                         </div>
                       </div>
                     </div>
 
-                    <div class="form-day">
-                      <label class="label-day">Date of birth</label>
-                      <input className="style-date" type="date"></input>
+                    <div class="formsex">
+                      <label className="label-sex">Gender</label>
+
+                      <select
+                      style={{marginLeft: "20px"}}
+                        id=""
+                        value={gender}
+                        onChange={(e) => {
+                          setGender(e.target.value);
+                        }}
+                      >
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                        <option value="orther">Orther</option>
+                      </select>
                     </div>
 
-                    <div class="form-sex">
-                      <label className="label-sex">Sex</label>
-                      <div className="label-radio">
-                        <label className="Radio">
-                          <input
-                            type="radio"
-                            name="gender"
-                            value="male"
-                          ></input>
-                          <span className="label">Male</span>
-                        </label>
-                        <label className="Radio">
-                          <input
-                            type="radio"
-                            name="gender"
-                            value="female"
-                          ></input>
-                          <span className="label">Female</span>
-                        </label>
-                        <label className="Radio">
-                          <input
-                            type="radio"
-                            name="gender"
-                            value="other"
-                          ></input>
-                          <span className="label">Other</span>
-                        </label>
-                      </div>
+                    <div class="form-admin">
+                      <label className="label-admin">Admin</label>
+
+                      <select
+                      style={{marginLeft: "25px"}}
+                        id=""
+                        value={isAdmin}
+                        onChange={(e) => {
+                          setIsAdmin(e.target.value);
+                        }}
+                      >
+                        <option value="0">false</option>
+                        <option value={`1`}>true</option>
+                      </select>
                     </div>
 
                     <div className="form-nation">
-                      <label className="nation-name"> Nationally</label>
+                      <label style={{paddingLeft: "125px"}} className="nation-name"> Nationally</label>
 
                       <div className="style-nation">
-                        <select className="select-nation">
+                        <select
+                        style={{marginLeft: "20px"}}
+                          name="nationally"
+                          id=""
+                          value={nationally}
+                          onChange={(e) => {
+                            setNationally(e.target.value);
+                          }}
+                          className="select-nation"
+                        >
                           <option value="VietNam">Việt Nam</option>
                           <option value="My">Mỹ</option>
                           <option value="Duc">Đức</option>
@@ -178,7 +293,7 @@ function Profile() {
 
                     <div className="form-button">
                       <button className="button-apply" type="submit">
-                        Save change
+                        {textButton}
                       </button>
                     </div>
                   </div>
@@ -202,13 +317,23 @@ function Profile() {
                   <span className="title-phone">Phone number</span>
                   <br></br>
                   <input
-                    required
+                  style={{width: "250px"}}
+                    {...register("phone", { required: true })}
                     type="text"
                     class="form-number"
-                    name="numberPhone"
+                    name="phone"
                     id="number-phone"
-                    value="0329161255"
+                    value={phone}
+                    placeholder={userInfo.phone || "01244..."}
+                    onChange={(e) => {
+                      setPhone(e.target.value);
+                    }}
                   ></input>
+                  {errors.phone?.type === "required" && (
+                    <p style={{ color: "red" }} role="alert">
+                      Vui lòng nhập trường này
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="container-phone">
@@ -221,13 +346,23 @@ function Profile() {
                   <span className="title-phone">Email</span>
                   <br></br>
                   <input
-                    required
-                    type="text"
+                  style={{width: "250px"}}
+                    {...register("email", { required: true })}
+                    type="Email"
                     class="form-number"
-                    name="numberPhone"
+                    name="email"
                     id="number-phone"
-                    placeholder="Email"
+                    placeholder={userInfo.email}
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
                   ></input>
+                  {errors.email?.type === "required" && (
+                    <p style={{ color: "red" }} role="alert">
+                      Vui lòng nhập trường này
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="container-phone">
@@ -242,19 +377,42 @@ function Profile() {
                   <span className="title-phone">Password</span>
                   <br></br>
                   <input
-                    required
-                    type="text"
+                  style={{width: "250px"}}
+                    {...register("password", { required: true })}
+                    type="password"
                     class="form-number"
-                    name="numberPhone"
+                    name="password"
                     id="number-phone"
-                    placeholder="Password"
+                    placeholder="New Password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                   ></input>
+                  {errors.password?.type === "required" && (
+                    <p style={{ color: "red" }} role="alert">
+                      Vui lòng nhập trường này
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }
