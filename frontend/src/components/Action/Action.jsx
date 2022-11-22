@@ -161,7 +161,7 @@ function Action({ item, showInfoUser }) {
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Chỉnh sửa thông tin người dùng
+                <h3 style={{paddingLeft: "30px", fontWeight: "600" }}>Chỉnh sửa thông tin người dùng</h3>
             </Typography>
             <Profile userInfo={item}></Profile>
           </Box>
