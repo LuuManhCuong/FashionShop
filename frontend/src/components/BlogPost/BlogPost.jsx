@@ -24,9 +24,9 @@ function BlogPost() {
   const checkUser = useSelector(userSelector);
   const user = checkUser.login?.currentUser;
 
-  const handleChange = (event: SelectChangeEvent) => {
+  function handleChange(event: SelectChangeEvent) {
     setCategory(event.target.value);
-  };
+  }
 
   const {
     register,
@@ -312,7 +312,8 @@ function BlogPost() {
                   <span className="input-group-text" id="addon-wrapping">
                     Content
                   </span>
-                  <input
+                  
+                  <textarea
                     {...register("Content", {
                       required: true,
                     })}
@@ -325,7 +326,7 @@ function BlogPost() {
                     onChange={(e) => {
                       setContent(e.target.value);
                     }}
-                  ></input>
+                  />
                 </div>
                 {errors.Content && (
                   <p

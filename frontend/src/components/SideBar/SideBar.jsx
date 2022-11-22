@@ -6,17 +6,8 @@ import { SearchOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 // import { blogFilterTag } from "../../redux/reducer/blogSlice";
-import {
-  blogDataSelector,
-  shopFilterSelector,
-  shopFilterSizeSelector,
-  // blogFilterTagSelector,
-} from "../../redux/selectors";
-import {
-  shopFilter,
-  shopFilterPrice,
-  shopFilterSize,
-} from "../../redux/reducer/shopSlice";
+import {blogDataSelector,shopFilterSelector,shopFilterSizeSelector, } from "../../redux/selectors";
+import {shopFilter, shopFilterPrice, shopFilterSize,} from "../../redux/reducer/shopSlice";
 
 const cx = classNames.bind(styles);
 const categories = ["Clothings", "Handbag", "Shoes", "Accessories"];
