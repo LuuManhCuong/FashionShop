@@ -8,23 +8,29 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import { userSelector } from "../../redux/selectors";
-import { reloadApiSlector } from "../../redux/selectors";
+// import { reloadApiSlector } from "../../redux/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { reloadApi } from "../../redux/reducer/adminSlice";
 
-function Profile({ idUser }) {
+function Profile({ userInfo }) {
+  // console.log(userInfo);
+  const dispatch = useDispatch();
+
   const checkUser = useSelector(userSelector);
   const user = checkUser.login?.currentUser;
-  const reloadApi = useSelector(reloadApiSlector);
+  // const reloadApi = useSelector(reloadApiSlector);
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [gender, setGender] = useState("male");
-  const [nationally, setNationally] = useState("Việt Nam");
-  const [isAdmin, setIsAdmin] = useState("0");
+  const [username, setUsername] = useState(userInfo.username);
+  const [email, setEmail] = useState(userInfo.email);
+  const [password, setPassword] = useState(userInfo.password);
+  const [phone, setPhone] = useState(userInfo.phone);
+  const [address, setAddress] = useState(userInfo.address);
+  const [gender, setGender] = useState(userInfo.gender || "male");
+  const [nationally, setNationally] = useState(
+    userInfo.nationally || "Việt Nam"
+  );
+  const [isAdmin, setIsAdmin] = useState(userInfo.isAdmin || 0);
   const [avatar, setAvatar] = useState([]);
   const [avt, setAvt] = useState([]);
   const {
@@ -44,7 +50,7 @@ function Profile({ idUser }) {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     handleConverImg(avatar, setAvt);
     axios
       .post(`http://localhost:5000/cloudinary-upload`, {
@@ -55,14 +61,24 @@ function Profile({ idUser }) {
           ...data,
           avatar: resCloud.data.avatarUrl.secure_url,
         };
+        console.log("send: ", setData);
         axios
-          .patch(`http://localhost:5000/update/user/${idUser}`, setData, {
-            headers: {
-              token: `Bearer ${user.accessToken}`,
-            },
+          .patch(
+            `http://localhost:5000/update/user/${userInfo.idUser}`,
+            setData,
+            {
+              headers: {
+                token: `Bearer ${user.accessToken}`,
+              },
+            }
+          )
+          .then((res) => {
+            dispatch(reloadApi.actions.setReload());
           })
-          .then((res) => console.log("thành công", res))
           .catch((err) => console.log(err));
+      })
+      .catch((err) => {
+        console.log("lỗi ko up dc ảnh");
       });
   };
 
@@ -97,10 +113,10 @@ function Profile({ idUser }) {
                     <div className="form-avatar">
                       <div className="avatar-style">
                         <div className="avatar-view">
-                          <label class="btnChangeAvt1" htmlFor="ChangeAvatar">
+                          <label class="btnChangeAvt1" htmlFor="changeAvatar">
                             <img
                               className="avatar-info"
-                              src="avatar"
+                              src={userInfo.avatar}
                               class="avatar img-circle img-thumbnail"
                               alt="avatar"
                             ></img>
@@ -141,7 +157,7 @@ function Profile({ idUser }) {
                               setUsername(e.target.value);
                             }}
                             name="username"
-                            placeholder="full name"
+                            placeholder={userInfo.username}
                           ></input>
                           {errors.username?.type === "required" && (
                             <p style={{ color: "red" }} role="alert">
@@ -158,7 +174,7 @@ function Profile({ idUser }) {
                             className="input-nickname"
                             type="text"
                             name="address"
-                            placeholder="address"
+                            placeholder={userInfo.address || "address"}
                             value={address}
                             onChange={(e) => {
                               setAddress(e.target.value);
@@ -177,7 +193,6 @@ function Profile({ idUser }) {
                       <label className="label-sex">Gender</label>
 
                       <select
-                        name="gender"
                         id=""
                         value={gender}
                         onChange={(e) => {
@@ -194,7 +209,6 @@ function Profile({ idUser }) {
                       <label className="label-sex">Admin</label>
 
                       <select
-                        name="admin"
                         id=""
                         value={isAdmin}
                         onChange={(e) => {
@@ -202,7 +216,7 @@ function Profile({ idUser }) {
                         }}
                       >
                         <option value="0">false</option>
-                        <option value="1">true</option>
+                        <option value={`1`}>true</option>
                       </select>
                     </div>
 
@@ -258,6 +272,7 @@ function Profile({ idUser }) {
                     name="phone"
                     id="number-phone"
                     value={phone}
+                    placeholder={userInfo.phone || "01244..."}
                     onChange={(e) => {
                       setPhone(e.target.value);
                     }}
@@ -284,7 +299,7 @@ function Profile({ idUser }) {
                     class="form-number"
                     name="email"
                     id="number-phone"
-                    placeholder="Email"
+                    placeholder={userInfo.email}
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value);
@@ -314,7 +329,7 @@ function Profile({ idUser }) {
                     class="form-number"
                     name="password"
                     id="number-phone"
-                    placeholder="Password"
+                    placeholder="New Password"
                     value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);

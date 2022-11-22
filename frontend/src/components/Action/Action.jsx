@@ -161,7 +161,7 @@ function Action({ item, showInfoUser }) {
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Chỉnh sửa thông tin user
             </Typography>
-            <Profile idUser={item.idUser}></Profile>
+            <Profile userInfo={item}></Profile>
           </Box>
         </Modal>
       </div>
