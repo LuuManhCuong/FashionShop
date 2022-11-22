@@ -1,8 +1,5 @@
 import "./Profile.scss";
 import {
-  // FavoriteBorder,
-  // ManageAccounts,
-  // AddShoppingCart,
   CreateSharp,
   PhoneCallback,
   Email,
@@ -10,24 +7,64 @@ import {
 } from "@mui/icons-material";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { userSelector } from "../../redux/selectors";
+import { reloadApiSlector } from "../../redux/selectors";
 
-function Profile() {
+function Profile({ idUser }) {
+  const checkUser = useSelector(userSelector);
+  const user = checkUser.login?.currentUser;
+  const reloadApi = useSelector(reloadApiSlector);
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [gender, setGender] = useState("");
-  const [nationally, setNationally] = useState("");
-  const [isAdmin, setIsAdmin] = useState(0);
-  const [avatar, setavatar] = useState("");
-
+  const [gender, setGender] = useState("male");
+  const [nationally, setNationally] = useState("Việt Nam");
+  const [isAdmin, setIsAdmin] = useState("0");
+  const [avatar, setAvatar] = useState([]);
+  const [avt, setAvt] = useState([]);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const handleConverImg = (arr, cb) => {
+    arr.forEach((file) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        cb((prev) => [...prev, reader.result]);
+      };
+    });
+  };
+
+  const onSubmit = (data) => {
+    console.log(data);
+    handleConverImg(avatar, setAvt);
+    axios
+      .post(`http://localhost:5000/cloudinary-upload`, {
+        avatar: avt,
+      })
+      .then((resCloud) => {
+        let setData = {
+          ...data,
+          avatar: resCloud.data.avatarUrl.secure_url,
+        };
+        axios
+          .patch(`http://localhost:5000/update/user/${idUser}`, setData, {
+            headers: {
+              token: `Bearer ${user.accessToken}`,
+            },
+          })
+          .then((res) => console.log("thành công", res))
+          .catch((err) => console.log(err));
+      });
+  };
 
   return (
     <div className="container">
@@ -50,8 +87,8 @@ function Profile() {
                       gender,
                       nationally,
                       phone,
-                      avatar,
                       isAdmin,
+                      avatar,
                     };
                     onSubmit(data);
                   })}
@@ -59,7 +96,7 @@ function Profile() {
                   <div className="form-info">
                     <div className="form-avatar">
                       <div className="avatar-style">
-                        <label htmlFor="ChangeAvatar" className="avatar-view">
+                        <div className="avatar-view">
                           <label class="btnChangeAvt1" htmlFor="ChangeAvatar">
                             <img
                               className="avatar-info"
@@ -72,58 +109,69 @@ function Profile() {
                             <CreateSharp />
                           </label>
                           <input
-                            required={true}
+                            {...register("avatar", { required: true })}
                             id="changeAvatar"
                             hidden=""
                             type="file"
                             accept="image/png, image/jpeg"
                             name="avatar"
                             class="text-center center-block file-upload"
-                            onChange={(e) => setavatar(e.target.files)}
+                            onChange={(e) => setAvatar([e.target.files[0]])}
                           ></input>
-                        </label>
+
+                          {errors.avatar?.type === "required" && (
+                            <p style={{ color: "red" }} role="alert">
+                              Vui lòng nhập trường này
+                            </p>
+                          )}
+                        </div>
                       </div>
                     </div>
+
                     <div className="form-name">
                       <div className="title-name">
-                        <label className="lable-name">Full name</label>
+                        <label className="lable-name">Username</label>
                         <div className="full-name">
                           <input
-                            required={true}
+                            {...register("username", { required: true })}
                             className="input-fullname"
                             type="text"
                             value={username}
                             onChange={(e) => {
                               setUsername(e.target.value);
                             }}
-                            name="full name"
+                            name="username"
                             placeholder="full name"
                           ></input>
+                          {errors.username?.type === "required" && (
+                            <p style={{ color: "red" }} role="alert">
+                              Vui lòng nhập trường này
+                            </p>
+                          )}
                         </div>
                       </div>
                       <div className="title-nickname">
                         <label className="lable-nickname">Address</label>
                         <div className="nick-name">
                           <input
-                            required={true}
+                            {...register("address", { required: true })}
                             className="input-nickname"
                             type="text"
-                            name="nick name"
-                            placeholder="Address"
+                            name="address"
+                            placeholder="address"
                             value={address}
                             onChange={(e) => {
                               setAddress(e.target.value);
                             }}
                           ></input>
+                          {errors.address?.type === "required" && (
+                            <p style={{ color: "red" }} role="alert">
+                              Vui lòng nhập trường này
+                            </p>
+                          )}
                         </div>
                       </div>
                     </div>
-                    {/* 
-                    <div class="form-day">
-                      <label class="label-day">Date of birth</label>
-                      <input
-                        required={true} className="style-date" type="date"></input>
-                    </div> */}
 
                     <div class="form-sex">
                       <label className="label-sex">Gender</label>
@@ -142,12 +190,28 @@ function Profile() {
                       </select>
                     </div>
 
+                    <div class="form-sex">
+                      <label className="label-sex">Admin</label>
+
+                      <select
+                        name="admin"
+                        id=""
+                        value={isAdmin}
+                        onChange={(e) => {
+                          setIsAdmin(e.target.value);
+                        }}
+                      >
+                        <option value="0">false</option>
+                        <option value="1">true</option>
+                      </select>
+                    </div>
+
                     <div className="form-nation">
                       <label className="nation-name"> Nationally</label>
 
                       <div className="style-nation">
                         <select
-                          name="gender"
+                          name="nationally"
                           id=""
                           value={nationally}
                           onChange={(e) => {
@@ -158,25 +222,6 @@ function Profile() {
                           <option value="VietNam">Việt Nam</option>
                           <option value="My">Mỹ</option>
                           <option value="Duc">Đức</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="form-nation">
-                      <label className="nation-name">Admin</label>
-
-                      <div className="style-nation">
-                        <select
-                          name="isAdmin"
-                          id=""
-                          value={isAdmin}
-                          onChange={(e) => {
-                            setIsAdmin(e.target.value);
-                          }}
-                          className="select-nation"
-                        >
-                          <option value="1">True</option>
-                          <option value="0">false</option>
                         </select>
                       </div>
                     </div>
@@ -207,16 +252,21 @@ function Profile() {
                   <span className="title-phone">Phone number</span>
                   <br></br>
                   <input
-                    required={true}
+                    {...register("phone", { required: true })}
                     type="text"
                     class="form-number"
-                    name="numberPhone"
+                    name="phone"
                     id="number-phone"
                     value={phone}
                     onChange={(e) => {
                       setPhone(e.target.value);
                     }}
                   ></input>
+                  {errors.phone?.type === "required" && (
+                    <p style={{ color: "red" }} role="alert">
+                      Vui lòng nhập trường này
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="container-phone">
@@ -229,10 +279,10 @@ function Profile() {
                   <span className="title-phone">Email</span>
                   <br></br>
                   <input
-                    required={true}
+                    {...register("email", { required: true })}
                     type="text"
                     class="form-number"
-                    name="numberPhone"
+                    name="email"
                     id="number-phone"
                     placeholder="Email"
                     value={email}
@@ -240,6 +290,11 @@ function Profile() {
                       setEmail(e.target.value);
                     }}
                   ></input>
+                  {errors.email?.type === "required" && (
+                    <p style={{ color: "red" }} role="alert">
+                      Vui lòng nhập trường này
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="container-phone">
@@ -254,10 +309,10 @@ function Profile() {
                   <span className="title-phone">Password</span>
                   <br></br>
                   <input
-                    required={true}
+                    {...register("password", { required: true })}
                     type="text"
                     class="form-number"
-                    name="numberPhone"
+                    name="password"
                     id="number-phone"
                     placeholder="Password"
                     value={password}
@@ -265,6 +320,11 @@ function Profile() {
                       setPassword(e.target.value);
                     }}
                   ></input>
+                  {errors.password?.type === "required" && (
+                    <p style={{ color: "red" }} role="alert">
+                      Vui lòng nhập trường này
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
