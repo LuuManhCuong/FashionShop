@@ -49,6 +49,15 @@ class ShopControllers {
       );
     }
   }
+  // [GET] /shop/detail/:id
+  productDetail(req, res, next) {
+    console.log(req.params)
+    let sql = `SELECT url FROM fashion_shop.image_product where image_product.idProduct = ?  `;
+
+    connection.query(`${sql}`,[req.params.id], (err, result) => {
+      err ? console.log(err) : res.json(result);
+    });
+  }
 
   // [GET] /shop/count
   countProduct(req, res, next) {

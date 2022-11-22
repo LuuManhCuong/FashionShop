@@ -26,6 +26,7 @@ function router(app) {
   app.route("/shop").get(ShopControllers.shop);
   app.route("/shop/count").get(ShopControllers.countProduct);
   app.route("/shop/getPrice").get(ShopControllers.getPrice);
+  app.route("/shop/detail/:id").get(ShopControllers.productDetail);
   app.route("/cart/add/").post(authenJwt.verifyToken, ShopControllers.cartAdd);
   app
     .route("/cart/:idUser")
