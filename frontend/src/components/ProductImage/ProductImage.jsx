@@ -15,7 +15,7 @@ function ProductImage() {
       .then(res => {
         setImages(res.data)
         setActive(res.data[0].url)
-        console.log(res.data)
+        // console.log(res.data)
       })
   }, [userId.id])
   return (

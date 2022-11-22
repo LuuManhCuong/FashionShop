@@ -1,5 +1,8 @@
 import "./productInfo.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
 
 const sizes = [
   { id: 1, name: "M" },
@@ -33,7 +36,16 @@ function ProductInfo() {
 
   // so luong
   const [add, setAdd] = useState(1);
-
+  //info
+  const [info,setInfo] = useState({})
+  let userId = useParams(); 
+  useEffect(()=>{
+    axios.get(`http://localhost:5000/shop/detail/info/${userId.id}`)
+      .then(res => {
+        setInfo(res.data[0])
+        console.log(res.data[0])
+      })
+  },[userId.id])
   const handleAdd = () => {
     setAdd(add + 1);
   };
@@ -47,10 +59,13 @@ function ProductInfo() {
 
       <div className="info">
         <p>
-          Thương hiệu: <span>DoKo</span>
+          Danh mục: <span>{info.category}</span>
+        </p>
+        <p>
+          Dành cho: <span>{info.gender}</span>
         </p>
 
-        <h1>Áo hoodie nam vãi nhung thu đông 3 màu</h1>
+        <h1>{info.name}</h1>
 
         <div className="feedback">
           <i class="bi bi-star-fill"></i>
@@ -60,13 +75,13 @@ function ProductInfo() {
           <i class="bi bi-star-fill"></i>
 
           <span style={{ marginLeft: "10px" }}>(xem 13 đánh giá)</span>
-          <span> | đã bán 21 sản phẩm</span>
+          <span> | đã bán {info.sold} sản phẩm</span>
         </div>
 
         <div className="color">
-          <p>Colors: </p>
+          <p>Colors: {info.color} </p>
 
-          {colors.map((color) => (
+          {/* {colors.map((color) => (
             <div className="cls" key={color.id}>
               <input
                 type="radio"
@@ -76,7 +91,7 @@ function ProductInfo() {
               ></input>
               <div className="cln">{color.name}</div>
             </div>
-          ))}
+          ))} */}
           {/* 
           <div className="cls">
             <div className="red"></div>
@@ -85,7 +100,7 @@ function ProductInfo() {
           </div> */}
         </div>
 
-        <h1 className="price">165 000 đ</h1>
+        <h1 className="price">{info.price}đ</h1>
 
         <div className="ship">
           <p>
@@ -99,17 +114,18 @@ function ProductInfo() {
 
         <div className="size">
           <p>
-            Kích thước: <span>M</span>{" "}
+            Kích thước: <span>{info.size}</span>{" "}
           </p>
 
-          {sizes.map((size) => (
+          {/* {sizes.map((size) => (
             <div key={size.id} className="size-detail">
               <button onClick={handleSize} onChange={() => setSize(size.id)}>
                 {size.name}
               </button>
             </div>
-          ))}
+          ))} */}
         </div>
+
 
         <div className="soluong">
           <p className="sl">Số lượng: </p>
@@ -119,7 +135,7 @@ function ProductInfo() {
         </div>
 
         <div className="but-add">
-          <button className="add">Thêm vào giỏ hàng</button>
+          <button className="add" >Thêm vào giỏ hàng</button>
           <button className="buy">Mua ngay</button>
         </div>
       </div>

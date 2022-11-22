@@ -58,6 +58,15 @@ class ShopControllers {
       err ? console.log(err) : res.json(result);
     });
   }
+  // [GET] /shop/detail/info/:id
+  productDetailInfo(req, res, next) {
+    console.log(req.params)
+    let sql = `SELECT * FROM fashion_shop.product where idProduct = ?  `;
+
+    connection.query(`${sql}`,[req.params.id], (err, result) => {
+      err ? console.log(err) : res.json(result);
+    });
+  }
 
   // [GET] /shop/count
   countProduct(req, res, next) {
