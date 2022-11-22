@@ -126,6 +126,28 @@ const AccountControllers = {
       res.status(200).json(newAccessToken);
     });
   },
+
+  // [PATCH] /update/user/:id
+  updateUser(req, res, next) {
+    console.log("params: ", req.params);
+    console.log("body: : ", req.body);
+
+    let sql = `UPDATE user
+    SET user.username = ${req.body.username}, 
+    user.email = ${req.body.email},
+    user.password = ${req.body.password},
+    user.phone =${req.body.phone},
+    user.address= ${req.body.address},
+    user.gender = ${req.body.gender},
+    user.nationally = ${req.body.nationally},
+    user.isAdmin = ${req.body.isAdmin},
+    user.avatar = ${req.body.avatar}
+    WHERE user.idUser = ${req.params.id} `;
+
+    connection.query(`${sql}`, (err, result) => {
+      err ? res.status(401).json("lỗi") : res.json("sửa user thành công");
+    });
+  },
 };
 
 module.exports = AccountControllers;

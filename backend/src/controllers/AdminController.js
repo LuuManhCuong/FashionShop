@@ -70,12 +70,13 @@ class AdminController {
     try {
       let picture = req.body.picture;
       let imgPusher = [];
-
-      for (let i = 0; i < picture.length; i++) {
-        const result = await cloundinary.uploader.upload(picture[i], {
-          folder: "imageProduct",
-        });
-        imgPusher.push(result.secure_url);
+      if (picture) {
+        for (let i = 0; i < picture.length; i++) {
+          const result = await cloundinary.uploader.upload(picture[i], {
+            folder: "imageProduct",
+          });
+          imgPusher.push(result.secure_url);
+        }
       }
 
       let avatar = req.body.avatar;
