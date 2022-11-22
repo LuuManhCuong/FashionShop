@@ -12,6 +12,8 @@ import { userSelector } from "../../redux/selectors";
 // import { reloadApiSlector } from "../../redux/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { reloadApi } from "../../redux/reducer/adminSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Profile({ userInfo }) {
   // console.log(userInfo);
@@ -33,6 +35,8 @@ function Profile({ userInfo }) {
   const [isAdmin, setIsAdmin] = useState(userInfo.isAdmin || 0);
   const [avatar, setAvatar] = useState([]);
   const [avt, setAvt] = useState([]);
+  const [textButton, setTextButton] = useState("next");
+
   const {
     register,
     formState: { errors },
@@ -52,34 +56,69 @@ function Profile({ userInfo }) {
   const onSubmit = (data) => {
     // console.log(data);
     handleConverImg(avatar, setAvt);
-    axios
-      .post(`http://localhost:5000/cloudinary-upload`, {
-        avatar: avt,
-      })
-      .then((resCloud) => {
-        let setData = {
-          ...data,
-          avatar: resCloud.data.avatarUrl.secure_url,
-        };
-        console.log("send: ", setData);
-        axios
-          .patch(
-            `http://localhost:5000/update/user/${userInfo.idUser}`,
-            setData,
-            {
-              headers: {
-                token: `Bearer ${user.accessToken}`,
-              },
-            }
-          )
-          .then((res) => {
-            dispatch(reloadApi.actions.setReload());
-          })
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => {
-        console.log("lỗi ko up dc ảnh");
-      });
+
+    if (avt.length <= 0) {
+      setTextButton("Hoàn tất");
+    } else {
+      axios
+        .post(`http://localhost:5000/cloudinary-upload`, {
+          avatar: avt,
+        })
+        .then((resCloud) => {
+          let setData = {
+            ...data,
+            avatar: resCloud.data.avatarUrl.secure_url,
+          };
+          console.log("send: ", setData);
+          axios
+            .patch(
+              `http://localhost:5000/update/user/${userInfo.idUser}`,
+              setData,
+              {
+                headers: {
+                  token: `Bearer ${user.accessToken}`,
+                },
+              }
+            )
+            .then((res) => {
+              toast.success(` Sửa thông tin người dùng thành công!!! `, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+              dispatch(reloadApi.actions.setReload());
+            })
+            .catch((err) =>
+              toast.error(`có gì đó sai sai, m thử lại đi`, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              })
+            );
+        })
+        .catch((err) => {
+          toast.error(`có gì đó sai sai, m thử lại đi`, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        });
+    }
   };
 
   return (
@@ -242,7 +281,7 @@ function Profile({ userInfo }) {
 
                     <div className="form-button">
                       <button className="button-apply" type="submit">
-                        Save change
+                        {textButton}
                       </button>
                     </div>
                   </div>
@@ -346,6 +385,19 @@ function Profile({ userInfo }) {
           </div>
         </div>
       </div>
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }
