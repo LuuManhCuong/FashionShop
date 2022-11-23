@@ -12,24 +12,24 @@ function CommentBlock() {
 
   const [comment, setComment] = useState("");
 
-  // const [comments, setComments] = useState(() => {
-  //   const stComments = JSON.parse(localStorage.getItem('comments'))
-  //   return (stComments ?? [])
-  // })
+  const [comments, setComments] = useState(() => {
+    const stComments = JSON.parse(localStorage.getItem("comments"));
+    return stComments ?? [];
+  });
 
-  // const handleSubmit = () => {
-  //   setComments(prev => {
-  //     const newComments = [...prev, comment]
+  const handleSubmit = () => {
+    setComments((prev) => {
+      const newComments = [...prev, comment];
 
-  //     // save to local storage
-  //     const jsonComments = JSON.stringify(newComments)
-  //     localStorage.setItem('comments', jsonComments)
+      // save to local storage
+      const jsonComments = JSON.stringify(newComments);
+      localStorage.setItem("comments", jsonComments);
 
-  //     return newComments
-  //   })
-  //   setComment('')
-  //   console.log(comment)
-  // }
+      return newComments;
+    });
+    setComment("");
+    console.log(comment);
+  };
 
   return (
     <div className="comment-block">
@@ -44,11 +44,7 @@ function CommentBlock() {
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             />
-            <button
-              className="submit-btn"
-              type="submit"
-              // onClick={handleSubmit}
-            >
+            <button className="submit-btn" type="submit" onClick={handleSubmit}>
               Gửi
             </button>
           </div>
@@ -56,13 +52,17 @@ function CommentBlock() {
           <Link to="/login">Đăng nhập để bình luận</Link>
         )}
 
-        {/* <ul style={{ clear: "both" }}>
+        <ul style={{ clear: "both" }}>
           {comments.map((comment, index) => (
-
             <li key={index}>
               <div className="comment">
                 <div className="res-wrap">
                   <img
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "100%",
+                    }}
                     src="https://khoinguonsangtao.vn/wp-content/uploads/2022/07/avatar-hai-1.jpg"
                     alt="avatar"
                     className="avatar"
@@ -72,20 +72,18 @@ function CommentBlock() {
                       Mai Trinh
                       <span> 01/10/2022</span>
                     </h3>
-                    <p className="text-comment">
-                      {comment}
-                    </p>
+                    <p className="text-comment">{comment}</p>
                   </div>
                 </div>
               </div>
             </li>
           ))}
-        </ul> */}
+        </ul>
+        {/* <CommentItem></CommentItem>
         <CommentItem></CommentItem>
         <CommentItem></CommentItem>
         <CommentItem></CommentItem>
-        <CommentItem></CommentItem>
-        <CommentItem></CommentItem>
+        <CommentItem></CommentItem> */}
       </div>
     </div>
   );

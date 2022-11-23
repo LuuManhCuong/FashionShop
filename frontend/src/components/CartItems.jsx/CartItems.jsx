@@ -10,6 +10,7 @@ import { Clear } from "@mui/icons-material";
 
 const cx = classNames.bind(styles);
 
+// nhận lại dữ liệu productItem từ component cha
 function CardItems({ productItem }) {
   const dispatch = useDispatch();
   const checkUser = useSelector(userSelector);
@@ -87,7 +88,9 @@ function CardItems({ productItem }) {
             >
               -
             </span>
+
             <span>{quantity}</span>
+
             <span
               onClick={() => setQuantity((pre) => pre + 1)}
               className={cx("sumation")}
@@ -96,8 +99,12 @@ function CardItems({ productItem }) {
             </span>
           </div>
         </td>
+
+        {/* total price */}
         <td>{productItem.price * productItem.inCart} $</td>
+
         <td className={cx("delete")}>
+          {/* nuts  */}
           <button
             onClick={() =>
               handleDeleteProduct(productItem.idCart, productItem.idProduct)

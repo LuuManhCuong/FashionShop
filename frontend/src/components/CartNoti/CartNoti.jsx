@@ -29,6 +29,9 @@ function CartNoti({ className }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, reloadApi.reload]);
+  let total = cartData.reduce((total, item) => {
+    return (total += item.price * item.inCart);
+  }, 0);
   return (
     <div className={className}>
       <div className="product-block">
@@ -48,7 +51,7 @@ function CartNoti({ className }) {
       </div>
       <div className="total">
         <h3>Total: </h3>
-        <h3>$240.00</h3>
+        <h3>${total}</h3>
       </div>
       <Link to={"/cart"} className="view-cart-btn">
         View Cart

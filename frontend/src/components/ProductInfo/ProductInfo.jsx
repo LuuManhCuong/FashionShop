@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-
 const sizes = [
   { id: 1, name: "M" },
   { id: 2, name: "L" },
@@ -37,15 +36,16 @@ function ProductInfo() {
   // so luong
   const [add, setAdd] = useState(1);
   //info
-  const [info,setInfo] = useState({})
-  let userId = useParams(); 
-  useEffect(()=>{
-    axios.get(`http://localhost:5000/shop/detail/info/${userId.id}`)
-      .then(res => {
-        setInfo(res.data[0])
-        console.log(res.data[0])
-      })
-  },[userId.id])
+  const [info, setInfo] = useState({});
+  let userId = useParams();
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/shop/detail/info/${userId.id}`)
+      .then((res) => {
+        setInfo(res.data[0]);
+        // console.log(res.data[0])
+      });
+  }, [userId.id]);
   const handleAdd = () => {
     setAdd(add + 1);
   };
@@ -126,7 +126,6 @@ function ProductInfo() {
           ))} */}
         </div>
 
-
         <div className="soluong">
           <p className="sl">Số lượng: </p>
           <button onClick={handleDelete}>-</button>
@@ -135,7 +134,7 @@ function ProductInfo() {
         </div>
 
         <div className="but-add">
-          <button className="add" >Thêm vào giỏ hàng</button>
+          <button className="add">Thêm vào giỏ hàng</button>
           <button className="buy">Mua ngay</button>
         </div>
       </div>

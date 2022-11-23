@@ -8,8 +8,13 @@ class BlogControllers {
   // [GET] /blog
   blog(req, res, next) {
     // authen.verifyToken()
-    let sql = `SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate FROM fashion_shop.blog where blog.category = ? LIMIT 4 OFFSET ?`;
-    let sql2 = `SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate FROM fashion_shop.blog  ORDER BY blog.createAt DESC limit 3`;
+    let sql = `SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate 
+    FROM fashion_shop.blog 
+    where blog.category = ? LIMIT 4 OFFSET ?`;
+
+    let sql2 = `SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate 
+    FROM fashion_shop.blog  
+    ORDER BY blog.createAt DESC limit 3`;
     connection.query(
       `${sql}; ${sql2}`,
       [req.query.category, Number(req.query.page || 0)],
@@ -43,8 +48,9 @@ class BlogControllers {
     const { category, content, title, image, idAuthor, author } = req.body;
 
     const id = uuidv4();
-    let sql = `INSERT INTO  blog (idblog,title,content,category,createAt,image,idAuthor, author)
-     value (?,?,?,?,?,?,?,?)`;
+    let sql = `INSERT INTO  blog 
+    (idblog,title,content,category,createAt,image,idAuthor, author)
+    value (?,?,?,?,?,?,?,?)`;
 
     connection.query(
       `${sql}`,

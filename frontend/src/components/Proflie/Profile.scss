@@ -1,5 +1,5 @@
-.container {
-  width: 100%;
+.container.profile {
+  width: 60vw;
 
   .title {
     width: 100%;
@@ -94,8 +94,6 @@
         padding-left: 20px;
         padding-top: 15px;
 
-
-
         .form-info {
           .form-avatar {
             float: left;
@@ -104,18 +102,18 @@
               width: 100px;
               height: 100px;
               border-radius: 100%;
-              border: 2px solid #66ffff;
-              background: #ccffff;
+              border: 2px solid #575757;
               position: relative;
+              overflow: hidden;
 
               .avatar-view {
                 position: relative;
 
                 .btnChangeAvt1 {
                   position: absolute;
-                  
+
                   // display: none;
-                  img{
+                  img {
                     border-radius: 100%;
                     width: 100px;
                     height: 95px;
@@ -127,11 +125,11 @@
                   width: 25px;
                   height: 25px;
                   border-radius: 100%;
-                  background: gray;
+                  background: #c9c3c3;
                   text-align: center;
-                  float: right;
                   margin-top: 70px;
-                  margin-bottom: 20px;
+                  right: 18px;
+                  top: -5px;
                 }
                 .text-center {
                   display: none;
@@ -182,10 +180,10 @@
           }
         }
 
-        
-        .form-admin{
+        .form-admin {
           margin-top: 20px;
-          .label-admin{
+          display: flex;
+          .label-admin {
             padding-left: 125px;
           }
         }
@@ -197,7 +195,6 @@
             float: left;
             padding-left: 125px;
           }
-          
 
           .label-radio {
             float: right;
@@ -231,7 +228,10 @@
 
         .form-button {
           .button-apply {
-            background: rgb(11, 116, 229);
+            &.next {
+              background-color: rgb(47, 75, 215);
+            }
+            background: var(--primary-color);
             color: white;
             width: 150px;
             height: 35px;

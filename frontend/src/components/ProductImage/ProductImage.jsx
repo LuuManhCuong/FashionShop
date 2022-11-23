@@ -6,18 +6,18 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function ProductImage() {
-  let userId = useParams(); // lấy id của sản phẩm trên đường link 
+  let userId = useParams(); // lấy id của sản phẩm trên đường link
   // console.log("id: ", userId.id);
-  const [active, setActive] = useState('');
+  const [active, setActive] = useState("");
+  const [classActive, setAclassActive] = useState(0);
   const [images, setImages] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:5000/shop/detail/${userId.id}`)
-      .then(res => {
-        setImages(res.data)
-        setActive(res.data[0].url)
-        // console.log(res.data)
-      })
-  }, [userId.id])
+    axios.get(`http://localhost:5000/shop/detail/${userId.id}`).then((res) => {
+      setImages(res.data);
+      setActive(res.data[0].url);
+      // console.log(res.data)
+    });
+  }, [userId.id]);
   return (
     <div className="product-image">
       <div className="img-sp">
@@ -25,27 +25,31 @@ function ProductImage() {
         <img src={active} alt="img"></img>
       </div>
       {
-        // ktr xem images có ảnh hay k 
-        images.length > 0 
-          ? <> 
+        // ktr xem images có ảnh hay k
+        images.length > 0 ? (
+          <div className="wrapimg">
             {/* hiển thị tất cả các ảnh */}
-            {images.map((image, index) => <div className="alt" key={index} >
-              <img
-                src={image.url}
-                alt="img"
-                onClick={() => {
-                  setActive(
-                    image.url
-                  );
-                }}
-              ></img>
-
-            </div>)}
-          </>
-          :<h3>chưa tìm thấy ảnh</h3>
+            {images.map((image, index) => (
+              <div className="alt" key={index}>
+                <img
+                  src={image.url}
+                  style={
+                    classActive === index ? { border: "2px solid red" } : null
+                  }
+                  alt="img"
+                  className={`img-ac ${classActive}`}
+                  onClick={(e) => {
+                    setActive(image.url);
+                    setAclassActive(index);
+                  }}
+                ></img>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <h3>chưa tìm thấy ảnh</h3>
+        )
       }
-
-
     </div>
   );
 }
