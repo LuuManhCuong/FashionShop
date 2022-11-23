@@ -37,8 +37,8 @@ const AccountControllers = {
     const sql = "select * from user where user.username = ? limit 1";
     connection.query(sql, [req.body.username], (err, results) => {
       if (err) {
-        // throw err;
-        console.log("lỗi");
+        throw err;
+        // console.log("lỗi");
       }
       if (results[0]) {
         let checkPassword = account.checkPassword(
@@ -84,6 +84,7 @@ const AccountControllers = {
 
   // [POST] /logout
   logout: (req, res) => {
+    console.log("ck", req.cookies);
     res.clearCookie("refreshToken");
     refreshTokenArr = refreshTokenArr.filter(
       (token) => token !== req.cookies.refreshToken
@@ -129,8 +130,8 @@ const AccountControllers = {
 
   // [PATCH] /update/user/:id
   updateUser(req, res, next) {
-    console.log("params: ", req.params);
-    console.log("body: : ", req.body);
+    // console.log("params: ", req.params);
+    // console.log("body: : ", req.body);
     const {
       username,
       email,

@@ -1,7 +1,7 @@
 import { Table } from "reactstrap";
 import "./dataCustomer.scss";
 import axios from "axios";
-import jwtDecode from "jwt-decode";
+// import jwtDecode from "jwt-decode";
 import * as React from "react";
 import DataCustomerItem from "../DataCustomerItem/DataCustomerItem";
 import AdminHeader from "../AdminHeader/AdminHeader";
@@ -13,7 +13,7 @@ import Stack from "@mui/material/Stack";
 import { userSelector } from "../../redux/selectors";
 import { useNavigate, Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import { userSlice } from "../../redux/reducer/userSlice";
+// import { userSlice } from "../../redux/reducer/userSlice";
 // import { checkToken } from "../../api/api";
 
 const overview = [
@@ -40,7 +40,7 @@ const overview = [
   },
 ];
 function DataCustomer() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
   const axiosJwt = axios.create({ withCredentials: true });
 
@@ -54,48 +54,48 @@ function DataCustomer() {
 
   // checkToken(user, dispatch);
 
-  async function newToken() {
-    try {
-      const res = await axios.post(
-        `http://localhost:5000/refresh`,
-        {
-          refreshToken: user.accessToken,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-      return res.data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function newToken() {
+  //   try {
+  //     const res = await axios.post(
+  //       `http://localhost:5000/refresh`,
+  //       {
+  //         refreshToken: user.accessToken,
+  //       },
+  //       {
+  //         withCredentials: true,
+  //       }
+  //     );
+  //     return res.data;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   // kiểm tra xem token đã hết hạn hay chưa
-  axiosJwt.interceptors.request.use(
-    async (config) => {
-      let date = new Date();
-      const decodedToken = jwtDecode(user?.accessToken);
+  // axiosJwt.interceptors.request.use(
+  //   async (config) => {
+  //     let date = new Date();
+  //     const decodedToken = jwtDecode(user?.accessToken);
 
-      if (decodedToken.exp < date.getTime() / 1000) {
-  
-        const data = await newToken();
-        // console.log(data);
-        // refresh user khi token hết hạn
-        const refreshUser = {
-          ...user,
-          accessToken: data,
-        };
+  //     if (decodedToken.exp < date.getTime() / 1000) {
 
-        console.log("rf: ", refreshUser);
-        dispatch(userSlice.actions.loginSuccess(refreshUser));
-        config.headers["token"] = `Bearer ${data.accessToken}`;
-      }
-      return config;
-    },
-    (err) => {
-      return Promise.reject(err);
-    }
-  );
+  //       const data = await newToken();
+  //       // console.log(data);
+  //       // refresh user khi token hết hạn
+  //       const refreshUser = {
+  //         ...user,
+  //         accessToken: data,
+  //       };
+
+  //       console.log("rf: ", refreshUser);
+  //       dispatch(userSlice.actions.loginSuccess(refreshUser));
+  //       config.headers["token"] = `Bearer ${data.accessToken}`;
+  //     }
+  //     return config;
+  //   },
+  //   (err) => {
+  //     return Promise.reject(err);
+  //   }
+  // );
 
   // count page
   useEffect(() => {

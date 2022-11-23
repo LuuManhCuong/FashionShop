@@ -36,8 +36,8 @@ function Profile({ userInfo }) {
   const [avatar, setAvatar] = useState([]);
   const [avt, setAvt] = useState([]);
   const [textButton, setTextButton] = useState("next");
+  const [preview, setPreview] = useState(userInfo.avatar);
 
-  
   const {
     register,
     formState: { errors },
@@ -67,13 +67,12 @@ function Profile({ userInfo }) {
           avatar: avt,
         })
 
-
         .then((resCloud) => {
           let setData = {
             ...data,
             avatar: resCloud.data.avatarUrl.secure_url,
           };
-          console.log("send: ", setData);
+          // console.log("send: ", setData);
           axios
             .patch(
               `http://localhost:5000/update/user/${userInfo.idUser}`,
@@ -126,10 +125,9 @@ function Profile({ userInfo }) {
   };
 
   return (
-    <div className="container">
+    <div className="container profile">
       <div class="row g-0 text-center">
         <div className="detail  col-10 col-md-12">
-
           <div className="detail-container">
             <div className="info">
               <span>Personal infomation</span>
@@ -156,13 +154,51 @@ function Profile({ userInfo }) {
                       <div className="avatar-style">
                         <div className="avatar-view">
                           <label class="btnChangeAvt1" htmlFor="changeAvatar">
-                            <img
-                              className="avatar-info"
-                              src={userInfo.avatar}
-                              class="avatar img-circle img-thumbnail"
-                              alt="avatar"
-                            ></img>
+                            {typeof preview === "object" ? (
+                              <>
+                                {preview && preview.length > 0 ? (
+                                  preview.map((img, i) => (
+                                    <img
+                                      key={i}
+                                      style={{
+                                        width: "100px",
+                                        height: "100px",
+                                        objectFit: "contain",
+                                        borderRadius: "50%",
+                                        cursor: "pointer",
+                                      }}
+                                      src={
+                                        URL.createObjectURL(img)
+                                        //  || userInfo.avatar
+                                      }
+                                      alt="img"
+                                      className="avatar-info"
+                                      class="avatar img-circle img-thumbnail"
+                                    />
+                                  ))
+                                ) : (
+                                  <p style={{ color: "red", zIndex: "32" }}>
+                                    M chưa chọn ảnh kìa!!!
+                                  </p>
+                                )}
+                              </>
+                            ) : (
+                              <img
+                                style={{
+                                  width: "100px",
+                                  height: "100px",
+                                  objectFit: "contain",
+                                  borderRadius: "50%",
+                                  cursor: "pointer",
+                                }}
+                                src={preview}
+                                alt="img"
+                                className="avatar-info"
+                                class="avatar img-circle img-thumbnail"
+                              />
+                            )}
                           </label>
+
                           <label class="btnChangeAvt" htmlFor="changeAvatar">
                             <CreateSharp />
                           </label>
@@ -175,16 +211,18 @@ function Profile({ userInfo }) {
                             accept="image/png, image/jpeg"
                             name="avatar"
                             class="text-center center-block file-upload"
-                            onChange={(e) => setAvatar([e.target.files[0]])}
+                            onChange={(e) => {
+                              setAvatar([e.target.files[0]]);
+                              setPreview([e.target.files[0]]);
+                            }}
                           ></input>
-
-                          {errors.avatar?.type === "required" && (
-                            <p style={{ color: "red" }} role="alert">
-                              Vui lòng nhập trường này
-                            </p>
-                          )}
                         </div>
                       </div>
+                      {errors.avatar?.type === "required" && (
+                        <p style={{ color: "red", margin: "0" }} role="alert">
+                          Đổi ảnh đi kìa!!
+                        </p>
+                      )}
                     </div>
 
                     <div className="form-name">
@@ -192,8 +230,8 @@ function Profile({ userInfo }) {
                         <label className="lable-name">Username</label>
                         <div className="full-name">
                           <input
-                          style={{width: "250px"}}
-                          // thu vien react hook form
+                            style={{ width: "250px" }}
+                            // thu vien react hook form
                             {...register("username", { required: true })}
                             className="input-fullname"
                             type="text"
@@ -217,7 +255,7 @@ function Profile({ userInfo }) {
                         <label className="lable-nickname">Address</label>
                         <div className="nick-name">
                           <input
-                          style={{width: "250px"}}
+                            style={{ width: "250px" }}
                             {...register("address", { required: true })}
                             className="input-nickname"
                             type="text"
@@ -241,7 +279,7 @@ function Profile({ userInfo }) {
                       <label className="label-sex">Gender</label>
 
                       <select
-                      style={{marginLeft: "20px"}}
+                        style={{ marginLeft: "20px" }}
                         id=""
                         value={gender}
                         onChange={(e) => {
@@ -258,7 +296,7 @@ function Profile({ userInfo }) {
                       <label className="label-admin">Admin</label>
 
                       <select
-                      style={{marginLeft: "25px"}}
+                        style={{ marginLeft: "25px" }}
                         id=""
                         value={isAdmin}
                         onChange={(e) => {
@@ -271,11 +309,17 @@ function Profile({ userInfo }) {
                     </div>
 
                     <div className="form-nation">
-                      <label style={{paddingLeft: "125px"}} className="nation-name"> Nationally</label>
+                      <label
+                        style={{ paddingLeft: "125px" }}
+                        className="nation-name"
+                      >
+                        {" "}
+                        Nationally
+                      </label>
 
                       <div className="style-nation">
                         <select
-                        style={{marginLeft: "20px"}}
+                          style={{ marginLeft: "20px" }}
                           name="nationally"
                           id=""
                           value={nationally}
@@ -292,7 +336,10 @@ function Profile({ userInfo }) {
                     </div>
 
                     <div className="form-button">
-                      <button className="button-apply" type="submit">
+                      <button
+                        className={`button-apply ${textButton}`}
+                        type="submit"
+                      >
                         {textButton}
                       </button>
                     </div>
@@ -306,7 +353,7 @@ function Profile({ userInfo }) {
             <div className="save-detail">
               <span className="update-detail">Update</span>
               <div className="container-phone">
-                <label className="number-phone" for="number-phone">
+                <label className="number-phone" htmlFor="number-phone">
                   <div className="icon-phone">
                     <PhoneCallback style={{ width: "2rem", height: "2rem" }}>
                       {" "}
@@ -317,7 +364,7 @@ function Profile({ userInfo }) {
                   <span className="title-phone">Phone number</span>
                   <br></br>
                   <input
-                  style={{width: "250px"}}
+                    style={{ width: "250px" }}
                     {...register("phone", { required: true })}
                     type="text"
                     class="form-number"
@@ -337,7 +384,7 @@ function Profile({ userInfo }) {
                 </div>
               </div>
               <div className="container-phone">
-                <label className="number-phone" for="number-phone">
+                <label className="number-phone" htmlFor="number-phone">
                   <div className="icon-phone">
                     <Email style={{ width: "2rem", height: "2rem" }}> </Email>
                   </div>
@@ -346,7 +393,7 @@ function Profile({ userInfo }) {
                   <span className="title-phone">Email</span>
                   <br></br>
                   <input
-                  style={{width: "250px"}}
+                    style={{ width: "250px" }}
                     {...register("email", { required: true })}
                     type="Email"
                     class="form-number"
@@ -366,7 +413,7 @@ function Profile({ userInfo }) {
                 </div>
               </div>
               <div className="container-phone">
-                <label className="number-phone" for="number-phone">
+                <label className="number-phone" htmlFor="number-phone">
                   <div className="icon-phone">
                     <Password style={{ width: "2rem", height: "2rem" }}>
                       {" "}
@@ -377,7 +424,7 @@ function Profile({ userInfo }) {
                   <span className="title-phone">Password</span>
                   <br></br>
                   <input
-                  style={{width: "250px"}}
+                    style={{ width: "250px" }}
                     {...register("password", { required: true })}
                     type="password"
                     class="form-number"

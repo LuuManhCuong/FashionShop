@@ -28,19 +28,7 @@ function Doremon() {
         </ul>
         <div className="lip1"></div>
         <div className="lip2"></div>
-      </div>
-
-      <div className="body">
-        <div className="hand-left"></div>
-        <div className="hand-right"></div>
-        <div className="belly">
-          <div className="handbag"></div>
-        </div>
-      </div>
-
-      <div className="legs">
-        <div className="left-leg"></div>
-        <div className="right-leg"></div>
+        <h3>Đang tải dữ liệu</h3>
       </div>
     </div>
   );

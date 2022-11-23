@@ -113,10 +113,10 @@ function ProductItem({ product }) {
           <Link to={`/shop/detail/${product.idProduct}`}>
             <img src={product.avatar} alt="product" />
             <div className="label">
-              <h4>
-                SALE {product.sale}% ({product.gender}/{product.category}) /{" "}
-                {product.size}
-              </h4>
+              <h4>SALE {product.sale}%</h4>
+              <h4>{product.gender}</h4>
+              <h4>{product.category}</h4>
+              <h4>{product.size}</h4>
             </div>
             <FavoriteBorder className="heart"></FavoriteBorder>
           </Link>

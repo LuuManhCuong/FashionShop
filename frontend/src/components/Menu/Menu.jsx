@@ -10,6 +10,7 @@ import {
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { userSelector } from "../../redux/selectors";
+import axios from "axios";
 
 function Menu({ direction, ...args }) {
   const checkUser = useSelector(userSelector);
@@ -17,6 +18,18 @@ function Menu({ direction, ...args }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
+  const handleLogout = () => {
+    console.log("logour");
+    axios
+      .post(`http://localhost:5000/logout`, {
+        withCredentials: true,
+        headers: {
+          token: `Bearer ${user.accessToken}`,
+        },
+      })
+      .then((res) => console.log("logout thành công:", res))
+      .catch((err) => console.log("thất bại"));
+  };
   return (
     <>
       {!user ? (
@@ -48,7 +61,8 @@ function Menu({ direction, ...args }) {
                 <Link to="/">Purchase history</Link>
               </DropdownItem>
               <DropdownItem>
-                <Link to="/login">Logout</Link>{" "}
+                <Link to="/login">Logout</Link>
+                {/* <h3 onClick={() => handleLogout()}>Logout</h3>{" "} */}
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
@@ -57,6 +71,7 @@ function Menu({ direction, ...args }) {
     </>
   );
 }
+
 
 Menu.propTypes = {
   direction: PropTypes.string,

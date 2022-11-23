@@ -29,7 +29,6 @@ const style = {
   p: 4,
 };
 
-
 // action item là thông tin tương ứng với user
 function Action({ item, showInfoUser }) {
   const navigate = useNavigate();
@@ -148,9 +147,15 @@ function Action({ item, showInfoUser }) {
         </Modal>
       </div>
 
-      <button onClick={handleOpens}>
-        <Edit className="edit-btn" />
-      </button>
+      {showInfoUser ? (
+        <button onClick={handleOpens}>
+          <Edit className="edit-btn" />
+        </button>
+      ) : (
+        <button>
+          <Edit className="edit-btn" />
+        </button>
+      )}
 
       <div>
         <Modal
@@ -161,7 +166,9 @@ function Action({ item, showInfoUser }) {
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-                <h3 style={{paddingLeft: "30px", fontWeight: "600" }}>Chỉnh sửa thông tin người dùng</h3>
+              <h3 style={{ paddingLeft: "30px", fontWeight: "600" }}>
+                Chỉnh sửa thông tin người dùng
+              </h3>
             </Typography>
             <Profile userInfo={item}></Profile>
           </Box>

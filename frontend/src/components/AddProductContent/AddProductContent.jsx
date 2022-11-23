@@ -155,7 +155,7 @@ function AddProductContent() {
                   setSale("");
                   setDescription("");
                   setQuantity("");
-                  toast.error(` Hôm nay t mệt, thử lại lần sau !!! `, {
+                  toast.error(` Thông tin chưa hợp lệ, thử lại đi !!! `, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
