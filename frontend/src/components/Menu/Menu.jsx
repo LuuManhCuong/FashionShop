@@ -72,6 +72,7 @@ function Menu({ direction, ...args }) {
   );
 }
 
+
 Menu.propTypes = {
   direction: PropTypes.string,
 };
