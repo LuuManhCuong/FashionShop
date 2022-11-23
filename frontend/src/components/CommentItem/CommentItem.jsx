@@ -1,23 +1,22 @@
 import React from "react";
 import "./commentItem.scss";
 
-function CommentItem() {
+function CommentItem({data}) {
   return (
     <div className="comment">
       <div className="res-wrap">
         <img
-          src="https://res.cloudinary.com/djcamu6kz/image/upload/v1669094080/imageProduct/apifyvr4mwaxxyvmnqor.png"
+          src={data.avatar}
           alt="avatar"
           className="avatar-us"
         />
         <div className="user-info">
           <h3 className="username">
-            Mai Trinh
-            <span> 01/10/2022</span>
+            {data.username}
+          <span>{data.createAt || "00/00/0000"}</span>
           </h3>
           <p className="text-comment">
-            Mua cái quần ở đây mặc 10 năm chưa rách, sản phẩm quá xịn xò. Lần
-            sau sẽ mua 100 cái:D
+           {data.comment}
           </p>
         </div>
       </div>

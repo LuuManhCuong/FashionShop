@@ -39,9 +39,8 @@ class BlogControllers {
     // console.log(req.body);
 
     const date = new Date();
-    let getDate = `${date.getFullYear()}-${
-      date.getMonth() + 1
-    }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    let getDate = `${date.getFullYear()}-${date.getMonth() + 1
+      }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
     // console.log(req.body);
 
@@ -70,6 +69,61 @@ class BlogControllers {
       err ? res.status(401).json("lỗi") : res.json(result);
     });
   }
+
+  // [POST] /create/comment/()
+  createComment(req, res, next) {
+
+    const date = new Date();
+    let getDate = `${date.getFullYear()}-${date.getMonth() + 1
+      }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
+    console.log(getDate);
+
+    const id = uuidv4();
+    let sql = `INSERT INTO fashion_shop.feedback 
+    (
+      feedback.id,
+      feedback.idFeedback,
+      feedback.idUser,
+      feedback.comment,  
+      feedback.ratings,
+      feedback.createAt,
+      )
+    VALUES (?, ?, ?, ?, ? ,? )`;
+
+
+
+    // console.log("query: ", req.query);
+    // console.log("body: ", req.body);
+
+    const { idUser, idFeedback } = req.query
+
+    connection.query(`${sql}`, [
+      id,
+      idFeedback,
+      idUser,
+      req.body.comment,
+      1,
+      getDate,
+    ], (err, result) => {
+      err ? res.status(401).json("lỗi") : res.json("comment thanh cong!");
+    });
+  }
+
+
+  // [GET] /comment/:idFeedback
+  getComment(req, res, next) {
+    console.log('idFeedback: ', req.params);
+    let sql = `SELECT user.avatar, user.username, feedback.comment, feedback.createAt FROM fashion_shop.feedback inner join fashion_shop.user on feedback.idUser=user.idUser where idFeedback = ? order by createAt desc`;
+
+    connection.query(`${sql}`, [req.params.idFeedback], (err, result) => {
+      err ? res.status(401).json("lỗi") : res.json(result);
+    });
+  }
+
 }
+
+
+
 
 module.exports = new BlogControllers();
