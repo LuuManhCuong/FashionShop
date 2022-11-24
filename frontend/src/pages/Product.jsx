@@ -6,27 +6,24 @@ import ProductInfo from "../components/ProductInfo/ProductInfo";
 // import BestSale from "../components/BestSale/BestSale";
 import { useDispatch } from "react-redux";
 import { getHomeRequest } from "../redux/reducer/homeSlice";
+import CommentBlock from "../components/CommentBlock/CommentBlock";
 // import axios from "axios"
 
 function Product() {
-  const dispatch = useDispatch();// gọi dữ liệu
+  const dispatch = useDispatch(); // gọi dữ liệu
   dispatch(getHomeRequest());
-  
+
   return (
     <>
       <Header></Header>
 
       <div
-        class="row g-0"
-        style={{ marginTop: "20px", width: "80%", marginLeft: "10%" }}
+        style={{ display: "flex", justifyContent: "center", margin: "40px 0" }}
+        class="container-product"
       >
-        <div class="col-sm-6 col-md-7">
-          <ProductImage />
-        </div>
-
-        <div class="col-6 col-md-5">
-          <ProductInfo />
-        </div>
+        <ProductImage />
+        <ProductInfo />
+        <CommentBlock></CommentBlock>
       </div>
 
       {/* <div style={{}} className="sptt">

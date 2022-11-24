@@ -80,7 +80,7 @@ function CountDown() {
                   </h3>
                 </div>
                 {event ? (
-                  <Link to="/shop/detail/42">
+                  <Link to={`/shop/detail/${e.idProduct}`}>
                     <button className="btn-event">Buy Now</button>
                   </Link>
                 ) : (

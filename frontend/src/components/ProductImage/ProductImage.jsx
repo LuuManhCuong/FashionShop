@@ -14,8 +14,7 @@ function ProductImage() {
   useEffect(() => {
     axios.get(`http://localhost:5000/shop/detail/${userId.id}`).then((res) => {
       setImages(res.data);
-      setActive(res.data[0].url);
-      // console.log(res.data)
+      setActive(() => (res.data[0] ? res.data[0].url : null));
     });
   }, [userId.id]);
   return (

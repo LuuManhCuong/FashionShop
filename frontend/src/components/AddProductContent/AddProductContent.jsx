@@ -440,7 +440,7 @@ function AddProductContent() {
 
               <div className={cx("input-info-product")}>
                 <label htmlFor="">Thành tiền</label>
-                <h3>400$</h3>
+                <h3>{price - (price / 100) * sale}$</h3>
               </div>
             </div>
 

@@ -18,7 +18,7 @@ import Doremon from "../Doremon/Doremon";
 
 export default function App() {
   const sliderData = useSelector(homeDataSelector);
-  console.log("re-render");
+  // console.log("re-render");
   return (
     <>
       {sliderData.isLoading ? (

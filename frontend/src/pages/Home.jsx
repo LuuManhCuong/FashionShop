@@ -11,7 +11,6 @@ import { ToastContainer } from "react-toastify";
 
 // chứa các component của home
 function Home() {
-  console.log("re-render Home");
   const dispatch = useDispatch();
   dispatch(getHomeRequest());
   return (

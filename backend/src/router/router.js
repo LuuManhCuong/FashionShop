@@ -73,15 +73,14 @@ function router(app) {
   app.route("/cloudinary-upload").post(AdminController.uploadCloudinary);
 
   // comment
-  app.route("/create/comment").post(authenJwt.verifyToken ,BlogController.createComment);
-  app.route("/comment/:idFeedback").get(authenJwt.verifyToken ,BlogController.getComment);
+  app
+    .route("/create/comment")
+    .post(authenJwt.verifyToken, BlogController.createComment);
+  app.route("/comment/:idFeedback").get(BlogController.getComment);
 
   // * router
   app.route("*").get((req, res) => {
     res.status(400).json("t ko tìm thấy trang m muốn");
-
-
-  
   });
 }
 

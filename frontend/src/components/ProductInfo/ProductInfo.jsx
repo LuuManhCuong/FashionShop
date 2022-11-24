@@ -3,36 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const sizes = [
-  { id: 1, name: "M" },
-  { id: 2, name: "L" },
-  { id: 3, name: "S" },
-];
-
-const colors = [
-  { id: 1, name: "red" },
-  { id: 2, name: "green" },
-  { id: 3, name: "black" },
-];
-
 function ProductInfo() {
-  // color
-  const [color, setColor] = useState(2);
-
-  const handleColor = () => {
-    setColor(color);
-    // console.log(color)
-  };
-
-  // size
-
-  const [size, setSize] = useState(1);
-
-  const handleSize = () => {
-    setSize(size);
-    // console.log(size)
-  };
-
   // so luong
   const [add, setAdd] = useState(1);
   //info
@@ -75,7 +46,7 @@ function ProductInfo() {
           <i class="bi bi-star-fill"></i>
 
           <span style={{ marginLeft: "10px" }}>(xem 13 đánh giá)</span>
-          <span> | đã bán {info.sold} sản phẩm</span>
+          <span> | đã bán {info.sold || 0} sản phẩm</span>
         </div>
 
         <div className="color">

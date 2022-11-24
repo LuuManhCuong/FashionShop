@@ -9,7 +9,7 @@
   }
   .input-text {
     padding: 10px 20px;
-    .cmt-input{
+    .cmt-input {
       display: flex;
       width: 92%;
       margin-left: 20px;
@@ -21,9 +21,8 @@
         outline: none;
         min-height: 50px;
         border-radius: 5px;
-        
       }
-  
+
       .submit-btn {
         margin-left: 10px;
         width: 60px;
@@ -35,9 +34,9 @@
         border-radius: 5px;
       }
     }
-    
   }
-  .comment{
-    
+  .coment-item-block {
+    height: 70vh;
+    overflow: auto;
   }
 }

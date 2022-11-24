@@ -1,5 +1,5 @@
 .product-image {
-  width: 100%;
+  width: 32%;
   display: flex;
   float: left;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
@@ -8,8 +8,8 @@
   .img-sp {
     margin: 40px;
     img {
-      width: 560px;
-      height: 380px;
+      width: 350px;
+      // height: 380px;
       object-fit: cover;
       border: 2px solid var(--primary-color);
       border-radius: 5px;
