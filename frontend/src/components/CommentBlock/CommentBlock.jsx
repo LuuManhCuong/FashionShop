@@ -7,6 +7,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { reloadApi } from "../../redux/reducer/adminSlice";
+import { yellow } from "@mui/material/colors";
 
 function CommentBlock() {
   const checkUser = useSelector(userSelector);
@@ -91,9 +92,12 @@ function CommentBlock() {
                   setMess(e.target.value);
                 }}
                 style={{
-                  border: "1px solid black",
-                  width: "300px",
+                  border: "1px solid grey",
+                  width: "360px",
                   color: "black",
+                  height: "30px",
+                  fontSize:"1.4rem",
+                  paddingLeft: "5px"
                 }}
               />
               {errors?.text?.type === "required" && (
@@ -102,9 +106,10 @@ function CommentBlock() {
                     color: "red",
                     marginLeft: "10px",
                     marginTop: "5px",
+                    fontSize: "13px"
                   }}
                 >
-                  Vui lòng nhập trường này{" "}
+                  Vui lòng nhập trường này !{" "}
                 </p>
               )}
               <p
@@ -117,15 +122,18 @@ function CommentBlock() {
                 {err}
               </p>
 
-              <input type="submit" />
+              <input type="submit" style={{width: "50px", height:"30px", background: "var(--primary-color)", color: "white", fontSize: "1.4rem"}}/>
             </form>
           </div>
         ) : (
-          <Link to="/login">Đăng nhập để bình luận</Link>
+          <Link to="/login"><button
+          style={{fontSize: "1.4rem", marginLeft: "20px", height: "30px", width: "170px",
+          backgroundColor: "var(--primary-color)", color: "white"}}
+          >Đăng nhập để bình luận</button></Link>
         )}
 
         {dataCommnent.length <= 0 ? (
-          <h3>Chưa có bình luận</h3>
+          <h5 style={{paddingLeft: "20px", paddingTop: "20px"}}>Chưa có bình luận</h5>
         ) : (
           <div className="coment-item-block">
             {dataCommnent.map((comment, index) => (
