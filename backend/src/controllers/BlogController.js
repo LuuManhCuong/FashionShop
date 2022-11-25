@@ -78,7 +78,7 @@ class BlogControllers {
       date.getMonth() + 1
     }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
-    console.log(getDate);
+    // console.log(getDate);
 
     const id = uuidv4();
     let sql = `INSERT INTO fashion_shop.feedback 
@@ -90,10 +90,6 @@ class BlogControllers {
       feedback.createAt
       )
     VALUES (?, ?, ?, ?, ? )`;
-
-    console.log("query: ", req.query);
-    console.log("body: ", req.body);
-    console.log("id:", id);
     const { idUser, idFeedback } = req.query;
 
     connection.query(
@@ -107,7 +103,7 @@ class BlogControllers {
 
   // [GET] /comment/:idFeedback
   getComment(req, res, next) {
-    console.log("idFeedback: ", req.params);
+    // console.log("idFeedback: ", req.params);
     let sql = `SELECT user.avatar, 
     user.username, 
     feedback.comment, 

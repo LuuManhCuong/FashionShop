@@ -45,11 +45,8 @@
     }
 
     .heart {
-      position: absolute;
-      top: 15px;
-      right: 15px;
       font-size: 3rem;
-      color: var(--primary-color);
+      color: red;
       cursor: pointer;
       transition: all ease 0.3s;
     }
@@ -147,4 +144,12 @@
   &:hover .product-content .view {
     bottom: 0;
   }
+}
+
+.heart-wrap {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  align-items: center;
 }

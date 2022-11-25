@@ -5,6 +5,7 @@ import ProductItem from "../ProductItem/ProductItem";
 import Doremon from "../Doremon/Doremon";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  reloadApiSlector,
   shopDataSelector,
   shopFilterPriceSelector,
   shopFilterSelector,
@@ -19,6 +20,7 @@ function ProductBlock({ slug }) {
   const filterCategory = useSelector(shopFilterSelector);
   const filterPrice = useSelector(shopFilterPriceSelector);
   const filterSize = useSelector(shopFilterSizeSelector);
+  const reloadApi = useSelector(reloadApiSlector);
   const [dataProduct, setDataProduct] = useState(products.data);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
@@ -50,6 +52,7 @@ function ProductBlock({ slug }) {
     filterCategory.filter,
     filterPrice.maxPrice,
     filterSize.sizes,
+    reloadApi,
   ]);
 
   function handleChange(event: React.ChangeEvent<unknown>, value: number) {
