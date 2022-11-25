@@ -2,6 +2,7 @@ import "./productInfo.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Favorite } from "@mui/icons-material";
 
 function ProductInfo() {
   // so luong
@@ -36,6 +37,11 @@ function ProductInfo() {
           Dành cho: <span>{info.gender}</span>
         </p>
 
+
+        <div className={`heart-wrap-if`}>
+          ( {info.like || 0} )<Favorite className="heart heart-fill"></Favorite>
+        </div>
+
         <h1>{info.name}</h1>
 
         <div className="feedback">
@@ -51,24 +57,6 @@ function ProductInfo() {
 
         <div className="color">
           <p>Colors: {info.color} </p>
-
-          {/* {colors.map((color) => (
-            <div className="cls" key={color.id}>
-              <input
-                type="radio"
-                checked={color === color.id}
-                onChange={() => setColor(color.id)}
-                onClick={handleColor}
-              ></input>
-              <div className="cln">{color.name}</div>
-            </div>
-          ))} */}
-          {/* 
-          <div className="cls">
-            <div className="red"></div>
-            <div className="green"></div>
-            <div className="black"></div>
-          </div> */}
         </div>
 
         <h1 className="price">{info.price}đ</h1>
@@ -87,14 +75,6 @@ function ProductInfo() {
           <p>
             Kích thước: <span>{info.size}</span>{" "}
           </p>
-
-          {/* {sizes.map((size) => (
-            <div key={size.id} className="size-detail">
-              <button onClick={handleSize} onChange={() => setSize(size.id)}>
-                {size.name}
-              </button>
-            </div>
-          ))} */}
         </div>
 
         <div className="soluong">

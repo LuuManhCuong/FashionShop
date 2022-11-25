@@ -14,7 +14,11 @@ function ProductImage() {
   useEffect(() => {
     axios.get(`http://localhost:5000/shop/detail/${userId.id}`).then((res) => {
       setImages(res.data);
-      setActive(() => (res.data[0] ? res.data[0].url : null));
+      setActive(() =>
+        res.data[0]
+          ? res.data[0].url
+          : "https://img.idesign.vn/2018/10/23/id-loading-1.gif"
+      );
     });
   }, [userId.id]);
   return (
@@ -46,7 +50,7 @@ function ProductImage() {
             ))}
           </div>
         ) : (
-          <h3>chưa tìm thấy ảnh</h3>
+          <h3>Sản phẩm này chưa có ảnh</h3>
         )
       }
     </div>
