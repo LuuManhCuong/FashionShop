@@ -8,7 +8,7 @@ class HomeControllers {
     let sql = `select * from slider`;
     let sql2 = `SELECT *, DATE_FORMAT(product.eventTime, '%y/%m/%d') as dateEvent FROM product where product.event = 1`;
     let sql3 = `SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate 
-    FROM fashion_shop.blog  
+    FROM fashionshop.blog  
     ORDER BY blog.createAt DESC limit 3`;
     let sql4 =
       'SELECT * FROM product where product.gender="women" and product.category="clothings"';

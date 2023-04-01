@@ -7,7 +7,7 @@ class ShopControllers {
     if (req.query.filter && req.query.size) {
       let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
       let sizes = `"${req.query.size.replaceAll(",", '","')}"`;
-      let sql = `SELECT * FROM fashion_shop.product where product.gender=? 
+      let sql = `SELECT * FROM fashionshop.product where product.gender=? 
       and product.size in (${sizes}) and product.category in (${filters}) 
       and product.price <= ? LIMIT 6 OFFSET ? `;
 
@@ -20,7 +20,7 @@ class ShopControllers {
       );
     } else if (req.query.filter) {
       let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
-      let sql = `SELECT * FROM fashion_shop.product where product.gender=? 
+      let sql = `SELECT * FROM fashionshop.product where product.gender=? 
       and product.category in (${filters}) and product.price <= ? LIMIT 6 OFFSET ? `;
 
       connection.query(
@@ -32,7 +32,7 @@ class ShopControllers {
       );
     } else if (req.query.size) {
       let sizes = `"${req.query.size.replaceAll(",", '","')}"`;
-      let sql = `SELECT * FROM fashion_shop.product where product.gender=? 
+      let sql = `SELECT * FROM fashionshop.product where product.gender=? 
       and product.size in (${sizes}) and product.price <= ? LIMIT 6 OFFSET ? `;
 
       connection.query(
@@ -43,7 +43,7 @@ class ShopControllers {
         }
       );
     } else {
-      let sql = `SELECT * FROM fashion_shop.product where product.gender=? and product.price <= ? order by product.price LIMIT 6 OFFSET ?`;
+      let sql = `SELECT * FROM fashionshop.product where product.gender=? and product.price <= ? order by product.price LIMIT 6 OFFSET ?`;
       connection.query(
         `${sql}`,
         [req.query.gender, req.query.price, Number(req.query.page || 0)],
@@ -56,7 +56,7 @@ class ShopControllers {
   // [GET] /shop/detail/:id
   productDetail(req, res, next) {
     // console.log(req.params);
-    let sql = `SELECT url FROM fashion_shop.image_product where 
+    let sql = `SELECT url FROM fashionshop.image_product where 
     image_product.idProduct = ?  `;
 
     connection.query(`${sql}`, [req.params.id], (err, result) => {
@@ -66,7 +66,7 @@ class ShopControllers {
   // [GET] /shop/detail/info/:id
   productDetailInfo(req, res, next) {
     // console.log(req.params)
-    let sql = `SELECT * FROM fashion_shop.product where idProduct = ?  `;
+    let sql = `SELECT * FROM fashionshop.product where idProduct = ?  `;
 
     connection.query(`${sql}`, [req.params.id], (err, result) => {
       err ? res.status(401).json("có lỗi xảy ra") : res.json(result);
@@ -79,7 +79,7 @@ class ShopControllers {
       let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
       let sizes = `"${req.query.size.replaceAll(",", '","')}"`;
 
-      let sql = `SELECT COUNT(*) as total FROM fashion_shop.product where product.gender = ? 
+      let sql = `SELECT COUNT(*) as total FROM fashionshop.product where product.gender = ? 
       and product.category in (${filters}) 
       and product.category in (${sizes}) and product.price <= ?`;
 
@@ -93,7 +93,7 @@ class ShopControllers {
     } else if (req.query.filter) {
       // console.log(req.query.filter);
       let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
-      let sql = `SELECT COUNT(*) as total FROM fashion_shop.product where product.gender = ? and product.category in (${filters}) and product.price <= ?`;
+      let sql = `SELECT COUNT(*) as total FROM fashionshop.product where product.gender = ? and product.category in (${filters}) and product.price <= ?`;
 
       connection.query(
         `${sql}`,
@@ -104,7 +104,7 @@ class ShopControllers {
       );
     } else if (req.query.size) {
       let sizes = `"${req.query.size.replaceAll(",", '","')}"`;
-      let sql = `SELECT COUNT(*) as total FROM fashion_shop.product 
+      let sql = `SELECT COUNT(*) as total FROM fashionshop.product 
       where product.gender = ? 
       and product.size in (${sizes}) and product.price <= ?`;
 
@@ -116,7 +116,7 @@ class ShopControllers {
         }
       );
     } else {
-      let sql = `SELECT COUNT(*) as total FROM fashion_shop.product 
+      let sql = `SELECT COUNT(*) as total FROM fashionshop.product 
       where product.gender = ? and product.price <= ?`;
 
       connection.query(
@@ -131,7 +131,7 @@ class ShopControllers {
 
   // [GET] /shop/minPrice/maxPrice
   getPrice(req, res, next) {
-    let sql = `SELECT max(product.price)as maxPrice, min(product.price)as minPrice FROM fashion_shop.product `;
+    let sql = `SELECT max(product.price)as maxPrice, min(product.price)as minPrice FROM fashionshop.product `;
 
     connection.query(`${sql}`, (err, result) => {
       err ? res.status(401).json("có lỗi xảy ra") : res.json(result);
@@ -170,7 +170,7 @@ class ShopControllers {
     FROM cart
     INNER JOIN user
     ON cart.idUser = user.idUser
-    INNER JOIN fashion_shop.product
+    INNER JOIN fashionshop.product
     ON cart.idProduct = product.idProduct 
     where cart.idUser = ? 
     order by cart.time desc`;
@@ -241,7 +241,7 @@ class ShopControllers {
 
   // [GET] /like/:idProduct
   getLike(req, res) {
-    let sql = `SELECT * FROM fashion_shop.like_post where idPost = ?`;
+    let sql = `SELECT * FROM fashionshop.like_post where idPost = ?`;
     // console.log("pream:", req.params);
     connection.query(sql, [req.params.idProduct], function (err, results) {
       if (err) {
@@ -290,7 +290,7 @@ class ShopControllers {
 
   // [GET] /like/product/:idUser
   getProductLiked(req, res) {
-    let sql = `SELECT idPost FROM fashion_shop.like_post where idUser = ?`;
+    let sql = `SELECT idPost FROM fashionshop.like_post where idUser = ?`;
     // console.log("pream:", req.params);
     connection.query(sql, [req.params.idUser], function (err, results) {
       if (err) {

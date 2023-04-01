@@ -9,11 +9,11 @@ class BlogControllers {
   blog(req, res, next) {
     // authen.verifyToken()
     let sql = `SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate 
-    FROM fashion_shop.blog 
+    FROM fashionshop.blog 
     where blog.category = ? LIMIT 4 OFFSET ?`;
 
     let sql2 = `SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate 
-    FROM fashion_shop.blog  
+    FROM fashionshop.blog  
     ORDER BY blog.createAt DESC limit 3`;
     connection.query(
       `${sql}; ${sql2}`,
@@ -27,7 +27,7 @@ class BlogControllers {
   // [GET] /blog/count
   countBlog(req, res, next) {
     // console.log(req.query.category);
-    let sql = `SELECT COUNT(*) as total FROM fashion_shop.blog where blog.category = ?`;
+    let sql = `SELECT COUNT(*) as total FROM fashionshop.blog where blog.category = ?`;
 
     connection.query(`${sql}`, [req.query.category], (err, result) => {
       err ? res.status(401).json("lỗi") : res.json(result);
@@ -64,7 +64,7 @@ class BlogControllers {
   // [GET] /blog/detail/:id
   blogDetail(req, res, next) {
     // console.log(req.query.category);
-    let sql = `SELECT * FROM fashion_shop.blog where blog.idblog = ?`;
+    let sql = `SELECT * FROM fashionshop.blog where blog.idblog = ?`;
 
     connection.query(`${sql}`, [req.params.id], (err, result) => {
       err ? res.status(401).json("lỗi") : res.json(result);
@@ -81,7 +81,7 @@ class BlogControllers {
     // console.log(getDate);
 
     const id = uuidv4();
-    let sql = `INSERT INTO fashion_shop.feedback 
+    let sql = `INSERT INTO fashionshop.feedback 
     (
       feedback.id,
       feedback.idFeedback,
@@ -109,8 +109,8 @@ class BlogControllers {
     feedback.comment, 
     feedback.createAt,
     DATE_FORMAT(feedback.createAt, '%T %M %d %Y') as timeCreate
-    FROM fashion_shop.feedback 
-    inner join fashion_shop.user 
+    FROM fashionshop.feedback 
+    inner join fashionshop.user 
     on feedback.idUser=user.idUser 
     where idFeedback = ?
     order by createAt desc`;
