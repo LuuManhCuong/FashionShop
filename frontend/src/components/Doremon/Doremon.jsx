@@ -28,7 +28,6 @@ function Doremon() {
         </ul>
         <div className="lip1"></div>
         <div className="lip2"></div>
-        <h3>Đang tải dữ liệu</h3>
       </div>
     </div>
   );

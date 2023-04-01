@@ -43,7 +43,12 @@ function HeaderSearch() {
   return (
     <div className={cx("header-search")}>
       <div className={cx("div logo")}>
-        <a href="/">
+        <a style={{ display: "flex" }} href="/">
+          <img
+            style={{ width: "30px" }}
+            src="https://yt3.googleusercontent.com/ytc/AMLnZu_6zYb7hxcIOxcF9TVYQWYLoSuo1r9mT34AbuVdTw=s900-c-k-c0x00ffffff-no-rj"
+            alt="logo"
+          />
           <h1>Fashion.</h1>
         </a>
       </div>

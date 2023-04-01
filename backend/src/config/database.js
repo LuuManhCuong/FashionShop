@@ -3,15 +3,12 @@ require("dotenv").config();
 // console.log(process.env.DB_HOST)
 
 // create the connection to database
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-  multipleStatements: true,
-});
 
+var connection = mysql.createConnection({
+  host: "fashionshop.mysql.database.azure.com",
+  user: "fashionshop",
+  password: "Admin121!!",
+  database: "fashionshop",
+  port: 3306,
+});
 module.exports = connection;
