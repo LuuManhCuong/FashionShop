@@ -8,12 +8,18 @@ class ShopControllers {
       let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
       let sizes = `"${req.query.size.replaceAll(",", '","')}"`;
       let sql = `SELECT * FROM fashionshop.product where product.gender=? 
-      and product.size in (${sizes}) and product.category in (${filters}) 
+      and product.size in (?) and product.category in (?) 
       and product.price <= ? LIMIT 6 OFFSET ? `;
 
       connection.query(
         `${sql}`,
-        [req.query.gender, req.query.price, Number(req.query.page || 0)],
+        [
+          req.query.gender,
+          sizes,
+          filters,
+          req.query.price,
+          Number(req.query.page || 0),
+        ],
         (err, result) => {
           err ? res.status(401).json("có lỗi xảy ra") : res.json(result);
         }
@@ -21,11 +27,16 @@ class ShopControllers {
     } else if (req.query.filter) {
       let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
       let sql = `SELECT * FROM fashionshop.product where product.gender=? 
-      and product.category in (${filters}) and product.price <= ? LIMIT 6 OFFSET ? `;
+      and product.category in (?) and product.price <= ? LIMIT 6 OFFSET ? `;
 
       connection.query(
         `${sql}`,
-        [req.query.gender, req.query.price, Number(req.query.page || 0)],
+        [
+          req.query.gender,
+          filters,
+          req.query.price,
+          Number(req.query.page || 0),
+        ],
         (err, result) => {
           err ? res.status(401).json("có lỗi xảy ra") : res.json(result);
         }
@@ -33,11 +44,11 @@ class ShopControllers {
     } else if (req.query.size) {
       let sizes = `"${req.query.size.replaceAll(",", '","')}"`;
       let sql = `SELECT * FROM fashionshop.product where product.gender=? 
-      and product.size in (${sizes}) and product.price <= ? LIMIT 6 OFFSET ? `;
+      and product.size in (?) and product.price <= ? LIMIT 6 OFFSET ? `;
 
       connection.query(
         `${sql}`,
-        [req.query.gender, req.query.price, Number(req.query.page || 0)],
+        [req.query.gender, sizes, req.query.price, Number(req.query.page || 0)],
         (err, result) => {
           err ? res.status(401).json("có lỗi xảy ra") : res.json(result);
         }
@@ -80,12 +91,12 @@ class ShopControllers {
       let sizes = `"${req.query.size.replaceAll(",", '","')}"`;
 
       let sql = `SELECT COUNT(*) as total FROM fashionshop.product where product.gender = ? 
-      and product.category in (${filters}) 
-      and product.category in (${sizes}) and product.price <= ?`;
+      and product.category in (?) 
+      and product.category in (?) and product.price <= ?`;
 
       connection.query(
         `${sql}`,
-        [req.query.gender, req.query.price],
+        [req.query.gender, filters, sizes, req.query.price],
         (err, result) => {
           err ? res.status(401).json("có lỗi xảy ra") : res.json(result);
         }
@@ -93,11 +104,11 @@ class ShopControllers {
     } else if (req.query.filter) {
       // console.log(req.query.filter);
       let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
-      let sql = `SELECT COUNT(*) as total FROM fashionshop.product where product.gender = ? and product.category in (${filters}) and product.price <= ?`;
+      let sql = `SELECT COUNT(*) as total FROM fashionshop.product where product.gender = ? and product.category in (?) and product.price <= ?`;
 
       connection.query(
         `${sql}`,
-        [req.query.gender, req.query.price],
+        [req.query.gender, filters, req.query.price],
         (err, result) => {
           err ? res.status(401).json("có lỗi xảy ra") : res.json(result);
         }
@@ -106,11 +117,11 @@ class ShopControllers {
       let sizes = `"${req.query.size.replaceAll(",", '","')}"`;
       let sql = `SELECT COUNT(*) as total FROM fashionshop.product 
       where product.gender = ? 
-      and product.size in (${sizes}) and product.price <= ?`;
+      and product.size in (?) and product.price <= ?`;
 
       connection.query(
         `${sql}`,
-        [req.query.gender, req.query.price],
+        [req.query.gender, sizes, req.query.price],
         (err, result) => {
           err ? res.status(401).json("có lỗi xảy ra") : res.json(result);
         }

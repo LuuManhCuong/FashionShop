@@ -8,13 +8,11 @@ class BlogControllers {
   // [GET] /blog
   blog(req, res, next) {
     // authen.verifyToken()
-    let sql = `SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate 
-    FROM fashionshop.blog 
-    where blog.category = ? LIMIT 4 OFFSET ?`;
+    let sql =
+      "SELECT *, DATE_FORMAT(blog.createAt, `%y/%m/%d`) as timeCreate FROM fashionshop.blog where blog.category = ? LIMIT 4 OFFSET ?";
 
-    let sql2 = `SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate 
-    FROM fashionshop.blog  
-    ORDER BY blog.createAt DESC limit 3`;
+    let sql2 =
+      "SELECT *, DATE_FORMAT(blog.createAt, `%y/%m/%d`) as timeCreate FROM fashionshop.blog ORDER BY blog.createAt DESC limit 3";
     connection.query(
       `${sql}; ${sql2}`,
       [req.query.category, Number(req.query.page || 0)],
@@ -27,7 +25,8 @@ class BlogControllers {
   // [GET] /blog/count
   countBlog(req, res, next) {
     // console.log(req.query.category);
-    let sql = `SELECT COUNT(*) as total FROM fashionshop.blog where blog.category = ?`;
+    let sql =
+      "SELECT COUNT(*) as total FROM fashionshop.blog where blog.category = ?";
 
     connection.query(`${sql}`, [req.query.category], (err, result) => {
       err ? res.status(401).json("lỗi") : res.json(result);
@@ -48,9 +47,8 @@ class BlogControllers {
     const { category, content, title, image, idAuthor, author } = req.body;
 
     const id = uuidv4();
-    let sql = `INSERT INTO  blog 
-    (idblog,title,content,category,createAt,image,idAuthor, author)
-    value (?,?,?,?,?,?,?,?)`;
+    let sql =
+      "INSERT INTO  blog (idblog,title,content,category,createAt,image,idAuthor, author) value (?,?,?,?,?,?,?,?)";
 
     connection.query(
       `${sql}`,
@@ -64,7 +62,7 @@ class BlogControllers {
   // [GET] /blog/detail/:id
   blogDetail(req, res, next) {
     // console.log(req.query.category);
-    let sql = `SELECT * FROM fashionshop.blog where blog.idblog = ?`;
+    let sql = "SELECT * FROM fashionshop.blog where blog.idblog = ?";
 
     connection.query(`${sql}`, [req.params.id], (err, result) => {
       err ? res.status(401).json("lỗi") : res.json(result);
@@ -81,15 +79,8 @@ class BlogControllers {
     // console.log(getDate);
 
     const id = uuidv4();
-    let sql = `INSERT INTO fashionshop.feedback 
-    (
-      feedback.id,
-      feedback.idFeedback,
-      feedback.idUser,
-      feedback.comment, 
-      feedback.createAt
-      )
-    VALUES (?, ?, ?, ?, ? )`;
+    let sql =
+      "INSERT INTO fashionshop.feedback ( feedback.id, feedback.idFeedback, feedback.idUser, feedback.comment,  feedback.createAt ) VALUES (?, ?, ?, ?, ? )";
     const { idUser, idFeedback } = req.query;
 
     connection.query(
@@ -104,16 +95,8 @@ class BlogControllers {
   // [GET] /comment/:idFeedback
   getComment(req, res, next) {
     // console.log("idFeedback: ", req.params);
-    let sql = `SELECT user.avatar, 
-    user.username, 
-    feedback.comment, 
-    feedback.createAt,
-    DATE_FORMAT(feedback.createAt, '%T %M %d %Y') as timeCreate
-    FROM fashionshop.feedback 
-    inner join fashionshop.user 
-    on feedback.idUser=user.idUser 
-    where idFeedback = ?
-    order by createAt desc`;
+    let sql =
+      "SELECT user.avatar, user.username, feedback.comment, feedback.createAt,DATE_FORMAT(feedback.createAt, '%T %M %d %Y') as timeCreateFROM fashionshop.feedback inner join fashionshop.user on feedback.idUser=user.idUser where idFeedback = ?order by createAt desc";
 
     connection.query(`${sql}`, [req.params.idFeedback], (err, result) => {
       err ? res.status(401).json("lỗi") : res.json(result);

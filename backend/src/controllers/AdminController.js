@@ -141,6 +141,7 @@ class AdminController {
         Number(sale),
         Number(quantity),
         size,
+        
       ],
       (err, result) => {
         err ? res.status(401).json("lỗi") : res.json(id);
