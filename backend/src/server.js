@@ -1,4 +1,3 @@
-
 const express = require("express");
 const app = express();
 const connection = require("./config/database");
@@ -9,11 +8,10 @@ const cors = require("cors");
 const http = require("http").Server(app);
 const socketIO = require("socket.io")(http, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://fashionshop.onrender.com/",
   },
 });
 const port = process.env.PORT || process.env.port || 5000;
-
 
 app.use(
   bodyParser.urlencoded({
@@ -28,7 +26,7 @@ app.use(express.json());
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000"],
+    origin: ["https://fashionshop.onrender.com/"],
   })
 );
 
