@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
+import { HOT_URL } from "../../api/api";
 function ProductImage() {
   let userId = useParams(); // lấy id của sản phẩm trên đường link
   // console.log("id: ", userId.id);
@@ -12,7 +12,7 @@ function ProductImage() {
   const [classActive, setAclassActive] = useState(0);
   const [images, setImages] = useState([]);
   useEffect(() => {
-    axios.get(`https://fashionshop.onrender.com/shop/detail/${userId.id}`).then((res) => {
+    axios.get(`${HOT_URL}/shop/detail/${userId.id}`).then((res) => {
       setImages(res.data);
       setActive(() =>
         res.data[0]

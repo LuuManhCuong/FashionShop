@@ -7,8 +7,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { reloadApi } from "../../redux/reducer/adminSlice";
-import { yellow } from "@mui/material/colors";
-
+import { HOT_URL } from "../../api/api";
 function CommentBlock() {
   const checkUser = useSelector(userSelector);
   const user = checkUser.login.currentUser;
@@ -36,7 +35,7 @@ function CommentBlock() {
     //   navigate("/login");
     // } else {
     axios
-      .get(`https://fashionshop.onrender.com/comment/${params.id}`)
+      .get(`${HOT_URL}/comment/${params.id}`)
 
       .then((res) => setDataComment(res.data))
       .catch((errors) => console.log(errors));
@@ -51,7 +50,7 @@ function CommentBlock() {
       setErr("");
       axios
         .post(
-          `https://fashionshop.onrender.com/create/comment?idUser=${user.idUser}&idFeedback=${params.id}`,
+          `${HOT_URL}/create/comment?idUser=${user.idUser}&idFeedback=${params.id}`,
           data,
           {
             headers: {

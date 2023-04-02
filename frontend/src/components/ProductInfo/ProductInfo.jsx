@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Favorite } from "@mui/icons-material";
-
+import { HOT_URL } from "../../api/api";
 function ProductInfo() {
   // so luong
   const [add, setAdd] = useState(1);
@@ -12,7 +12,7 @@ function ProductInfo() {
   let userId = useParams();
   useEffect(() => {
     axios
-      .get(`https://fashionshop.onrender.com/shop/detail/info/${userId.id}`)
+      .get(`${HOT_URL}/shop/detail/info/${userId.id}`)
       .then((res) => {
         setInfo(res.data[0]);
         // console.log(res.data[0])

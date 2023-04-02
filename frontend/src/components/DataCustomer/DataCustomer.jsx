@@ -13,8 +13,7 @@ import Stack from "@mui/material/Stack";
 import { userSelector } from "../../redux/selectors";
 import { useNavigate, Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-// import { userSlice } from "../../redux/reducer/userSlice";
-// import { checkToken } from "../../api/api";
+import { HOT_URL } from "../../api/api";
 
 const overview = [
   {
@@ -57,7 +56,7 @@ function DataCustomer() {
   // async function newToken() {
   //   try {
   //     const res = await axios.post(
-  //       `https://fashionshop.onrender.com/refresh`,
+  //       `${HOT_URL}/refresh`,
   //       {
   //         refreshToken: user.accessToken,
   //       },
@@ -100,7 +99,7 @@ function DataCustomer() {
   // count page
   useEffect(() => {
     axiosJwt
-      .get(`https://fashionshop.onrender.com/admin/count/user`, {
+      .get(`${HOT_URL}/admin/count/user`, {
         withCredentials: true,
         headers: {
           token: `Bearer ${user.accessToken}`,
@@ -121,7 +120,7 @@ function DataCustomer() {
     let offset;
     page === 0 ? (offset = 0) : (offset = (page - 1) * 10);
     axiosJwt
-      .get(`https://fashionshop.onrender.com/admin/?page=${offset}`, {
+      .get(`${HOT_URL}/admin/?page=${offset}`, {
         withCredentials: true,
         headers: {
           token: `Bearer ${user.accessToken}`,

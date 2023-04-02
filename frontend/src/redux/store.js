@@ -25,8 +25,7 @@ const store = configureStore({
     size: shopFilterSize.reducer,
     admin: adminReducer,
     reloadApi: reloadApi.reducer,
-    countNoti: countNoti.reducer
-    
+    countNoti: countNoti.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(sagaMiddleware),

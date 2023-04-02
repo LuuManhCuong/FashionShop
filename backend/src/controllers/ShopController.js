@@ -91,7 +91,7 @@ class ShopControllers {
         }
       );
     } else if (req.query.filter != null) {
-      // console.log(req.query.filter);
+      console.log(req.query.filter);
       let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
       let sql = `SELECT COUNT(*) as total FROM fashionshop.product where product.gender = ? and product.category in (${filters}) and product.price <= ?`;
 

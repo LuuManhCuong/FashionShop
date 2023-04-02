@@ -1,13 +1,14 @@
 import axios from "axios";
 import { userSlice } from "../redux/reducer/userSlice";
 
-const URL = "https://fashionshop.onrender.com";
+export const HOT_URL = "https://fashionshop.onrender.com";
+// export const HOT_URL = "http://localhost:3000";
 
 // login request
 export const loginUser = async (user, dispatch, navigate) => {
   dispatch(userSlice.actions.loginStart());
   try {
-    const res = await axios.post(`${URL}/login`, user, {
+    const res = await axios.post(`$HOT_URL}/login`, user, {
       withCredentials: true,
     });
     dispatch(userSlice.actions.loginSuccess(res.data));
@@ -21,7 +22,7 @@ export const loginUser = async (user, dispatch, navigate) => {
 export const registerRequest = async (user, dispatch, navigate) => {
   dispatch(userSlice.actions.registerStart());
   try {
-    await axios.post(`${URL}/register`, user, {
+    await axios.post(`$HOT_URL}/register`, user, {
       withCredentials: true,
     });
     dispatch(userSlice.actions.registerSuccess());
@@ -31,13 +32,13 @@ export const registerRequest = async (user, dispatch, navigate) => {
   }
 };
 
-export const fetchHomeApi = () => axios.get(`${URL}`);
-export const fetchBlogApi = () => axios.get(`${URL}/blog`);
-export const fetchBestSaleApi = () => axios.get(`${URL}/bestSale/`);
-export const fetchShopApi = () => axios.get(`${URL}/shop`);
+export const fetchHomeApi = () => axios.get(`$HOT_URL}`);
+export const fetchBlogApi = () => axios.get(`$HOT_URL}/blog`);
+export const fetchBestSaleApi = () => axios.get(`$HOT_URL}/bestSale/`);
+export const fetchShopApi = () => axios.get(`$HOT_URL}/shop`);
 export const fetchAdminApi = () =>
-  axios.get(`${URL}/admin`, {
+  axios.get(`$HOT_URL}/admin`, {
     withCredentials: true,
   });
 export const fetchSearchApi = (wordKey, size = "less") =>
-  axios.get(`${URL}/search?name=${wordKey}&size=${size}`);
+  axios.get(`$HOT_URL}/search?name=${wordKey}&size=${size}`);

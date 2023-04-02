@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { userSelector } from "../../redux/selectors";
 import { reloadApiSlector } from "../../redux/selectors";
 import { useNavigate, Link } from "react-router-dom";
-
+import { HOT_URL } from "../../api/api";
 const cx = classNames.bind(styles);
 
 const overview = [
@@ -60,7 +60,7 @@ function WareHouse() {
   const [totalPages, setTotalPages] = useState(1);
   // count page
   useEffect(() => {
-    fetch(`https://fashionshop.onrender.com/admin/count/product`, {
+    fetch(`${HOT_URL}/admin/count/product`, {
       headers: {
         token: `Bearer ${user.accessToken}`,
       },
@@ -78,7 +78,7 @@ function WareHouse() {
   useEffect(() => {
     let offset;
     page === 0 ? (offset = 0) : (offset = (page - 1) * 10);
-    fetch(`https://fashionshop.onrender.com/admin/warehouse?page=${offset}`, {
+    fetch(`${HOT_URL}/admin/warehouse?page=${offset}`, {
       headers: {
         token: `Bearer ${user.accessToken}`,
       },

@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { Pagination } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { HOT_URL } from "../../api/api";
 const cx = classNames.bind(styles);
 function BlogContent({ slug }) {
   const blogData = useSelector(blogDataSelector);
@@ -21,7 +22,7 @@ function BlogContent({ slug }) {
 
   // count page
   useEffect(() => {
-    fetch(`https://fashionshop.onrender.com/blog/count?category=${slug}`)
+    fetch(`${HOT_URL}/blog/count?category=${slug}`)
       .then((res) => res.json())
       .then((data) => {
         setTotalPages(Math.ceil(Number(data[0].total) / 4));
@@ -31,9 +32,7 @@ function BlogContent({ slug }) {
   useEffect(() => {
     let offset;
     page === 0 ? (offset = 0) : (offset = (page - 1) * 4);
-    fetch(
-      `https://fashionshop.onrender.com/blog?category=${slug}&page=${offset}`
-    )
+    fetch(`${HOT_URL}/blog?category=${slug}&page=${offset}`)
       .then((res) => res.json())
       .then((data) => {
         setListBlog(data[0]);

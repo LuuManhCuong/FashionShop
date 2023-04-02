@@ -10,7 +10,7 @@ import { userSelector } from "../../redux/selectors";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
-
+import { HOT_URL } from "../../api/api";
 const cx = classNames.bind(styles);
 
 function AddProductContent() {
@@ -117,7 +117,7 @@ function AddProductContent() {
               // console.log("send: ", setData);
 
               axios
-                .post(`https://fashionshop.onrender.com/admin/add/product`, setData, {
+                .post(`${HOT_URL}/admin/add/product`, setData, {
                   headers: {
                     token: `Bearer ${user.accessToken}`,
                   },

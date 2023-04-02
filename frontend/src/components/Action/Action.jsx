@@ -16,6 +16,7 @@ import { reloadApi } from "../../redux/reducer/adminSlice";
 
 // import { useForm } from "react-hook-form";
 import Profile from "../Proflie/Profile";
+import { HOT_URL } from "../../api/api";
 
 const style = {
   position: "absolute",
@@ -50,7 +51,7 @@ function Action({ item, showInfoUser }) {
   // } = useForm();
   // const onSubmit = (data) => console.log("send", data);
   const handleDeleteUser = (id) => {
-    fetch(`https://fashionshop.onrender.com/admin/delete/user/${id}`, {
+    fetch(`${HOT_URL}/admin/delete/user/${id}`, {
       method: "DELETE",
       headers: {
         token: `Bearer ${user.accessToken}`,
@@ -66,7 +67,7 @@ function Action({ item, showInfoUser }) {
   };
 
   const handleDeleteProduct = (id) => {
-    fetch(`https://fashionshop.onrender.com/admin/delete/product/${id}`, {
+    fetch(`${HOT_URL}/admin/delete/product/${id}`, {
       method: "DELETE",
       headers: {
         token: `Bearer ${user.accessToken}`,

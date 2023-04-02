@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userSelector } from "../../redux/selectors";
 // import { Link } from "react-router-dom";
 import { Clear } from "@mui/icons-material";
-
+import { HOT_URL } from "../../api/api";
 const cx = classNames.bind(styles);
 
 // nhận lại dữ liệu productItem từ component cha
@@ -20,7 +20,7 @@ function CardItems({ productItem }) {
   useEffect(() => {
     axios
       .patch(
-        `https://fashionshop.onrender.com/cart/update/incart/${productItem.idProduct}`,
+        `${HOT_URL}/cart/update/incart/${productItem.idProduct}`,
         {
           inCart: quantity,
         },
@@ -39,7 +39,7 @@ function CardItems({ productItem }) {
   const handleDeleteProduct = (id, idProduct) => {
     // console.log(id);
     let resetCart = axios.patch(
-      `https://fashionshop.onrender.com/cart/update/incart/${idProduct}`,
+      `${HOT_URL}/cart/update/incart/${idProduct}`,
       {
         inCart: 1,
       },
@@ -50,7 +50,7 @@ function CardItems({ productItem }) {
       }
     );
 
-    let deleteCart = axios.delete(`https://fashionshop.onrender.com/cart/delete/${id}`, {
+    let deleteCart = axios.delete(`${HOT_URL}/cart/delete/${id}`, {
       headers: {
         token: `Bearer ${user.accessToken}`,
       },

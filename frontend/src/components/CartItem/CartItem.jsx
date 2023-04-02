@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { userSelector } from "../../redux/selectors";
 import { reloadApi } from "../../redux/reducer/adminSlice";
-
+import { HOT_URL } from "../../api/api";
 function CartItem({ productItem }) {
   const dispatch = useDispatch();
   const checkUser = useSelector(userSelector);
@@ -13,7 +13,7 @@ function CartItem({ productItem }) {
   const handleDeleteProduct = (id, idProduct) => {
     // console.log(id);
     let resetCart = axios.patch(
-      `https://fashionshop.onrender.com/cart/update/incart/${idProduct}`,
+      `${HOT_URL}/cart/update/incart/${idProduct}`,
       {
         inCart: 1,
       },
@@ -24,7 +24,7 @@ function CartItem({ productItem }) {
       }
     );
 
-    let deleteCart = axios.delete(`https://fashionshop.onrender.com/cart/delete/${id}`, {
+    let deleteCart = axios.delete(`${HOT_URL}/cart/delete/${id}`, {
       headers: {
         token: `Bearer ${user.accessToken}`,
       },

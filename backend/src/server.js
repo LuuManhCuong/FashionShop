@@ -24,7 +24,12 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
-
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: ["http://localhost:3000"],
+//   })
+// );
 //Add this before the app.get() block
 // socketIO.on("connection", (socket) => {
 //   console.log(`⚡: ${socket.id} user just connected!`);

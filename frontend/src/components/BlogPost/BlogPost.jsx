@@ -15,7 +15,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-
+import { HOT_URL } from "../../api/api";
 const cx = classNames.bind(styles);
 
 function BlogPost() {
@@ -67,7 +67,7 @@ function BlogPost() {
         .then((url) => {
           axios
             .post(
-              `https://fashionshop.onrender.com/blog`,
+              `${HOT_URL}/blog`,
               {
                 category,
                 content,
