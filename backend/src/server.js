@@ -6,11 +6,11 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const http = require("http").Server(app);
-const socketIO = require("socket.io")(http, {
-  cors: {
-    origin: "https://fashionshop.onrender.com/",
-  },
-});
+// const socketIO = require("socket.io")(http, {
+//   cors: {
+//     origin: "http://localhost:3000",
+//   },
+// });
 const port = process.env.PORT || process.env.port || 5000;
 
 app.use(
@@ -23,20 +23,15 @@ app.use(
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cookieParser());
 app.use(express.json());
-app.use(
-  cors({
-    credentials: true,
-    origin: ["https://fashionshop.onrender.com/"],
-  })
-);
+app.use(cors());
 
 //Add this before the app.get() block
-socketIO.on("connection", (socket) => {
-  console.log(`⚡: ${socket.id} user just connected!`);
-  socket.on("disconnect", () => {
-    console.log("🔥: A user disconnected");
-  });
-});
+// socketIO.on("connection", (socket) => {
+//   console.log(`⚡: ${socket.id} user just connected!`);
+//   socket.on("disconnect", () => {
+//     console.log("🔥: A user disconnected");
+//   });
+// });
 
 router(app);
 
