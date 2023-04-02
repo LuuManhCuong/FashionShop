@@ -12,7 +12,7 @@ function ProductImage() {
   const [classActive, setAclassActive] = useState(0);
   const [images, setImages] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:5000/shop/detail/${userId.id}`).then((res) => {
+    axios.get(`https://fashionshop.onrender.com/shop/detail/${userId.id}`).then((res) => {
       setImages(res.data);
       setActive(() =>
         res.data[0]

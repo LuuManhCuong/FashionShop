@@ -10,5 +10,9 @@ var connection = mysql.createConnection({
   password: "Admin121!!",
   database: "fashionshop",
   port: 3306,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  multipleStatements: true,
 });
 module.exports = connection;

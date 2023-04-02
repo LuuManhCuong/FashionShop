@@ -16,7 +16,7 @@ function CartNoti({ className }) {
   useEffect(() => {
     if (user) {
       axios
-        .get(`http://localhost:5000/cart/${user.idUser}`, {
+        .get(`https://fashionshop.onrender.com/cart/${user.idUser}`, {
           headers: {
             token: `Bearer ${user.accessToken}`,
           },

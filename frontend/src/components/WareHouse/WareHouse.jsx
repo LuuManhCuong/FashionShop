@@ -60,7 +60,7 @@ function WareHouse() {
   const [totalPages, setTotalPages] = useState(1);
   // count page
   useEffect(() => {
-    fetch(`http://localhost:5000/admin/count/product`, {
+    fetch(`https://fashionshop.onrender.com/admin/count/product`, {
       headers: {
         token: `Bearer ${user.accessToken}`,
       },
@@ -78,7 +78,7 @@ function WareHouse() {
   useEffect(() => {
     let offset;
     page === 0 ? (offset = 0) : (offset = (page - 1) * 10);
-    fetch(`http://localhost:5000/admin/warehouse?page=${offset}`, {
+    fetch(`https://fashionshop.onrender.com/admin/warehouse?page=${offset}`, {
       headers: {
         token: `Bearer ${user.accessToken}`,
       },

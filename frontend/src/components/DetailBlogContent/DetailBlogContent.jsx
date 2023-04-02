@@ -12,7 +12,7 @@ function DetailBlogContent() {
   const [blog, setBlog] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/blog/detail/${pram.id}`)
+      .get(`https://fashionshop.onrender.com/blog/detail/${pram.id}`)
       .then((res) => {
         setBlog(res.data[0]);
       })

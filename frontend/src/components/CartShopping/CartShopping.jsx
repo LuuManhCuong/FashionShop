@@ -20,7 +20,7 @@ function CardShopping() {
     if (user) {
       axios
         // lấy tất cả sản phẩm trong giỏ hàng của user có id = account
-        .get(`http://localhost:5000/cart/${user.idUser}`, {
+        .get(`https://fashionshop.onrender.com/cart/${user.idUser}`, {
           headers: {
             token: `Bearer ${user.accessToken}`,
           },

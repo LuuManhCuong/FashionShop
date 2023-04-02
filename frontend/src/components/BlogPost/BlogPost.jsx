@@ -67,7 +67,7 @@ function BlogPost() {
         .then((url) => {
           axios
             .post(
-              `http://localhost:5000/blog`,
+              `https://fashionshop.onrender.com/blog`,
               {
                 category,
                 content,

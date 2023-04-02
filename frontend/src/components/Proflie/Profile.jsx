@@ -63,7 +63,7 @@ function Profile({ userInfo }) {
       setTextButton("Hoàn tất");
     } else {
       axios
-        .post(`http://localhost:5000/cloudinary-upload`, {
+        .post(`https://fashionshop.onrender.com/cloudinary-upload`, {
           avatar: avt,
         })
 
@@ -75,7 +75,7 @@ function Profile({ userInfo }) {
           // console.log("send: ", setData);
           axios
             .patch(
-              `http://localhost:5000/update/user/${userInfo.idUser}`,
+              `https://fashionshop.onrender.com/update/user/${userInfo.idUser}`,
               setData,
               {
                 headers: {

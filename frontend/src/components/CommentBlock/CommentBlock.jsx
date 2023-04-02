@@ -36,7 +36,7 @@ function CommentBlock() {
     //   navigate("/login");
     // } else {
     axios
-      .get(`http://localhost:5000/comment/${params.id}`)
+      .get(`https://fashionshop.onrender.com/comment/${params.id}`)
 
       .then((res) => setDataComment(res.data))
       .catch((errors) => console.log(errors));
@@ -51,7 +51,7 @@ function CommentBlock() {
       setErr("");
       axios
         .post(
-          `http://localhost:5000/create/comment?idUser=${user.idUser}&idFeedback=${params.id}`,
+          `https://fashionshop.onrender.com/create/comment?idUser=${user.idUser}&idFeedback=${params.id}`,
           data,
           {
             headers: {

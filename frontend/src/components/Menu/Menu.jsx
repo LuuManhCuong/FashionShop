@@ -21,7 +21,7 @@ function Menu({ direction, ...args }) {
   const handleLogout = () => {
     console.log("logour");
     axios
-      .post(`http://localhost:5000/logout`, {
+      .post(`https://fashionshop.onrender.com/logout`, {
         withCredentials: true,
         headers: {
           token: `Bearer ${user.accessToken}`,

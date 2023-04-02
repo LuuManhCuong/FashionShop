@@ -12,7 +12,7 @@ function ProductInfo() {
   let userId = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/shop/detail/info/${userId.id}`)
+      .get(`https://fashionshop.onrender.com/shop/detail/info/${userId.id}`)
       .then((res) => {
         setInfo(res.data[0]);
         // console.log(res.data[0])

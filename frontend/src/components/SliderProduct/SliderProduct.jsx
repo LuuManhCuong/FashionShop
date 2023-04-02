@@ -14,13 +14,13 @@ function SliderProduct({ gender, category, initMen, initWomen }) {
   const [dataMen, setDataMen] = useState(initMen);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/bestSale/?gender=women&category=${category}`)
+    fetch(`https://fashionshop.onrender.com/bestSale/?gender=women&category=${category}`)
       .then((res) => res.json())
       .then((data) => setDataWomen(data));
   }, [category]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/bestSale/?gender=men&category=${category}`)
+    fetch(`https://fashionshop.onrender.com/bestSale/?gender=men&category=${category}`)
       .then((res) => res.json())
       .then((data) => setDataMen(data));
   }, [category]);

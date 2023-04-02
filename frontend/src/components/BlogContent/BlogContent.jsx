@@ -21,7 +21,7 @@ function BlogContent({ slug }) {
 
   // count page
   useEffect(() => {
-    fetch(`http://localhost:5000/blog/count?category=${slug}`)
+    fetch(`https://fashionshop.onrender.com/blog/count?category=${slug}`)
       .then((res) => res.json())
       .then((data) => {
         setTotalPages(Math.ceil(Number(data[0].total) / 4));
@@ -31,7 +31,7 @@ function BlogContent({ slug }) {
   useEffect(() => {
     let offset;
     page === 0 ? (offset = 0) : (offset = (page - 1) * 4);
-    fetch(`http://localhost:5000/blog?category=${slug}&page=${offset}`)
+    fetch(`https://fashionshop.onrender.com/blog?category=${slug}&page=${offset}`)
       .then((res) => res.json())
       .then((data) => {
         setListBlog(data[0]);

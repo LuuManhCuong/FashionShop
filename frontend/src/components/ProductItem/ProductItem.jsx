@@ -26,7 +26,7 @@ function ProductItem({ product }) {
   useEffect(() => {
     if (user) {
       axios
-        .get(`http://localhost:5000/like/product/${user.idUser}`, {
+        .get(`https://fashionshop.onrender.com/like/product/${user.idUser}`, {
           headers: {
             token: `Bearer ${user.accessToken}`,
           },
@@ -44,7 +44,7 @@ function ProductItem({ product }) {
       navigate("/login");
     } else {
       axios
-        .get(`http://localhost:5000/cart/${user.idUser}`, {
+        .get(`https://fashionshop.onrender.com/cart/${user.idUser}`, {
           headers: {
             token: `Bearer ${user.accessToken}`,
           },
@@ -65,7 +65,7 @@ function ProductItem({ product }) {
           if (checkInclude) {
             axios
               .patch(
-                `http://localhost:5000/cart/update/incart/${id}`,
+                `https://fashionshop.onrender.com/cart/update/incart/${id}`,
                 {
                   inCart: (count += 1),
                 },
@@ -92,7 +92,7 @@ function ProductItem({ product }) {
           } else {
             axios
               .post(
-                `http://localhost:5000/cart/add`,
+                `https://fashionshop.onrender.com/cart/add`,
                 {
                   idProduct: id,
                   idUser: user.idUser,
@@ -132,7 +132,7 @@ function ProductItem({ product }) {
       navigate("/login");
     } else {
       axios
-        .get(`http://localhost:5000/like/${id}`, {
+        .get(`https://fashionshop.onrender.com/like/${id}`, {
           headers: {
             token: `Bearer ${user.accessToken}`,
           },
@@ -145,7 +145,7 @@ function ProductItem({ product }) {
           if (checkInclude) {
             // console.log("đã tồn tại => xóa");
             let dislike = axios.delete(
-              `http://localhost:5000/dislike?idProduct=${id}&idUser=${user.idUser}`,
+              `https://fashionshop.onrender.com/dislike?idProduct=${id}&idUser=${user.idUser}`,
               {
                 headers: {
                   token: `Bearer ${user.accessToken}`,
@@ -154,7 +154,7 @@ function ProductItem({ product }) {
             );
 
             let setlike = axios.patch(
-              `http://localhost:5000/setlike/${id}`,
+              `https://fashionshop.onrender.com/setlike/${id}`,
               {
                 like: (product.like -= 1),
               },
@@ -173,7 +173,7 @@ function ProductItem({ product }) {
           } else {
             // console.log("chưa tồn tại  => like");
             let like = axios.post(
-              `http://localhost:5000/like`,
+              `https://fashionshop.onrender.com/like`,
               {
                 idUser: user.idUser,
                 idProduct: id,
@@ -186,7 +186,7 @@ function ProductItem({ product }) {
             );
 
             let setlike = axios.patch(
-              `http://localhost:5000/setlike/${id}`,
+              `https://fashionshop.onrender.com/setlike/${id}`,
               {
                 like: (product.like += 1),
               },

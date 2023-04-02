@@ -27,7 +27,7 @@ function ProductBlock({ slug }) {
   // count page
   React.useEffect(() => {
     fetch(
-      `http://localhost:5000/shop/count?gender=${slug}&filter=${filterCategory.filter}&price=${filterPrice.maxPrice}&size=${filterSize.sizes}`
+      `https://fashionshop.onrender.com/shop/count?gender=${slug}&filter=${filterCategory.filter}&price=${filterPrice.maxPrice}&size=${filterSize.sizes}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -40,7 +40,7 @@ function ProductBlock({ slug }) {
     let offset;
     page === 0 ? (offset = 0) : (offset = (page - 1) * 6);
     fetch(
-      `http://localhost:5000/shop?page=${offset}&gender=${slug}&filter=${filterCategory.filter}&price=${filterPrice.maxPrice}&size=${filterSize.sizes}`
+      `https://fashionshop.onrender.com/shop?page=${offset}&gender=${slug}&filter=${filterCategory.filter}&price=${filterPrice.maxPrice}&size=${filterSize.sizes}`
     )
       .then((res) => res.json())
       .then((data) => {

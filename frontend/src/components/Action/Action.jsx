@@ -50,7 +50,7 @@ function Action({ item, showInfoUser }) {
   // } = useForm();
   // const onSubmit = (data) => console.log("send", data);
   const handleDeleteUser = (id) => {
-    fetch(`http://localhost:5000/admin/delete/user/${id}`, {
+    fetch(`https://fashionshop.onrender.com/admin/delete/user/${id}`, {
       method: "DELETE",
       headers: {
         token: `Bearer ${user.accessToken}`,
@@ -66,7 +66,7 @@ function Action({ item, showInfoUser }) {
   };
 
   const handleDeleteProduct = (id) => {
-    fetch(`http://localhost:5000/admin/delete/product/${id}`, {
+    fetch(`https://fashionshop.onrender.com/admin/delete/product/${id}`, {
       method: "DELETE",
       headers: {
         token: `Bearer ${user.accessToken}`,

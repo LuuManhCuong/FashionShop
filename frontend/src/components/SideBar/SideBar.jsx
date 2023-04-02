@@ -28,7 +28,7 @@ function SideBar(props) {
   const [max, setMax] = useState(100);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/shop/getPrice`)
+    fetch(`https://fashionshop.onrender.com/shop/getPrice`)
       .then((res) => res.json())
       .then((data) => {
         setMin(data[0].minPrice);

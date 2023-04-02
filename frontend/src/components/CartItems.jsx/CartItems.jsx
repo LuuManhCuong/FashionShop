@@ -20,7 +20,7 @@ function CardItems({ productItem }) {
   useEffect(() => {
     axios
       .patch(
-        `http://localhost:5000/cart/update/incart/${productItem.idProduct}`,
+        `https://fashionshop.onrender.com/cart/update/incart/${productItem.idProduct}`,
         {
           inCart: quantity,
         },
@@ -39,7 +39,7 @@ function CardItems({ productItem }) {
   const handleDeleteProduct = (id, idProduct) => {
     // console.log(id);
     let resetCart = axios.patch(
-      `http://localhost:5000/cart/update/incart/${idProduct}`,
+      `https://fashionshop.onrender.com/cart/update/incart/${idProduct}`,
       {
         inCart: 1,
       },
@@ -50,7 +50,7 @@ function CardItems({ productItem }) {
       }
     );
 
-    let deleteCart = axios.delete(`http://localhost:5000/cart/delete/${id}`, {
+    let deleteCart = axios.delete(`https://fashionshop.onrender.com/cart/delete/${id}`, {
       headers: {
         token: `Bearer ${user.accessToken}`,
       },

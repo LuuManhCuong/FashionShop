@@ -9,10 +9,10 @@ class BlogControllers {
   blog(req, res, next) {
     // authen.verifyToken()
     let sql =
-      "SELECT *, DATE_FORMAT(blog.createAt, `%y/%m/%d`) as timeCreate FROM fashionshop.blog where blog.category = ? LIMIT 4 OFFSET ?";
+      "SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate FROM fashionshop.blog where blog.category = ? LIMIT 4 OFFSET ?";
 
     let sql2 =
-      "SELECT *, DATE_FORMAT(blog.createAt, `%y/%m/%d`) as timeCreate FROM fashionshop.blog ORDER BY blog.createAt DESC limit 3";
+      "SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate FROM fashionshop.blog ORDER BY blog.createAt DESC limit 3";
     connection.query(
       `${sql}; ${sql2}`,
       [req.query.category, Number(req.query.page || 0)],

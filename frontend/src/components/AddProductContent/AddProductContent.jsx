@@ -117,7 +117,7 @@ function AddProductContent() {
               // console.log("send: ", setData);
 
               axios
-                .post(`http://localhost:5000/admin/add/product`, setData, {
+                .post(`https://fashionshop.onrender.com/admin/add/product`, setData, {
                   headers: {
                     token: `Bearer ${user.accessToken}`,
                   },

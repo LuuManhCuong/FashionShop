@@ -57,7 +57,7 @@ function DataCustomer() {
   // async function newToken() {
   //   try {
   //     const res = await axios.post(
-  //       `http://localhost:5000/refresh`,
+  //       `https://fashionshop.onrender.com/refresh`,
   //       {
   //         refreshToken: user.accessToken,
   //       },
@@ -100,7 +100,7 @@ function DataCustomer() {
   // count page
   useEffect(() => {
     axiosJwt
-      .get(`http://localhost:5000/admin/count/user`, {
+      .get(`https://fashionshop.onrender.com/admin/count/user`, {
         withCredentials: true,
         headers: {
           token: `Bearer ${user.accessToken}`,
@@ -121,7 +121,7 @@ function DataCustomer() {
     let offset;
     page === 0 ? (offset = 0) : (offset = (page - 1) * 10);
     axiosJwt
-      .get(`http://localhost:5000/admin/?page=${offset}`, {
+      .get(`https://fashionshop.onrender.com/admin/?page=${offset}`, {
         withCredentials: true,
         headers: {
           token: `Bearer ${user.accessToken}`,
