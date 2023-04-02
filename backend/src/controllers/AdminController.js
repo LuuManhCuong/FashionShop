@@ -7,7 +7,7 @@ class AdminController {
   // [GET] /admin/
   adminUser(req, res, next) {
     // authen.verifyToken()
-    let sql = `SELECT * FROM fashionshop.user order by createAt desc  limit 10 offset ?`;
+    let sql = `SELECT * FROM fashion_shop.user order by createAt desc  limit 10 offset ?`;
     connection.query(`${sql}`, [Number(req.query.page || 0)], (err, result) => {
       err ? res.status(401).json("lỗi") : res.json(result);
     });
@@ -29,7 +29,7 @@ class AdminController {
 
   // [GET] /admin/count/user
   countUser(req, res, next) {
-    let sql = `SELECT COUNT(*) as total FROM fashionshop.user`;
+    let sql = `SELECT COUNT(*) as total FROM fashion_shop.user`;
 
     connection.query(`${sql}`, (err, result) => {
       err ? res.status(401).json("lỗi") : res.json(result);
@@ -38,7 +38,7 @@ class AdminController {
 
   // [GET] /admin/count/product
   countProduct(req, res, next) {
-    let sql = `SELECT COUNT(*) as total FROM fashionshop.product`;
+    let sql = `SELECT COUNT(*) as total FROM fashion_shop.product`;
 
     connection.query(`${sql}`, (err, result) => {
       err ? res.status(401).json("lỗi") : res.json(result);

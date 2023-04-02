@@ -13,6 +13,8 @@ import Stack from "@mui/material/Stack";
 import { userSelector } from "../../redux/selectors";
 import { useNavigate, Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
+// import { userSlice } from "../../redux/reducer/userSlice";
+// import { checkToken } from "../../api/api";
 import { HOT_URL } from "../../api/api";
 
 const overview = [

@@ -9,10 +9,10 @@ class BlogControllers {
   blog(req, res, next) {
     // authen.verifyToken()
     let sql =
-      "SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate FROM fashionshop.blog where blog.category = ? LIMIT 4 OFFSET ?";
+      "SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate FROM fashion_shop.blog where blog.category = ? LIMIT 4 OFFSET ?";
 
     let sql2 =
-      "SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate FROM fashionshop.blog ORDER BY blog.createAt DESC limit 3";
+      "SELECT *, DATE_FORMAT(blog.createAt, '%y/%m/%d') as timeCreate FROM fashion_shop.blog ORDER BY blog.createAt DESC limit 3";
     connection.query(
       `${sql}; ${sql2}`,
       [req.query.category, Number(req.query.page || 0)],
@@ -26,7 +26,7 @@ class BlogControllers {
   countBlog(req, res, next) {
     // console.log(req.query.category);
     let sql =
-      "SELECT COUNT(*) as total FROM fashionshop.blog where blog.category = ?";
+      "SELECT COUNT(*) as total FROM fashion_shop.blog where blog.category = ?";
 
     connection.query(`${sql}`, [req.query.category], (err, result) => {
       err ? res.status(401).json("lỗi") : res.json(result);
@@ -62,7 +62,7 @@ class BlogControllers {
   // [GET] /blog/detail/:id
   blogDetail(req, res, next) {
     // console.log(req.query.category);
-    let sql = "SELECT * FROM fashionshop.blog where blog.idblog = ?";
+    let sql = "SELECT * FROM fashion_shop.blog where blog.idblog = ?";
 
     connection.query(`${sql}`, [req.params.id], (err, result) => {
       err ? res.status(401).json("lỗi") : res.json(result);
@@ -80,7 +80,7 @@ class BlogControllers {
 
     const id = uuidv4();
     let sql =
-      "INSERT INTO fashionshop.feedback ( feedback.id, feedback.idFeedback, feedback.idUser, feedback.comment,  feedback.createAt ) VALUES (?, ?, ?, ?, ? )";
+      "INSERT INTO fashion_shop.feedback ( feedback.id, feedback.idFeedback, feedback.idUser, feedback.comment,  feedback.createAt ) VALUES (?, ?, ?, ?, ? )";
     const { idUser, idFeedback } = req.query;
 
     connection.query(
@@ -96,7 +96,7 @@ class BlogControllers {
   getComment(req, res, next) {
     // console.log("idFeedback: ", req.params);
     let sql =
-      "SELECT user.avatar, user.username, feedback.comment, feedback.createAt,DATE_FORMAT(feedback.createAt, '%T %M %d %Y') as timeCreateFROM fashionshop.feedback inner join fashionshop.user on feedback.idUser=user.idUser where idFeedback = ?order by createAt desc";
+      "SELECT user.avatar, user.username, feedback.comment, feedback.createAt,DATE_FORMAT(feedback.createAt, '%T %M %d %Y') as timeCreateFROM fashion_shop.feedback inner join fashion_shop.user on feedback.idUser=user.idUser where idFeedback = ?order by createAt desc";
 
     connection.query(`${sql}`, [req.params.idFeedback], (err, result) => {
       err ? res.status(401).json("lỗi") : res.json(result);

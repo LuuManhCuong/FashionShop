@@ -4,11 +4,11 @@ require("dotenv").config();
 
 // create the connection to database
 
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host: "fashionshop.mysql.database.azure.com",
   user: "fashionshop",
   password: "Admin121!!",
-  database: "fashionshop",
+  database: "fashion_shop",
   port: 3306,
   waitForConnections: true,
   connectionLimit: 10,

@@ -12,6 +12,7 @@ const http = require("http").Server(app);
 //   },
 // });
 const port = process.env.PORT || process.env.port || 5000;
+// const port = 5000;
 
 app.use(
   bodyParser.urlencoded({
@@ -24,12 +25,6 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
-// app.use(
-//   cors({
-//     credentials: true,
-//     origin: ["http://localhost:3000"],
-//   })
-// );
 //Add this before the app.get() block
 // socketIO.on("connection", (socket) => {
 //   console.log(`⚡: ${socket.id} user just connected!`);
