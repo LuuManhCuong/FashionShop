@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userSelector } from "../../redux/selectors";
 import { reloadApi } from "../../redux/reducer/adminSlice";
+import { HOT_URL } from "../../api/api";
 
 // import { useForm } from "react-hook-form";
 import Profile from "../Proflie/Profile";
@@ -50,7 +51,7 @@ function Action({ item, showInfoUser }) {
   // } = useForm();
   // const onSubmit = (data) => console.log("send", data);
   const handleDeleteUser = (id) => {
-    fetch(`http://localhost:5000/admin/delete/user/${id}`, {
+    fetch(`${HOT_URL}/admin/delete/user/${id}`, {
       method: "DELETE",
       headers: {
         token: `Bearer ${user.accessToken}`,
@@ -66,7 +67,7 @@ function Action({ item, showInfoUser }) {
   };
 
   const handleDeleteProduct = (id) => {
-    fetch(`http://localhost:5000/admin/delete/product/${id}`, {
+    fetch(`${HOT_URL}/admin/delete/product/${id}`, {
       method: "DELETE",
       headers: {
         token: `Bearer ${user.accessToken}`,

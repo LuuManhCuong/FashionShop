@@ -2,6 +2,7 @@ import "./productInfo.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { HOT_URL } from "../../api/api";
 
 function ProductInfo() {
   // so luong
@@ -11,7 +12,7 @@ function ProductInfo() {
   let userId = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/shop/detail/info/${userId.id}`)
+      .get(`${HOT_URL}/shop/detail/info/${userId.id}`)
       .then((res) => {
         setInfo(res.data[0]);
         // console.log(res.data[0])

@@ -4,6 +4,7 @@ import { FacebookOutlined } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { HOT_URL } from "../../api/api";
 
 const cx = classNames.bind(styles);
 
@@ -12,7 +13,7 @@ function DetailBlogContent() {
   const [blog, setBlog] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/blog/detail/${pram.id}`)
+      .get(`${HOT_URL}/blog/detail/${pram.id}`)
       .then((res) => {
         setBlog(res.data[0]);
       })

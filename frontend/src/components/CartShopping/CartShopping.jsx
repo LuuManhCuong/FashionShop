@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { reloadApiSlector, userSelector } from "../../redux/selectors";
 import axios from "axios";
+import { HOT_URL } from "../../api/api";
 
 const cx = classNames.bind(styles);
 
@@ -20,7 +21,7 @@ function CardShopping() {
     if (user) {
       axios
         // lấy tất cả sản phẩm trong giỏ hàng của user có id = account
-        .get(`http://localhost:5000/cart/${user.idUser}`, {
+        .get(`${HOT_URL}/cart/${user.idUser}`, {
           headers: {
             token: `Bearer ${user.accessToken}`,
           },

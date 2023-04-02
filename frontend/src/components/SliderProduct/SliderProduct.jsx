@@ -8,19 +8,20 @@ import {
 } from "@mui/icons-material";
 import ProductItem from "../ProductItem/ProductItem";
 import { useEffect, useState } from "react";
+import { HOT_URL } from "../../api/api";
 
 function SliderProduct({ gender, category, initMen, initWomen }) {
   const [dataWomen, setDataWomen] = useState(initWomen);
   const [dataMen, setDataMen] = useState(initMen);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/bestSale/?gender=women&category=${category}`)
+    fetch(`${HOT_URL}/bestSale/?gender=women&category=${category}`)
       .then((res) => res.json())
       .then((data) => setDataWomen(data));
   }, [category]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/bestSale/?gender=men&category=${category}`)
+    fetch(`${HOT_URL}/bestSale/?gender=men&category=${category}`)
       .then((res) => res.json())
       .then((data) => setDataMen(data));
   }, [category]);

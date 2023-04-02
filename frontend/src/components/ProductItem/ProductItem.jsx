@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSelector, useDispatch } from "react-redux";
 import { reloadApiSlector, userSelector } from "../../redux/selectors";
 import { reloadApi } from "../../redux/reducer/adminSlice";
+import { HOT_URL } from "../../api/api";
 
 function ProductItem({ product }) {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ function ProductItem({ product }) {
   useEffect(() => {
     if (user) {
       axios
-        .get(`http://localhost:5000/like/product/${user.idUser}`, {
+        .get(`${HOT_URL}/like/product/${user.idUser}`, {
           headers: {
             token: `Bearer ${user.accessToken}`,
           },
@@ -44,7 +45,7 @@ function ProductItem({ product }) {
       navigate("/login");
     } else {
       axios
-        .get(`http://localhost:5000/cart/${user.idUser}`, {
+        .get(`${HOT_URL}/cart/${user.idUser}`, {
           headers: {
             token: `Bearer ${user.accessToken}`,
           },
@@ -65,7 +66,7 @@ function ProductItem({ product }) {
           if (checkInclude) {
             axios
               .patch(
-                `http://localhost:5000/cart/update/incart/${id}`,
+                `${HOT_URL}/cart/update/incart/${id}`,
                 {
                   inCart: (count += 1),
                 },
@@ -92,7 +93,7 @@ function ProductItem({ product }) {
           } else {
             axios
               .post(
-                `http://localhost:5000/cart/add`,
+                `${HOT_URL}/cart/add`,
                 {
                   idProduct: id,
                   idUser: user.idUser,
@@ -132,7 +133,7 @@ function ProductItem({ product }) {
       navigate("/login");
     } else {
       axios
-        .get(`http://localhost:5000/like/${id}`, {
+        .get(`${HOT_URL}/like/${id}`, {
           headers: {
             token: `Bearer ${user.accessToken}`,
           },
@@ -145,7 +146,7 @@ function ProductItem({ product }) {
           if (checkInclude) {
             // console.log("đã tồn tại => xóa");
             let dislike = axios.delete(
-              `http://localhost:5000/dislike?idProduct=${id}&idUser=${user.idUser}`,
+              `${HOT_URL}/dislike?idProduct=${id}&idUser=${user.idUser}`,
               {
                 headers: {
                   token: `Bearer ${user.accessToken}`,
@@ -154,7 +155,7 @@ function ProductItem({ product }) {
             );
 
             let setlike = axios.patch(
-              `http://localhost:5000/setlike/${id}`,
+              `${HOT_URL}/setlike/${id}`,
               {
                 like: (product.like -= 1),
               },
@@ -173,7 +174,7 @@ function ProductItem({ product }) {
           } else {
             // console.log("chưa tồn tại  => like");
             let like = axios.post(
-              `http://localhost:5000/like`,
+              `${HOT_URL}/like`,
               {
                 idUser: user.idUser,
                 idProduct: id,
@@ -186,7 +187,7 @@ function ProductItem({ product }) {
             );
 
             let setlike = axios.patch(
-              `http://localhost:5000/setlike/${id}`,
+              `${HOT_URL}/setlike/${id}`,
               {
                 like: (product.like += 1),
               },

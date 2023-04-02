@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { reloadApi } from "../../redux/reducer/adminSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { HOT_URL } from "../../api/api";
 
 function Profile({ userInfo }) {
   // console.log(userInfo);
@@ -63,7 +64,7 @@ function Profile({ userInfo }) {
       setTextButton("Hoàn tất");
     } else {
       axios
-        .post(`http://localhost:5000/cloudinary-upload`, {
+        .post(`${HOT_URL}/cloudinary-upload`, {
           avatar: avt,
         })
 
@@ -75,7 +76,7 @@ function Profile({ userInfo }) {
           // console.log("send: ", setData);
           axios
             .patch(
-              `http://localhost:5000/update/user/${userInfo.idUser}`,
+              `${HOT_URL}/update/user/${userInfo.idUser}`,
               setData,
               {
                 headers: {

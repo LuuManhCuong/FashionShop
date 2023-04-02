@@ -7,6 +7,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { reloadApi } from "../../redux/reducer/adminSlice";
+import { HOT_URL } from "../../api/api";
 
 function CommentBlock() {
   const checkUser = useSelector(userSelector);
@@ -35,7 +36,7 @@ function CommentBlock() {
     //   navigate("/login");
     // } else {
     axios
-      .get(`http://localhost:5000/comment/${params.id}`)
+      .get(`${HOT_URL}/comment/${params.id}`)
 
       .then((res) => setDataComment(res.data))
       .catch((errors) => console.log(errors));
@@ -50,7 +51,7 @@ function CommentBlock() {
       setErr("");
       axios
         .post(
-          `http://localhost:5000/create/comment?idUser=${user.idUser}&idFeedback=${params.id}`,
+          `${HOT_URL}/create/comment?idUser=${user.idUser}&idFeedback=${params.id}`,
           data,
           {
             headers: {

@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { userSelector } from "../../redux/selectors";
 import axios from "axios";
+import { HOT_URL } from "../../api/api";
 
 function Menu({ direction, ...args }) {
   const checkUser = useSelector(userSelector);
@@ -21,7 +22,7 @@ function Menu({ direction, ...args }) {
   const handleLogout = () => {
     console.log("logour");
     axios
-      .post(`http://localhost:5000/logout`, {
+      .post(`${HOT_URL}/logout`, {
         withCredentials: true,
         headers: {
           token: `Bearer ${user.accessToken}`,

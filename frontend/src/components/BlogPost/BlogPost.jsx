@@ -15,6 +15,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { HOT_URL } from "../../api/api";
 
 const cx = classNames.bind(styles);
 
@@ -67,7 +68,7 @@ function BlogPost() {
         .then((url) => {
           axios
             .post(
-              `http://localhost:5000/blog`,
+              `${HOT_URL}/blog`,
               {
                 category,
                 content,

@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 // import { blogFilterTag } from "../../redux/reducer/blogSlice";
 import {blogDataSelector,shopFilterSelector,shopFilterSizeSelector, } from "../../redux/selectors";
 import {shopFilter, shopFilterPrice, shopFilterSize,} from "../../redux/reducer/shopSlice";
+import { HOT_URL } from "../../api/api";
 
 const cx = classNames.bind(styles);
 const categories = ["Clothings", "Handbag", "Shoes", "Accessories"];
@@ -28,7 +29,7 @@ function SideBar(props) {
   const [max, setMax] = useState(100);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/shop/getPrice`)
+    fetch(`${HOT_URL}/shop/getPrice`)
       .then((res) => res.json())
       .then((data) => {
         setMin(data[0].minPrice);

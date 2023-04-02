@@ -6,6 +6,7 @@ import "./cartNoti.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { reloadApiSlector, userSelector } from "../../redux/selectors";
 import { countNoti } from "../../redux/reducer/homeSlice";
+import { HOT_URL } from "../../api/api";
 
 function CartNoti({ className }) {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function CartNoti({ className }) {
   useEffect(() => {
     if (user) {
       axios
-        .get(`http://localhost:5000/cart/${user.idUser}`, {
+        .get(`${HOT_URL}/cart/${user.idUser}`, {
           headers: {
             token: `Bearer ${user.accessToken}`,
           },

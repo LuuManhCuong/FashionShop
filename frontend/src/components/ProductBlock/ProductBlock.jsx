@@ -14,6 +14,7 @@ import {
 import { Pagination } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { HOT_URL } from "../../api/api";
 
 function ProductBlock({ slug }) {
   const products = useSelector(shopDataSelector);
@@ -27,7 +28,7 @@ function ProductBlock({ slug }) {
   // count page
   React.useEffect(() => {
     fetch(
-      `http://localhost:5000/shop/count?gender=${slug}&filter=${filterCategory.filter}&price=${filterPrice.maxPrice}&size=${filterSize.sizes}`
+      `${HOT_URL}/shop/count?gender=${slug}&filter=${filterCategory.filter}&price=${filterPrice.maxPrice}&size=${filterSize.sizes}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -40,7 +41,7 @@ function ProductBlock({ slug }) {
     let offset;
     page === 0 ? (offset = 0) : (offset = (page - 1) * 6);
     fetch(
-      `http://localhost:5000/shop?page=${offset}&gender=${slug}&filter=${filterCategory.filter}&price=${filterPrice.maxPrice}&size=${filterSize.sizes}`
+      `${HOT_URL}/shop?page=${offset}&gender=${slug}&filter=${filterCategory.filter}&price=${filterPrice.maxPrice}&size=${filterSize.sizes}`
     )
       .then((res) => res.json())
       .then((data) => {
