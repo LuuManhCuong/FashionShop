@@ -12,6 +12,7 @@ const AccountControllers = {
   //   [POST] /register
   register: async (req, res, next) => {
     const id = uuidv4();
+    console.log("new usser : ", req.body);
     if (!req.body.username || !req.body.password || !req.body.email) {
       return res.json("điền thiếu thông tin rồi kìa");
     }
@@ -34,6 +35,7 @@ const AccountControllers = {
 
   //   [POST] /login
   login: async (req, res, next) => {
+    console.log("login: ", req.body);
     const sql = "select * from user where user.username = ? limit 1";
     connection.query(sql, [req.body.username], (err, results) => {
       if (err) {

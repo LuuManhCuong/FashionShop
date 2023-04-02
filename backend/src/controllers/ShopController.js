@@ -18,7 +18,7 @@ class ShopControllers {
           err ? res.status(401).json("có lỗi xảy ra") : res.json(result);
         }
       );
-    } else if (req.query.filter != null) {
+    } else if (req.query.filter) {
       let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
       let sql = `SELECT * FROM fashionshop.product where product.gender=? 
       and product.category in (${filters}) and product.price <= ? LIMIT 6 OFFSET ? `;
@@ -90,8 +90,8 @@ class ShopControllers {
           err ? res.status(401).json("có lỗi xảy ra") : res.json(result);
         }
       );
-    } else if (req.query.filter != null) {
-      console.log(req.query.filter);
+    } else if (req.query.filter) {
+      // console.log(req.query.filter);
       let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
       let sql = `SELECT COUNT(*) as total FROM fashionshop.product where product.gender = ? and product.category in (${filters}) and product.price <= ?`;
 

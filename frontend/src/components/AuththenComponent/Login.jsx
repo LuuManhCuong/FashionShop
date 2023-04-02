@@ -21,6 +21,7 @@ function Login() {
       username,
       password,
     };
+    console.log("login: ", user);
     loginUser(user, dispatch, navigate);
     setErr("");
   };

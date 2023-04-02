@@ -4,7 +4,6 @@ import { registerRequest } from "../../api/api";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,6 +22,7 @@ function Register() {
       email,
       password,
     };
+    console.log("newuser: ", newUser);
     registerRequest(newUser, dispatch, navigate);
     setErr("");
   };
@@ -71,7 +71,7 @@ function Register() {
         <div className="left">
           <p className="sign-up">
             <span className="dont">Already have an account?</span>
-           
+
             <Link to={"/login"} className="signup">
               Login
             </Link>

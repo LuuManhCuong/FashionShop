@@ -1,8 +1,8 @@
 import axios from "axios";
 import { userSlice } from "../redux/reducer/userSlice";
 
+// export const HOT_URL = "http://localhost:5000";
 export const HOT_URL = "https://fashionshop.onrender.com";
-// export const HOT_URL = "http://localhost:3000";
 
 // login request
 export const loginUser = async (user, dispatch, navigate) => {
