@@ -15,6 +15,16 @@
     border: 1px solid black;
     margin-top: 50px;
     position: relative;
+    h3 {
+      font-size: 22px;
+      /* margin-bottom: 30px; */
+
+      color: red;
+      background: #ffffff;
+
+      height: 34px;
+      width: 100%;
+    }
 
     .wrap {
       position: absolute;

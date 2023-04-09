@@ -4,13 +4,15 @@ const { v4: uuidv4 } = require("uuid");
 class ShopControllers {
   // [GET] /shop
   shop(req, res, next) {
-    console.log("1", req.params);
-    console.log("2", req.body);
-    console.log("3", req.query.filter.to);
+    console.log("filter: ", req.query.filter);
+    console.log("size: ", req.query.size);
 
-    if (req.query.filter != null && req.query.size != null) {
-      let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
-      let sizes = `"${req.query.size.replaceAll(",", '","')}"`;
+    if (
+      typeof req.query.filter != "undefined" &&
+      typeof req.query.size != "undefined"
+    ) {
+      let filters = `"${req.query.filter.join('","')}"`;
+      let sizes = `"${req.query.size.join('","')}"`;
       let sql = `SELECT * FROM fashion_shop.product where product.gender=? 
       and product.size in (${sizes}) and product.category in (${filters}) 
       and product.price <= ? LIMIT 6 OFFSET ? `;
@@ -22,8 +24,11 @@ class ShopControllers {
           err ? res.status(401).json("có lỗi xảy ra") : res.json(result);
         }
       );
-    } else if (req.query.filter != null) {
-      let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
+    } else if (
+      typeof req.query.filter != "undefined" &&
+      typeof req.query.size == "undefined"
+    ) {
+      let filters = `"${req.query.filter.join('","')}"`;
       let sql = `SELECT * FROM fashion_shop.product where product.gender=? 
       and product.category in (${filters}) and product.price <= ? LIMIT 6 OFFSET ? `;
 
@@ -34,11 +39,15 @@ class ShopControllers {
           err ? res.status(401).json("có lỗi xảy ra") : res.json(result);
         }
       );
-    } else if (req.query.size != null) {
-      let sizes = `"${req.query.size.replaceAll(",", '","')}"`;
+    } else if (
+      typeof req.query.size != "undefined" &&
+      typeof req.query.filter == "undefined"
+    ) {
+      console.log("roi vaof size");
+      let sizes = `"${req.query.size.join('","')}"`;
       let sql = `SELECT * FROM fashion_shop.product where product.gender=? 
       and product.size in (${sizes}) and product.price <= ? LIMIT 6 OFFSET ? `;
-
+      console.log(sql);
       connection.query(
         `${sql}`,
         [req.query.gender, req.query.price, Number(req.query.page || 0)],
@@ -79,9 +88,12 @@ class ShopControllers {
 
   // [GET] /shop/count
   countProduct(req, res, next) {
-    if (req.query.filter != null && req.query.size != null) {
-      let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
-      let sizes = `"${req.query.size.replaceAll(",", '","')}"`;
+    if (
+      typeof req.query.filter != "undefined" &&
+      typeof req.query.size != "undefined"
+    ) {
+      let filters = `"${req.query.filter.join('","')}"`;
+      let sizes = `"${req.query.size.join('","')}"`;
 
       let sql = `SELECT COUNT(*) as total FROM fashion_shop.product where product.gender = ? 
       and product.category in (${filters}) 
@@ -94,9 +106,9 @@ class ShopControllers {
           err ? res.status(401).json("có lỗi xảy ra") : res.json(result);
         }
       );
-    } else if (req.query.filter != null) {
+    } else if (typeof req.query.filter != "undefined") {
       // console.log(req.query.filter);
-      let filters = `"${req.query.filter.replaceAll(",", '","')}"`;
+      let filters = `"${req.query.filter.join('","')}"`;
       let sql = `SELECT COUNT(*) as total FROM fashion_shop.product where product.gender = ? and product.category in (${filters}) and product.price <= ?`;
 
       connection.query(
@@ -106,8 +118,8 @@ class ShopControllers {
           err ? res.status(401).json("có lỗi xảy ra") : res.json(result);
         }
       );
-    } else if (req.query.size != null) {
-      let sizes = `"${req.query.size.replaceAll(",", '","')}"`;
+    } else if (typeof req.query.size != "undefined") {
+      let sizes = `"${req.query.size.join('","')}"`;
       let sql = `SELECT COUNT(*) as total FROM fashion_shop.product 
       where product.gender = ? 
       and product.size in (${sizes}) and product.price <= ?`;

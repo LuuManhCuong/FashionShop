@@ -4,8 +4,8 @@ import "./gg.scss";
 function Doremon() {
   return (
     <div className="gg">
-      {/* <h3>Đang tìm dữ liệu</h3> */}
       <div className="head">
+      <h3 >Đang tải dữ liệu, vui lòng chờ trong giây lát!</h3>
         <div className="wrap"></div>
         <div className="bell"></div>
         <div className="eyes-left">
