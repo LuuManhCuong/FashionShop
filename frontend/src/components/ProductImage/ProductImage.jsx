@@ -17,7 +17,7 @@ function ProductImage() {
       setActive(() =>
         res.data[0]
           ? res.data[0].url
-          : "https://img.idesign.vn/2018/10/23/id-loading-1.gif"
+          : "https://trungcapktktbinhdinh.edu.vn/phan-mem-diet-virus-clean-master/imager_4072.jpg"
       );
     });
   }, [userId.id]);

@@ -13,8 +13,6 @@ import Stack from "@mui/material/Stack";
 import { userSelector } from "../../redux/selectors";
 import { useNavigate, Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-// import { userSlice } from "../../redux/reducer/userSlice";
-// import { checkToken } from "../../api/api";
 import { HOT_URL } from "../../api/api";
 
 const overview = [
@@ -43,66 +41,20 @@ const overview = [
 function DataCustomer() {
   // const dispatch = useDispatch();
   const navigate = useNavigate();
-  const axiosJwt = axios.create({ withCredentials: true });
-
   const checkUser = useSelector(userSelector);
   const user = checkUser.login?.currentUser;
+  console.log("user: ", user.accessToken);
+
   const reloadApis = useSelector(reloadApiSlector);
 
   const [ListUser, setListUser] = useState([]);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
 
-  // checkToken(user, dispatch);
-
-  // async function newToken() {
-  //   try {
-  //     const res = await axios.post(
-  //       `${HOT_URL}/refresh`,
-  //       {
-  //         refreshToken: user.accessToken,
-  //       },
-  //       {
-  //         withCredentials: true,
-  //       }
-  //     );
-  //     return res.data;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-  // kiểm tra xem token đã hết hạn hay chưa
-  // axiosJwt.interceptors.request.use(
-  //   async (config) => {
-  //     let date = new Date();
-  //     const decodedToken = jwtDecode(user?.accessToken);
-
-  //     if (decodedToken.exp < date.getTime() / 1000) {
-
-  //       const data = await newToken();
-  //       // console.log(data);
-  //       // refresh user khi token hết hạn
-  //       const refreshUser = {
-  //         ...user,
-  //         accessToken: data,
-  //       };
-
-  //       console.log("rf: ", refreshUser);
-  //       dispatch(userSlice.actions.loginSuccess(refreshUser));
-  //       config.headers["token"] = `Bearer ${data.accessToken}`;
-  //     }
-  //     return config;
-  //   },
-  //   (err) => {
-  //     return Promise.reject(err);
-  //   }
-  // );
-
   // count page
   useEffect(() => {
-    axiosJwt
+    axios
       .get(`${HOT_URL}/admin/count/user`, {
-        withCredentials: true,
         headers: {
           token: `Bearer ${user.accessToken}`,
         },
@@ -121,9 +73,8 @@ function DataCustomer() {
   useEffect(() => {
     let offset;
     page === 0 ? (offset = 0) : (offset = (page - 1) * 10);
-    axiosJwt
+    axios
       .get(`${HOT_URL}/admin/?page=${offset}`, {
-        withCredentials: true,
         headers: {
           token: `Bearer ${user.accessToken}`,
         },
@@ -136,7 +87,8 @@ function DataCustomer() {
         setListUser(data);
       })
       .catch((err) => {
-        navigate("/login");
+        console.log("lỗi");
+        // navigate("/login");
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate, page, reloadApis.reload, totalPages, user.accessToken]);

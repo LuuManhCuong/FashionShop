@@ -18,12 +18,19 @@
     h3 {
       font-size: 22px;
       /* margin-bottom: 30px; */
-
-      color: red;
-      background: #ffffff;
-
+      color: white;
+      background: #e7ab3c;
       height: 34px;
       width: 100%;
+      position: absolute;
+      top: -19px;
+      /* right: 0; */
+      left: -15px;
+      width: 200px;
+      height: auto;
+      border-radius: 91px;
+      text-align: center;
+      padding: 20px;
     }
 
     .wrap {

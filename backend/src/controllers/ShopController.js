@@ -4,8 +4,8 @@ const { v4: uuidv4 } = require("uuid");
 class ShopControllers {
   // [GET] /shop
   shop(req, res, next) {
-    console.log("filter: ", req.query.filter);
-    console.log("size: ", req.query.size);
+    // console.log("filter: ", req.query.filter);
+    // console.log("size: ", req.query.size);
 
     if (
       typeof req.query.filter != "undefined" &&

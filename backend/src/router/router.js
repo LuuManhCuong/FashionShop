@@ -90,11 +90,10 @@ function router(app) {
     .route("/like/:idProduct")
     .get(authenJwt.verifyToken, ShopControllers.getLike);
 
-    // get all product mà user đã like
-    app
+  // get all product mà user đã like
+  app
     .route("/like/product/:idUser")
     .get(authenJwt.verifyToken, ShopControllers.getProductLiked);
-
 
   // * router
   app.route("*").get((req, res) => {

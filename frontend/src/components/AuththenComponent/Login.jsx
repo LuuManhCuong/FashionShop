@@ -24,13 +24,13 @@ function Login() {
       username,
       password,
     };
-    console.log("logign: ", user);
+    // console.log("logign: ", user);
     // loginUser(user, dispatch, navigate);
     dispatch(userSlice.actions.loginStart());
     axios
       .post(`${HOT_URL}/login`, user)
       .then((res) => {
-        console.log("res login: ", res.data);
+        // console.log("res login: ", res.data);
         dispatch(userSlice.actions.loginSuccess(res.data));
         navigate(`/`);
       })

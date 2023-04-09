@@ -95,8 +95,8 @@ class BlogControllers {
   // [GET] /comment/:idFeedback
   getComment(req, res, next) {
     // console.log("idFeedback: ", req.params);
-    let sql =
-      "SELECT user.avatar, user.username, feedback.comment, feedback.createAt,DATE_FORMAT(feedback.createAt, '%T %M %d %Y') as timeCreateFROM fashion_shop.feedback inner join fashion_shop.user on feedback.idUser=user.idUser where idFeedback = ?order by createAt desc";
+    let sql = `SELECT user.avatar, user.username, feedback.comment, feedback.createAt,DATE_FORMAT(feedback.createAt, '%T %M %d %Y') as timeCreate 
+    FROM fashion_shop.feedback inner join fashion_shop.user on feedback.idUser=user.idUser where idFeedback = ? order by createAt desc`;
 
     connection.query(`${sql}`, [req.params.idFeedback], (err, result) => {
       err ? res.status(401).json("lỗi") : res.json(result);
