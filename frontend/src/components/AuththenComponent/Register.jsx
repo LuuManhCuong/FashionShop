@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "./authen.scss";
-import { registerRequest } from "../../api/api";
+import { registerRequest, HOT_URL } from "../../api/api";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
+import axios from "axios";
+import { userSlice } from "../../redux/reducer/userSlice";
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,8 +23,18 @@ function Register() {
       email,
       password,
     };
-    console.log("newuser: ", newUser);
-    registerRequest(newUser, dispatch, navigate);
+    // registerRequest(newUser, dispatch, navigate);
+    dispatch(userSlice.actions.registerStart());
+    axios
+      .post(`${HOT_URL}/register`, newUser)
+      .then((res) => {
+        // console.log("register succes: ", res);
+        dispatch(userSlice.actions.registerSuccess());
+        navigate(`/login`);
+      })
+      .catch((err) => {
+        dispatch(userSlice.actions.registerFailed());
+      });
     setErr("");
   };
   return (

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import "./authen.scss";
-import { loginUser } from "../../api/api";
+import { HOT_URL, loginUser } from "../../api/api";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../../redux/selectors";
+import axios from "axios";
+import { userSlice } from "../../redux/reducer/userSlice";
 
 function Login() {
   const dispatch = useDispatch();
@@ -13,6 +15,7 @@ function Login() {
   const [err, setErr] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const handleSubmit = () => {
     if (username.length <= 0 || password <= 0) {
       return setErr("M nhập thiếu thông tin rồi kìa, nhập lại đi!!");
@@ -21,8 +24,19 @@ function Login() {
       username,
       password,
     };
-    console.log("login: ", user);
-    loginUser(user, dispatch, navigate);
+    console.log("logign: ", user);
+    // loginUser(user, dispatch, navigate);
+    dispatch(userSlice.actions.loginStart());
+    axios
+      .post(`${HOT_URL}/login`, user)
+      .then((res) => {
+        console.log("res login: ", res.data);
+        dispatch(userSlice.actions.loginSuccess(res.data));
+        navigate(`/`);
+      })
+      .catch((err) => {
+        dispatch(userSlice.actions.loginFailed());
+      });
     setErr("");
   };
 

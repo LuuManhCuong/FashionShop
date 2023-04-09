@@ -35,7 +35,7 @@ const AccountControllers = {
 
   //   [POST] /login
   login: async (req, res, next) => {
-    console.log("login: ", req.body);
+    // console.log("login: ", req.body);
     const sql = "select * from user where user.username = ? limit 1";
     connection.query(sql, [req.body.username], (err, results) => {
       if (err) {
