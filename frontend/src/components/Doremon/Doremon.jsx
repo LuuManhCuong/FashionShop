@@ -5,9 +5,7 @@ function Doremon() {
   return (
     <div className="gg">
       <div className="head">
-        <h3>
-          Đang tải dữ liệu trong túi thần kì, vui lòng chờ trong giây lát!
-        </h3>
+        <h3>Đang tải dữ liệu, vui lòng chờ trong giây lát!</h3>
         <div className="wrap"></div>
         <div className="bell"></div>
         <div className="eyes-left">

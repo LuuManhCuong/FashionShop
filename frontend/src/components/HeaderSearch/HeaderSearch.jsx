@@ -7,7 +7,9 @@ import Typewriter from "typewriter-effect";
 import Menu from "../Menu/Menu";
 import CartNoti from "../CartNoti/CartNoti";
 import Noti from "../Noti/Noti";
-import { fetchSearchApi } from "../../api/api";
+
+import { HOT_URL, fetchSearchApi } from "../../api/api";
+
 import {
   SearchOutlined,
   FavoriteBorderOutlined,
@@ -19,6 +21,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { shopFilter } from "../../redux/reducer/shopSlice";
 import { countNotiSelector } from "../../redux/selectors";
+import axios from "axios";
 
 const cx = classNames.bind(styles);
 function HeaderSearch() {
@@ -38,6 +41,16 @@ function HeaderSearch() {
       setListSearch(res.data[0]);
       setListProduct(res.data[1]);
     });
+    // axios
+    //   .get(`${HOT_URL}/search?name=${keyWord}&size="less"`)
+    //   .then((res) => {
+    //     console.log("search: ", res.data);
+    //     setListSearch(res.data[0]);
+    //     setListProduct(res.data[1]);
+    //   })
+    //   .catch((err) => {
+    //     console.log("lỗi: ", err);
+    //   });
   }, [keyWord]);
 
   return (

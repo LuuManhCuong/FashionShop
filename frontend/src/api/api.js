@@ -36,9 +36,11 @@ export const fetchHomeApi = () => axios.get(`${HOT_URL}`);
 export const fetchBlogApi = () => axios.get(`${HOT_URL}/blog`);
 export const fetchBestSaleApi = () => axios.get(`${HOT_URL}/bestSale/`);
 export const fetchShopApi = () => axios.get(`${HOT_URL}/shop`);
+
 export const fetchAdminApi = () =>
   axios.get(`${HOT_URL}/admin`, {
     withCredentials: true,
   });
+
 export const fetchSearchApi = (wordKey, size = "less") =>
   axios.get(`${HOT_URL}/search?name=${wordKey}&size=${size}`);
