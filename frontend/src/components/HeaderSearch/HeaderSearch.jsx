@@ -41,6 +41,16 @@ function HeaderSearch() {
       setListSearch(res.data[0]);
       setListProduct(res.data[1]);
     });
+    // axios
+    //   .get(`${HOT_URL}/search?name=${keyWord}&size="less"`)
+    //   .then((res) => {
+    //     console.log("res search: ", res.data);
+    //     setListSearch(() => res.data[0] || []);
+    //     setListProduct(() => res.data[1] || []);
+    //   })
+    //   .catch((err) => {
+    //     console.log("err: ", err);
+    //   });
   }, [keyWord]);
 
   return (

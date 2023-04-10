@@ -43,7 +43,7 @@ class ShopControllers {
       typeof req.query.size != "undefined" &&
       typeof req.query.filter == "undefined"
     ) {
-      console.log("roi vaof size");
+      // console.log("roi vaof size");
       let sizes = `"${req.query.size.join('","')}"`;
       let sql = `SELECT * FROM fashion_shop.product where product.gender=? 
       and product.size in (${sizes}) and product.price <= ? LIMIT 6 OFFSET ? `;
