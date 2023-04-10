@@ -5,12 +5,11 @@ class SearchController {
   SearchProduct(req, res, next) {
     const keySearch = req.query.name;
     const size = req.query.size;
-    console.log("keysearch: ", req.query);
+    // console.log("keysearch: ", req.query);
     if (size == "less") {
       // render vào search
       let sql = `select* from product WHERE category LIKE ?  GROUP BY category LIMIT ${5}`;
       let sql2 = `select* from product WHERE name LIKE ? LIMIT ${3}`;
-      // console.log("sql: ", `${sql};${sql2}`);
       connection.query(
         `${sql};${sql2}`,
         ["%" + keySearch + "%", "%" + keySearch + "%"],
